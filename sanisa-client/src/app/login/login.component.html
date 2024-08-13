@@ -1,40 +1,49 @@
-<div class="LoginBackground">
-    <div class="container custom-container">
-        <div class="row loginContainer">
-            <div class="col-md-6 loginBanner  shadow border-0 d-none d-sm-none d-md-block">
-                <img src="/assets/images/loginBannerImage.png" alt="" class="loginBannerImage d-none d-md-block d-sm-none" >
-              <div style="text-align: center;">
-                <small class="loginBannerText">Lorem ipsum dolor sit amet, Lorem ipsum dolor sit <br> ametconsectetur Lorem ipsum dolor sit amet, <br> Lorem ipsum </small>
-              </div> 
-            </div>
-            <div class="col-md-6 loginSection  shadow border-0">
-                <h5 class="subscriptionText">Amazing subscription services for <br> Your Organization</h5>
-                <img src="/assets/images/MindStack_Logo_TransparentBG 1.png" alt="" class="loginLogo">              
-                <h4 class="Account">Login</h4>
-                <form class="loginForm" [formGroup]="LoginForm">
-                    <div class="mb-3">
-                        <label for="Email" class="form-label">Email</label> 
-                        <input type="text" class="form-control form-control-sm" id="Email" aria-describedby="emailHelp" formControlName="userName"
-                            placeholder="useremail@abc.com">
+<div class="">
+    
+    <div class="row m-0 loginPageContainer" >
+        <div class="col-lg-6  loginformSec shadow border-0">
+           <div class="loginSection">
+            <div class="text-center">
+                <img src="../../assets/images/sanisaLogo.png" alt="" class="loginLogo">      
+            </div>        
+            <h4 class="Account">Sign In</h4>
+            <p class="mutedText">Enter your email and password to sign in</p>
+            <form class="loginForm mt-5" [formGroup]="LoginForm">
+                <div class="mb-3">
+                    <label for="Email" class="form-label">Email</label> 
+                    <input type="text" class="form-control form-control-sm" id="Email" aria-describedby="emailHelp" formControlName="userName"
+                        placeholder="useremail@abc.com">
 
-                    </div>
-                    <div class="mb-3">
-                        <label for="Password" class="form-label">Password</label><br>
-                        <input type="password" class="form-control form-control-sm" id="Password" placeholder="******" formControlName="password">
-                    </div>
-                    <div class="mb-3">
-                        <label for="ForgotPassword1" class="form-label ForgotPassword">Forgot
-                            password?</label>
+                </div>
+                <div class="mb-2">
+                    <label for="Password" class="form-label">Password</label><br>
+                    <input type="password" class="form-control form-control-sm" id="Password" placeholder="******" formControlName="password">
+                </div>
+                <div class="mb-3">
+                    <span for="ForgotPassword1" class="ForgotPassword">Forgot
+                        password?</span>
 
-                    </div>
-                    <button type="submit" class="btn primary-btn" (click)="loginUser()">Login</button>
-                    <div class="CreateAccount">
-                        <label for="" class="form-label">Not registered? <a href="" routerLink="/createAccount"  class="AccountCreation">Create an
-                                account</a></label>
-                    </div>
-                </form>
-            </div>
+                </div>
+                <button type="submit" class="btn primary-btn w-100 mt-3" (click)="loginUser()">Login</button>
+                <div class="CreateAccount mt-4">
+                    <span for="" class="">Not registered? <a href="" routerLink="/createAccount"  class="AccountCreation">Create an
+                            account</a></span>
+                </div>
+            </form>
+           </div>
         </div>
+        <div class="col-md-6 loginBanner shadow border-0 d-none d-sm-none d-lg-block">
+            <div class="bannerText">
+                <div class="loginBannersec">
+                    <h1>SHRAMIK NAARI SANGHA</h1>
+                    <h6>“ Empowerment Of Less-privileged Women “</h6>
+                    <p>ShramikNaariSangh, a society devoted to the economic empowerment of women.</p>
+                </div>
+            </div>
+          
+        </div>
+        
+      
     </div>
-    <img src="/assets/images/loginBackground.png" alt="" class="loginBackgroundImage d-none d-sm-none d-md-block"></div>
- <div>
+
+</div>

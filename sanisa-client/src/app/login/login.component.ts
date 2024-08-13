@@ -31,9 +31,9 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (this.authService.isAuthenticated()) {
-      this.router.navigate(['/']);
-    }
+    // if (this.authService.isAuthenticated()) {
+    //   this.router.navigate(['/']);
+    // }
   }
 
   LoginForm = new FormGroup({
@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
                     let menuList = userMenu.items.map(res => res.subRoleCode)
                     localStorage.setItem('menuList',menuList.toString())
                     this.authService.saveUserData(res)
-                    this.router.navigate(['/'])
+                    this.router.navigate(['/admin'])
                   }
                 )
 
