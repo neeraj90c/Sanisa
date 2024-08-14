@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
                     let menuList = userMenu.items.map(res => res.subRoleCode)
                     localStorage.setItem('menuList',menuList.toString())
                     this.authService.saveUserData(res)
-                    this.router.navigate(['/admin'])
+                    this.router.navigate(['/'])
                   }
                 )
 

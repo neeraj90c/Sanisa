@@ -1,18 +1,22 @@
 'use strict';
 
 import { environment } from "src/environments/environment";
-const BaseURL: string = environment.apiURL;
-const Auth_BaseURL: string = BaseURL + '/auth/';
+const BaseURL: string = environment.apiURL; //https://dev.sanisa.vnccy.com
+const APIGateWay: string = BaseURL + '/apig/'; //https://dev.sanisa.vnccy.com/apig/
+
 const Menu_BaseURL: string = BaseURL + '/menus/';
-const UnifiedAuth_BaseURL: string = BaseURL + '/UA/'
+
+const UnifiedAuth_BaseURL: string = APIGateWay + 'UA/'  //https://dev.sanisa.vnccy.com/apig/UA
+
 const UserMaster_BaseURL: string = UnifiedAuth_BaseURL + 'UM/'
 const CompanyMaster_BaseURL: string = UnifiedAuth_BaseURL + 'CM/'
 const BankMaster_BaseURL: string = UnifiedAuth_BaseURL + 'BM/'
+const UserLogin_BaseURL: string = UnifiedAuth_BaseURL + 'UL/'
 
 
 //#region Authentication API
-export const Auth = Auth_BaseURL + 'auth'
-export const ValidateToken = Auth_BaseURL + 'ValidateToken'
+export const Auth = UserLogin_BaseURL + 'auth'
+export const ValidateToken = UserLogin_BaseURL + 'ValidateToken'
 //#endregion
 
 //#region Menu API
