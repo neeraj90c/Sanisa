@@ -51,7 +51,7 @@ export class AuthService {
 
   UserIsAdmin():boolean{
     if(this.User().roleId.includes('369')){
-      return false
+      return true
     }else{
       return false
     }
