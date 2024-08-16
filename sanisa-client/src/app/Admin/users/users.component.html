@@ -1,0 +1,149 @@
+<div class="heading">
+    <div>
+     
+        <h5>Manage User</h5>
+        <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae.</p>
+    </div>
+    <div class="btn btn-sm primary-btn"     (click)="OpenAddUserModal()">New User</div>
+</div>
+
+<div class="main-container">
+    <div class="tableHeader mb-3 d-flex flex-wrap gap-1 justify-content-between">
+        <div class="d-flex align-items-center gap-2 ml-2">
+          <label class="font-weight-600">Showing </label>
+          <select class="form-control form-control-sm" placeholder="10">
+            <option>10</option>
+            <option>20</option>
+          </select>
+          <label> Entries</label>
+        </div>
+        
+      </div>
+      <div class="tablebody border">
+        <table class="dataTable">
+          <thead>
+            <tr>
+              <th style="width:5%">Sr.No.</th>
+              <th style="width:21%">User Name</th>
+              <th style="width:22%">Company Name</th>
+              <th style="width:22%">Email Address</th>
+              <th style="width:8%"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-center">1</td>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <div class="usericonBox" style="background-color: #572196; color: #fff;">OR</div>Olivia Rhye
+                </div>
+              </td>
+              <td>Lorem ipsum dolor sit amet</td>
+              <td>olivia&#64;abcftry.com</td>              
+              <td>
+                <div class="dataTableicon d-flex align-items-center justify-content-around">
+                  <i class="bi bi-trash"></i><i class="bi bi-pen"></i>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-center">2</td>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <div class="usericonBox" style="background-color: #962165; color: #fff;">LS</div>Lana Steiner
+                </div>
+              </td>
+              <td>Lorem ipsum dolor sit amet</td>
+              <td>olivia&#64;abcftry.com</td>
+              
+              <td>
+                <div class="dataTableicon d-flex align-items-center justify-content-around">
+                  <i class="bi bi-trash"></i><i class="bi bi-pen"></i>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>     
+</div>
+
+<ng-template #addUser>
+    <div class="modal-header">
+      <h6 class="modal-title font-weight-600">Add New User</h6>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+   <div class="modal-body">
+      <div class="form-container">
+        <form >
+            <div class="py-4 formBody">
+              <div class="row align-items-top">
+            
+                  <div class="col-lg-12">
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="form-group mb-3">
+                          <label for="firstName" class="form-label">First Name</label><span class="text-danger h6">*</span>
+                          <input id="firstName" formControlName="firstName" class="form-control form-control-sm"  required />
+                        </div>
+                      </div>
+                      
+                      <div class="col-lg-6">
+                        <div class="form-group mb-3">
+                          <label for="lastName" class="form-label">Last Name</label><span class="text-danger h6">*</span>
+                          <input id="lastName" formControlName="lastName" class="form-control form-control-sm"  required />
+                        </div>
+                      </div>
+                    
+                      <div class="col-lg-6">
+                        <div class="form-group mb-3">
+                          <label for="email" class="form-label">Email</label> <span class="text-danger h6">*</span>
+                          <input id="email" formControlName="email" type="email" class="form-control form-control-sm" required />
+                        </div>
+                      </div>
+                      
+                      <div class="col-lg-6">
+                        <div class="form-group mb-3">
+                          <label for="contactNumber" class="form-label">Contact Number</label>
+                          <input id="contactNumber" formControlName="contactNumber" class="form-control form-control-sm"  required />
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="form-group mb-3">
+                          <label for="companyMail" class="form-label">Role</label> <span class="text-danger h6">*</span>
+                          <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                            <option selected> select Role</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Volunteers">Volunteers</option>
+                          </select>
+                        </div>
+                      </div>                   
+                      
+                     
+                    </div>  
+                    <hr>
+                    <div class="row mt-2">
+                      <label class="mb-2" style="color: var(--primary-col);"><i class="bi bi-person-lock" style="font-size: 21px;"></i> Login Credentials</label>
+                      <div class="col-lg-6">
+                       
+                        <div class="form-group mb-3">
+                          <label for="companyName" class="form-label">User Name</label><span class="text-danger h6">*</span>
+                          <input id="companyName" formControlName="companyName" class="form-control form-control-sm"  required />
+                        </div>
+                      </div>
+                      
+                      <div class="col-lg-6">
+                        <div class="form-group mb-3">
+                          <label for="companyAddress" class="form-label">Password</label><span class="text-danger h6">*</span>
+                          <input id="companyAddress" formControlName="companyAddress" class="form-control form-control-sm"  required />
+                        </div>
+                      </div>
+                    </div>          
+                  </div>
+                </div>    
+            </div>
+            
+      </form>
+      </div>
+    </div> 
+ 
+  </ng-template>

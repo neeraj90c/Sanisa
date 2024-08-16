@@ -72,6 +72,15 @@ export class LoginComponent implements OnInit {
                   projectId: this.PROJECT_ID
                 } 
 
+                /**
+                 * This is a temp fix untill GetMenuForUser api isnt fix please remove this afterwards
+                 */
+                this.authService.saveUserData(res)
+                this.router.navigate(['/'])
+                /**
+                 * END
+                 */
+                
                 this.menuService.getMenuForUser(MenuDTO).subscribe(
                   (userMenu) => {
                     let menuList = userMenu.items.map(res => res.subRoleCode)

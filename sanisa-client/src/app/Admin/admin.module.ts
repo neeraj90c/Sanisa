@@ -1,20 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SanisaRoutingModule } from './sanisa-routing.module';
+
+import { AdminRoutingModule } from './admin-routing.module';
+import { UsersComponent } from './users/users.component';
 import { SharedModule } from '../shared/shared.module';
 import { NavbarComponent } from './navbar/navbar.component';
-import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    HomeComponent
+    UsersComponent
   ],
   imports: [
     CommonModule,
-    SanisaRoutingModule,
+    AdminRoutingModule,
     SharedModule
   ]
 })
-export class SanisaModule { }
+export class AdminModule { }

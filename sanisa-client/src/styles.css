@@ -357,11 +357,18 @@ input {
 
 }
 
+.userImage{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
 .userProfile {
   border: 1px solid #eee !important;
   min-width: 15rem !important;
   right: 0 !important;
   left: auto !important;
+  transition: all 0.5s ease-out;
 }
 
 .profile-body .profile-option,
@@ -450,7 +457,8 @@ input {
 
 
 
-/* banner Section */
+/* ********************banner Section *********************/
+.content-wrapper{padding: 20px;}
 .banner {
   background-color: #F5F5F5;
   border-radius: 8px;
@@ -983,9 +991,23 @@ background-size:100%;
 }
 
 
-/* ******************************* Admin Navbar***************************** */
+/* ******************************* Admin user page***************************** */
 
-.sidebar{height: 96vh; width: 15%; background-color: #F8F9FD;}
+.heading{display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #EAECF0;}
+.main-container{margin-top: 10px;}
+.dataTable{width: 100%;}
+.dataTable thead { background-color: #cdd8e0;}
+.dataTable th { border-right: 1.5px solid #e4e5e6; padding: 10px 6px;}
+.dataTable td:last-child, .dataTable th:last-child{ border-right:none}
+.dataTable td {border-right: 1.5px solid #EAECF0; border-top: 1.5px solid #EAECF0; padding: 6px;background-color: white;}
+
+.dataTableicon i { font-size: 18px;}
+.usericonBox { height: 35px; width: 35px;  border-radius: 50%;  background-color: #FCE7E5;  color: #303E3D;  padding: 8px;  font-weight: 600;  display: flex; justify-content: center;}
+.dataTablesubscription span{  font-weight: 500; border-radius: 11px; padding: 6px 8px;}
+.usersListIcon { height: 35px; width: 35px; border-radius: 50%; background-color: #FCE7E5; color: white; padding: 8px; font-weight: 600;  display: flex;  justify-content: center;
+  align-items: center;  margin-right: -8px; cursor: pointer;}
+.usersListIcon:hover{transform: scale(1.2); transition: all 0.4s ease-in-out;}
+
 
 
 
