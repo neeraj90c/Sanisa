@@ -31,11 +31,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td class="text-center">1</td>
+
+            <tr *ngFor="let user of UserList; let i=index">
+              <td class="text-center">{{i+1}}</td>
               <td>
                 <div class="d-flex align-items-center gap-2">
-                  <div class="usericonBox" style="background-color: #572196; color: #fff;">OR</div>Olivia Rhye
+                  <div class="usericonBox" style="background-color: #572196; color: #fff;">{{getInitials(user)}}</div>{{getFullname(user)}}
                 </div>
               </td>
               <td>Lorem ipsum dolor sit amet</td>
@@ -46,6 +47,7 @@
                 </div>
               </td>
             </tr>
+
             <tr>
               <td class="text-center">2</td>
               <td>

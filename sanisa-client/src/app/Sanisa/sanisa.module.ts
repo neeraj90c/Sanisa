@@ -4,12 +4,14 @@ import { SanisaRoutingModule } from './sanisa-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
+import { StoreComponent } from './store/store.component';
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    StoreComponent
   ],
   imports: [
     CommonModule,

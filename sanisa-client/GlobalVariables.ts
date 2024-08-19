@@ -8,10 +8,13 @@ const Menu_BaseURL: string = BaseURL + '/menus/';
 
 const UnifiedAuth_BaseURL: string = APIGateWay + 'UA/'  //https://dev.sanisa.vnccy.com/apig/UA
 
+
+//#region Master URLs
 const UserMaster_BaseURL: string = UnifiedAuth_BaseURL + 'UM/'
 const CompanyMaster_BaseURL: string = UnifiedAuth_BaseURL + 'CM/'
 const BankMaster_BaseURL: string = UnifiedAuth_BaseURL + 'BM/'
 const UserLogin_BaseURL: string = UnifiedAuth_BaseURL + 'UL/'
+//#endregion
 
 
 //#region Authentication API

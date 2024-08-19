@@ -13,6 +13,8 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) { }
   UserData = {}
 
+  tokenValidated: boolean = false
+
   isAuthenticated() {
     if (localStorage.getItem('access_token') != null || localStorage.getItem('access_token') != undefined) {
       return true;
@@ -44,15 +46,16 @@ export class AuthService {
 
   saveUserData(data: User) {
     localStorage.setItem('userObject', encodeURIComponent(JSON.stringify(data)))
+    this.tokenValidated = true
   }
 
 
   authorizedPages: string[] = []
 
-  UserIsAdmin():boolean{
-    if(this.User().roleId.includes('369')){
+  UserIsAdmin(): boolean {
+    if (this.User().roleId.includes('369')) {
       return true
-    }else{
+    } else {
       return false
     }
   }
