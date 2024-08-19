@@ -10,7 +10,7 @@ const routes: Routes = [
     path: '', component: NavbarComponent, children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent, title: 'Home' },
-      { path: 'store', component: StoreComponent, title: 'Home' },
+      { path: 'store', component: StoreComponent, title: 'Store' },
     ]
   }
 ];

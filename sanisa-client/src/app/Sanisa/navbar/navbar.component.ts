@@ -56,6 +56,10 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
 
+    // this.router.events.subscribe(event => {
+    //   console.log('ROUTER NAVIGATION EVENT',event);
+    // });
+
     if (this.authService.isAuthenticated() && this.authService.tokenValidated) {
       
 
@@ -67,7 +71,7 @@ export class NavbarComponent implements OnInit {
              * This is a temp fix untill GetMenuForUser api isnt fix please remove this afterwards
              */
             this.authService.saveUserData(res)
-            this.router.navigate(['/'])
+            // this.router.navigate(['/'])
             /**
              * END
              */
