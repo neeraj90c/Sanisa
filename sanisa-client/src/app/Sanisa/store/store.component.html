@@ -94,7 +94,7 @@
                   <a  data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View" (click)="OpenquickViewModal()"><i class="bi bi-eye"></i></a>
                 </li>
                 <li>
-                  <a href="#"><i class="bi bi-arrows-fullscreen"></i></a>
+                  <a routerLink="/product-detail"><i class="bi bi-arrows-fullscreen"></i></a>
                 </li>
                 <li>
                   <a href="#"><i class="bi bi-cart"></i></a>
@@ -102,8 +102,8 @@
               </ul>
             </div>
             <div class="product-content">
-              <span class="category"><a href="#">Roasted Crispies</a></span>
-              <h3 class="title"><a href="#">Product Name</a></h3>
+              <span class="category"><a >Roasted Crispies</a></span>
+              <h3 class="title"><a routerLink="/product-detail">Product Name</a></h3>
               <div class="price">₹258.11</div>
             </div>
           </div>
@@ -350,13 +350,11 @@
       </div>
     </div>
   </div>
-
 </div>
 
 
 <ng-template #quickView>
-  <div class="container p-3">
-    
+  <div class="container p-3">    
     <div class="row">
       <div class="col-lg-5">
         <div class="closeModalBTn d-block d-lg-none d-md-block">
@@ -403,7 +401,6 @@
         <div class="productDetail">
           <span class="category">Roasted Crispies</span>
           <h2 class="productName mt-2">Product Name Title Here</h2>
-
           <div class="d-flex gap-2 align-item-center">
             <div class="rating">
               <i class="bi bi-star-fill rated"></i>
@@ -412,9 +409,7 @@
               <i class="bi bi-star nonRated"></i>
               <i class="bi bi-star nonRated"></i>
             </div>
-            <small style="margin-top: 3px; color: green"
-              >(109 reviews)</small
-            >
+            <small style="margin-top: 3px; color: green">(109 reviews)</small>
           </div>
 
           <div class="productDescription py-2">
