@@ -1,25 +1,63 @@
 <div class="main-container">
   <div class="row">
     <div class="col-lg-3">
-      <aside class="category-menu p-3">
-        <div class="position-relative mb-4">
-          <h5 class="sectionTitle pb-3">All Categories</h5>
+      <aside>
+        <div class="category-menu p-3">
+          <div class="position-relative mb-4">
+            <h5 class="sectionTitle pb-3">All Categories</h5>
+          </div>
+          <ul class="p-0">
+            <li class="category-menu-item">
+              Chaakri - Khakhras & Savories <span class="count">35</span>
+            </li>
+            <li class="category-menu-item">
+              Devinite - Chocolate <span class="count">35</span>
+            </li>
+            <li class="category-menu-item">
+              All Things Yum <span class="count">35</span>
+            </li>
+            <li class="category-menu-item">
+              Puro - Body & Soul <span class="count">35</span>
+            </li>
+          </ul>
         </div>
+        <div class="category-menu p-3  mt-4">
+          <div class="position-relative mb-4">
+            <h5 class="sectionTitle pb-3">Filter</h5>
+          </div>
+          <div class="priceRange">
+            <h6 class="filtersectionHeader font-weight-600">
+              By Price
+            </h6>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="priceRangefilter" id="priceRangefilter1">
+              <label class="form-check-label" for="priceRangefilter1">
+                Low To High
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="priceRangefilter" id="priceRangefilter2" checked>
+              <label class="form-check-label" for="priceRangefilter2">
+                High To Low
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="priceRangefilter" id="priceRangefilter3">
+              <label class="form-check-label" for="priceRangefilter3">
+                Range
+              </label>
+            </div>
+            <!-- <mat-slider min="100" max="500" showTickMarks discrete [displayWith]="formatLabel">
+              <input value="300" matSliderStartThumb>
+              <input value="400" matSliderEndThumb>
+            </mat-slider> -->
 
-        <ul class="p-0">
-          <li class="category-menu-item">
-            Chaakri - Khakhras & Savories <span class="count">35</span>
-          </li>
-          <li class="category-menu-item">
-            Devinite - Chocolate <span class="count">35</span>
-          </li>
-          <li class="category-menu-item">
-            All Things Yum <span class="count">35</span>
-          </li>
-          <li class="category-menu-item">
-            Puro - Body & Soul <span class="count">35</span>
-          </li>
-        </ul>
+            <mat-slider min="200" max="500"  discrete>
+              <input value="300" matSliderStartThumb>
+              <input value="400" matSliderEndThumb>
+            </mat-slider>
+          </div>
+        </div>
       </aside>
     </div>
     <div class="col-lg-9">
@@ -40,310 +78,71 @@
             <option value=" 100">show 50</option>
             <option value=" all">show All</option>
           </select>
-          <div
-            class="filter"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasScrolling"
-            aria-controls="offcanvasScrolling"
-          >
-            filter
-          </div>
-          <div
-            class="offcanvas offcanvas-end"
-            data-bs-scroll="true"
-            data-bs-backdrop="false"
-            tabindex="-1"
-            id="offcanvasScrolling"
-            aria-labelledby="offcanvasScrollingLabel"
-          >
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasScrollingLabel">
-                Colored with scrolling
-              </h5>
-              <button
-                type="button"
-                class="btn-close text-reset"
-                data-bs-dismiss="offcanvas"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="offcanvas-body">
-              <p>
-                Try scrolling the rest of the page to see this option in action.
-              </p>
-            </div>
-          </div>
+         
         </div>
       </div>
-      <!-- <div class="row">
-        <div class="col-md-3 col-sm-6">
-          <div class="product-grid">
-            <div class="product-image">
-              <a href="#" class="image">
-                <img
-                  class="pic-1"
-                  src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-016.jpg"
-                />
-              </a>
-              <span class="product-discount-label">-20%</span>
-              <ul class="product-links">
-                <li>
-                  <a href="#"><i class="bi bi-search"></i></a>
-                </li>
-                <li>
-                  <a href="#" data-tip="Wishlist"
-                    ><i class="fas fa-heart"></i
-                  ></a>
-                </li>
-                <li>
-                  <a href="#" data-tip="Compare"
-                    ><i class="bi bi-random"></i
-                  ></a>
-                </li>
-              </ul>
-            </div>
-            <div class="product-content">
-              <h3 class="title"><a href="#">Product Name</a></h3>
-              <div class="price"><span>₹254.50</span> ₹230.99</div>
-
-              <a href="" class="add-to-cart"
-                ><i class="bi bi-cart"></i> Add to Cart</a
-              >
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-          <div class="product-grid">
-            <div class="product-image">
-              <a href="#" class="image">
-                <img
-                  class="pic-1"
-                  src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-016.jpg"
-                />
-              </a>
-              <span class="product-discount-label">-20%</span>
-              <ul class="product-links">
-                <li>
-                  <a href="#"><i class="bi bi-search"></i></a>
-                </li>
-                <li>
-                  <a href="#" data-tip="Wishlist"
-                    ><i class="fas fa-heart"></i
-                  ></a>
-                </li>
-                <li>
-                  <a href="#" data-tip="Compare"
-                    ><i class="bi bi-random"></i
-                  ></a>
-                </li>
-              </ul>
-            </div>
-            <div class="product-content">
-              <h3 class="title"><a href="#">Product Name</a></h3>
-              <div class="price"><span>₹254.50</span> ₹230.99</div>
-
-              <a href="" class="add-to-cart"
-                ><i class="bi bi-cart"></i> Add to Cart</a
-              >
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-          <div class="product-grid">
-            <div class="product-image">
-              <a href="#" class="image">
-                <img
-                  class="pic-1"
-                  src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-016.jpg"
-                />
-              </a>
-              <span class="product-discount-label">-20%</span>
-              <ul class="product-links">
-                <li>
-                  <a href="#"><i class="bi bi-search"></i></a>
-                </li>
-                <li>
-                  <a href="#" data-tip="Wishlist"
-                    ><i class="fas fa-heart"></i
-                  ></a>
-                </li>
-                <li>
-                  <a href="#" data-tip="Compare"
-                    ><i class="bi bi-random"></i
-                  ></a>
-                </li>
-              </ul>
-            </div>
-            <div class="product-content">
-              <h3 class="title"><a href="#">Product Name</a></h3>
-              <div class="price"><span>₹254.50</span> ₹230.99</div>
-
-              <a href="" class="add-to-cart"
-                ><i class="bi bi-cart"></i> Add to Cart</a
-              >
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-          <div class="product-grid">
-            <div class="product-image">
-              <a href="#" class="image">
-                <img
-                  class="pic-1"
-                  src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-016.jpg"
-                />
-              </a>
-              <span class="product-discount-label">-20%</span>
-              <ul class="product-links">
-                <li>
-                  <a href="#"><i class="bi bi-search"></i></a>
-                </li>
-                <li>
-                  <a href="#" data-tip="Wishlist"
-                    ><i class="fas fa-heart"></i
-                  ></a>
-                </li>
-                <li>
-                  <a href="#" data-tip="Compare"
-                    ><i class="bi bi-random"></i
-                  ></a>
-                </li>
-              </ul>
-            </div>
-            <div class="product-content">
-              <h3 class="title"><a href="#">Product Name</a></h3>
-              <div class="price"><span>₹254.50</span> ₹230.99</div>
-
-              <a href="" class="add-to-cart"
-                ><i class="bi bi-cart"></i> Add to Cart</a
-              >
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-          <div class="product-grid">
-            <div class="product-image">
-              <a href="#" class="image">
-                <img
-                  class="pic-1"
-                  src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-016.jpg"
-                />
-              </a>
-              <span class="product-discount-label">-20%</span>
-              <ul class="product-links">
-                <li>
-                  <a href="#"><i class="bi bi-search"></i></a>
-                </li>
-                <li>
-                  <a href="#" data-tip="Wishlist"
-                    ><i class="fas fa-heart"></i
-                  ></a>
-                </li>
-                <li>
-                  <a href="#" data-tip="Compare"
-                    ><i class="bi bi-random"></i
-                  ></a>
-                </li>
-              </ul>
-            </div>
-            <div class="product-content">
-              <h3 class="title"><a href="#">Product Name</a></h3>
-              <div class="price"><span>₹254.50</span> ₹230.99</div>
-
-              <a href="" class="add-to-cart"
-                ><i class="bi bi-cart"></i> Add to Cart</a
-              >
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-          <div class="product-grid">
-            <div class="product-image">
-              <a href="#" class="image">
-                <img
-                  class="pic-1"
-                  src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-016.jpg"
-                />
-              </a>
-              <span class="product-discount-label">-20%</span>
-              <ul class="product-links">
-                <li>
-                  <a href="#"><i class="bi bi-search"></i></a>
-                </li>
-                <li>
-                  <a href="#" data-tip="Wishlist"
-                    ><i class="fas fa-heart"></i
-                  ></a>
-                </li>
-                <li>
-                  <a href="#" data-tip="Compare"
-                    ><i class="bi bi-random"></i
-                  ></a>
-                </li>
-              </ul>
-            </div>
-            <div class="product-content">
-              <h3 class="title"><a href="#">Product Name</a></h3>
-              <div class="price"><span>₹254.50</span> ₹230.99</div>
-
-              <a href="" class="add-to-cart"
-                ><i class="bi bi-cart"></i> Add to Cart</a
-              >
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-          <div class="product-grid">
-            <div class="product-image">
-              <a href="#" class="image">
-                <img
-                  class="pic-1"
-                  src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-016.jpg"
-                />
-              </a>
-              <span class="product-discount-label">-20%</span>
-              <ul class="product-links">
-                <li>
-                  <a href="#"><i class="bi bi-search"></i></a>
-                </li>
-                <li>
-                  <a href="#" data-tip="Wishlist"
-                    ><i class="fas fa-heart"></i
-                  ></a>
-                </li>
-                <li>
-                  <a href="#" data-tip="Compare"
-                    ><i class="bi bi-random"></i
-                  ></a>
-                </li>
-              </ul>
-            </div>
-            <div class="product-content">
-              <h3 class="title"><a href="#">Product Name</a></h3>
-              <div class="price"><span>₹254.50</span> ₹230.99</div>
-
-              <a href="" class="add-to-cart"
-                ><i class="bi bi-cart"></i> Add to Cart</a
-              >
-            </div>
-          </div>
-        </div>
-
-        
-      </div> -->
+     
       <div class="row">
         <div class="col-md-3 col-sm-6">
           <div class="product-grid">
             <div class="product-image">
               <a href="#" class="image">
-                <img
-                  class="pic-1"
-                  src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-016.jpg"
-                />
+                <img class="pic-1" src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-016.jpg" />
               </a>
-              <a href="#" class="add-to-cart" data-hover="add-to-cart"
-                >Buy Now</a
-              >
+              <a href="#" class="add-to-cart" data-hover="add-to-cart">Buy Now</a>
+              <ul class="product-links">
+                <li>
+                  <a  data-bs-toggle="tooltip" data-bs-placement="top" title="Quick View" (click)="OpenquickViewModal()"><i class="bi bi-eye"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="bi bi-arrows-fullscreen"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="bi bi-cart"></i></a>
+                </li>
+              </ul>
+            </div>
+            <div class="product-content">
+              <span class="category"><a href="#">Roasted Crispies</a></span>
+              <h3 class="title"><a href="#">Product Name</a></h3>
+              <div class="price">₹258.11</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="product-grid">
+            <div class="product-image">
+              <a href="#" class="image">
+                <img class="pic-1" src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-023.jpg" />
+              </a>
+              <span class="product-sale-label">20%</span>
+              <a href="#" class="add-to-cart" data-hover="add-to-cart">Buy Now</a>
+              <ul class="product-links">
+                <li>
+                  <a href=""><i class="bi bi-eye"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="bi bi-arrows-fullscreen"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="bi bi-cart"></i></a>
+                </li>
+              </ul>
+            </div>
+            <div class="product-content">
+              <span class="category"><a href="#">Roasted Crispies</a></span>
+              <h3 class="title"><a href="#">Product Name</a></h3>
+              <div class="price"><span>₹268.9</span>₹258.11</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="product-grid">
+            <div class="product-image">
+              <a href="#" class="image">
+                <img class="pic-1" src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-044.jpg" />
+              </a>
+              <a href="#" class="add-to-cart" data-hover="add-to-cart">Buy Now</a>
               <ul class="product-links">
                 <li>
                   <a href="#"><i class="bi bi-eye"></i></a>
@@ -367,15 +166,10 @@
           <div class="product-grid">
             <div class="product-image">
               <a href="#" class="image">
-                <img
-                  class="pic-1"
-                  src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-023.jpg"
-                />
+                <img class="pic-1" src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-049.jpg" />
               </a>
               <span class="product-sale-label">20%</span>
-              <a href="#" class="add-to-cart" data-hover="add-to-cart"
-                >Buy Now</a
-              >
+              <a href="#" class="add-to-cart" data-hover="add-to-cart">Buy Now</a>
               <ul class="product-links">
                 <li>
                   <a href="#"><i class="bi bi-eye"></i></a>
@@ -395,18 +189,13 @@
             </div>
           </div>
         </div>
-         <div class="col-md-3 col-sm-6">
+        <div class="col-md-3 col-sm-6">
           <div class="product-grid">
             <div class="product-image">
               <a href="#" class="image">
-                <img
-                  class="pic-1"
-                  src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-044.jpg"
-                />
+                <img class="pic-1" src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-050.jpg" />
               </a>
-              <a href="#" class="add-to-cart" data-hover="add-to-cart"
-                >Buy Now</a
-              >
+              <a href="#" class="add-to-cart" data-hover="add-to-cart">Buy Now</a>
               <ul class="product-links">
                 <li>
                   <a href="#"><i class="bi bi-eye"></i></a>
@@ -430,15 +219,10 @@
           <div class="product-grid">
             <div class="product-image">
               <a href="#" class="image">
-                <img
-                  class="pic-1"
-                  src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-049.jpg"
-                />
+                <img class="pic-1" src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-064.jpg" />
               </a>
               <span class="product-sale-label">20%</span>
-              <a href="#" class="add-to-cart" data-hover="add-to-cart"
-                >Buy Now</a
-              >
+              <a href="#" class="add-to-cart" data-hover="add-to-cart">Buy Now</a>
               <ul class="product-links">
                 <li>
                   <a href="#"><i class="bi bi-eye"></i></a>
@@ -458,18 +242,13 @@
             </div>
           </div>
         </div>
-         <div class="col-md-3 col-sm-6">
+        <div class="col-md-3 col-sm-6">
           <div class="product-grid">
             <div class="product-image">
               <a href="#" class="image">
-                <img
-                  class="pic-1"
-                  src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-050.jpg"
-                />
+                <img class="pic-1" src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-050.jpg" />
               </a>
-              <a href="#" class="add-to-cart" data-hover="add-to-cart"
-                >Buy Now</a
-              >
+              <a href="#" class="add-to-cart" data-hover="add-to-cart">Buy Now</a>
               <ul class="product-links">
                 <li>
                   <a href="#"><i class="bi bi-eye"></i></a>
@@ -493,15 +272,10 @@
           <div class="product-grid">
             <div class="product-image">
               <a href="#" class="image">
-                <img
-                  class="pic-1"
-                  src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-064.jpg"
-                />
+                <img class="pic-1" src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-064.jpg" />
               </a>
               <span class="product-sale-label">20%</span>
-              <a href="#" class="add-to-cart" data-hover="add-to-cart"
-                >Buy Now</a
-              >
+              <a href="#" class="add-to-cart" data-hover="add-to-cart">Buy Now</a>
               <ul class="product-links">
                 <li>
                   <a href="#"><i class="bi bi-eye"></i></a>
@@ -521,18 +295,13 @@
             </div>
           </div>
         </div>
-          <div class="col-md-3 col-sm-6">
+        <div class="col-md-3 col-sm-6">
           <div class="product-grid">
             <div class="product-image">
               <a href="#" class="image">
-                <img
-                  class="pic-1"
-                  src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-050.jpg"
-                />
+                <img class="pic-1" src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-050.jpg" />
               </a>
-              <a href="#" class="add-to-cart" data-hover="add-to-cart"
-                >Buy Now</a
-              >
+              <a href="#" class="add-to-cart" data-hover="add-to-cart">Buy Now</a>
               <ul class="product-links">
                 <li>
                   <a href="#"><i class="bi bi-eye"></i></a>
@@ -556,78 +325,10 @@
           <div class="product-grid">
             <div class="product-image">
               <a href="#" class="image">
-                <img
-                  class="pic-1"
-                  src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-064.jpg"
-                />
+                <img class="pic-1" src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-064.jpg" />
               </a>
               <span class="product-sale-label">20%</span>
-              <a href="#" class="add-to-cart" data-hover="add-to-cart"
-                >Buy Now</a
-              >
-              <ul class="product-links">
-                <li>
-                  <a href="#"><i class="bi bi-eye"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="bi bi-arrows-fullscreen"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="bi bi-cart"></i></a>
-                </li>
-              </ul>
-            </div>
-            <div class="product-content">
-              <span class="category"><a href="#">Roasted Crispies</a></span>
-              <h3 class="title"><a href="#">Product Name</a></h3>
-              <div class="price"><span>₹268.9</span>₹258.11</div>
-            </div>
-          </div>
-        </div>
-          <div class="col-md-3 col-sm-6">
-          <div class="product-grid">
-            <div class="product-image">
-              <a href="#" class="image">
-                <img
-                  class="pic-1"
-                  src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-050.jpg"
-                />
-              </a>
-              <a href="#" class="add-to-cart" data-hover="add-to-cart"
-                >Buy Now</a
-              >
-              <ul class="product-links">
-                <li>
-                  <a href="#"><i class="bi bi-eye"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="bi bi-arrows-fullscreen"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="bi bi-cart"></i></a>
-                </li>
-              </ul>
-            </div>
-            <div class="product-content">
-              <span class="category"><a href="#">Roasted Crispies</a></span>
-              <h3 class="title"><a href="#">Product Name</a></h3>
-              <div class="price">₹258.11</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-          <div class="product-grid">
-            <div class="product-image">
-              <a href="#" class="image">
-                <img
-                  class="pic-1"
-                  src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-064.jpg"
-                />
-              </a>
-              <span class="product-sale-label">20%</span>
-              <a href="#" class="add-to-cart" data-hover="add-to-cart"
-                >Buy Now</a
-              >
+              <a href="#" class="add-to-cart" data-hover="add-to-cart">Buy Now</a>
               <ul class="product-links">
                 <li>
                   <a href="#"><i class="bi bi-eye"></i></a>
@@ -650,4 +351,102 @@
       </div>
     </div>
   </div>
+
 </div>
+
+
+<ng-template #quickView>
+  <div class="container p-3">
+    
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="tab-content" id="preview-thumbnail">
+          <div class="tab-pane fade show active" id="pic1-tab-pane" role="tabpanel" aria-labelledby="pic1-tab" tabindex="0">
+            <img class="preview-thumbnail-img" src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-023.jpg" />
+          </div>
+          <div class="tab-pane fade" id="pic2-tab-pane" role="tabpanel" aria-labelledby="pic2-tab" tabindex="0">
+            <img class="preview-thumbnail-img" src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-044.jpg" />
+          </div>
+          <div class="tab-pane fade" id="pic3-tab-pane" role="tabpanel" aria-labelledby="pic3-tab" tabindex="0">
+            <img class="preview-thumbnail-img"  src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-049.jpg" />
+          </div>
+        </div>
+        <ul class="nav nav-tabs border-0 preview-pic" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <span class="nav-link active" id="pic1-tab" data-bs-toggle="tab" data-bs-target="#pic1-tab-pane" type="button" role="tab" aria-controls="pic1-tab-pane" aria-selected="true">
+              <img   src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-023.jpg" />
+            </span>
+          </li>
+          <li class="nav-item" role="presentation">
+            <span class="nav-link" id="pic2-tab" data-bs-toggle="tab" data-bs-target="#pic2-tab-pane" type="button" role="tab" aria-controls="pic2-tab-pane" aria-selected="false">
+              <img    src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-044.jpg" />
+            </span>
+          </li>
+          <li class="nav-item" role="presentation">
+            <span class="nav-link" id="pic3-tab" data-bs-toggle="tab" data-bs-target="#pic3-tab-pane" type="button" role="tab" aria-controls="pic3-tab-pane" aria-selected="false">
+              <img    src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-049.jpg" />
+            </span>
+          </li>
+    
+        </ul>
+      </div>
+      <div class="col-lg-6">
+        <div class="details">
+          <h3 class="product-title">Bajri Methi Khakhra</h3>
+          <div class="rating d-flex gap-2">
+            <div class="stars">
+              <span class="bi bi-star checked"></span>
+              <span class="bi bi-star checked"></span>
+              <span class="bi bi-star checked"></span>
+              <span class="bi bi-star"></span>
+              <span class="bi bi-star"></span>
+            </div>
+            <span class="review-no">41 reviews</span>
+          </div>
+          <p class="product-description">A niche in this domain with a premium quality, indigenous flavor. A fast seller, must try !</p>
+          <h5 class="price">current price: <span>$180</span></h5>
+          <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
+          
+          <div class="netWeight">
+
+            <h5>Net Weight:    </h5>
+            <div class=" d-flex flex-wrap gap-2">
+              <div class="custom-radio">
+                <input type="radio" id="cardPay" name="paymentMethods"  value="cardPay">
+                <label for="cardPay">200 gm</label>
+              </div>
+              <div class="custom-radio">
+                <input type="radio" id="paypal" name="paymentMethods" value="paypal">
+                <label for="paypal">300 gm</label>
+              </div>
+              <div class="custom-radio">
+                <input type="radio" id="applePay" name="paymentMethods" 
+                  value="applePay">
+                <label for="applePay">400 gm</label>
+              </div>
+            </div>
+            
+          </div>
+          <h5 class="colors">colors:
+            <span class="color orange not-available" data-bs-toggle="tooltip" title="Not In store"></span>
+            <span class="color green"></span>
+            <span class="color blue"></span>
+          </h5>
+          <div class="action">
+            <button class="primary-btn btn btn-sm"> 
+              <span>Shop Now</span>
+              <i class="bi bi-arrow-right"></i>
+            </button>
+            <button class="add-to-cart btn btn-sm" type="button">Add To Wishlist</button>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    
+  </div>
+
+
+</ng-template>
+
