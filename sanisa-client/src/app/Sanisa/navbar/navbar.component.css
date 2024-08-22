@@ -1,0 +1,7 @@
+nav{
+    /* box-shadow: 0px 1px 15px #dadada; */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.content-wrapper{
+    padding-top: 10px;
+}

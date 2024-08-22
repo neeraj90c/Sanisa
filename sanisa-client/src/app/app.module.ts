@@ -12,7 +12,7 @@ import { ValidationInterceptor } from './validation.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

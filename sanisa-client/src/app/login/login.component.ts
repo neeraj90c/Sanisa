@@ -31,9 +31,9 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (this.authService.isAuthenticated()) {
-      this.router.navigate(['/']);
-    }
+    // if (this.authService.isAuthenticated()) {
+    //   this.router.navigate(['/']);
+    // }
   }
 
   LoginForm = new FormGroup({
@@ -53,33 +53,43 @@ export class LoginComponent implements OnInit {
           this.authService.validateToken().subscribe(
             {
               next: (res) => {
-                let MenuDTO:ParentMenu = {
-                  userId: res.userId,
-                  roleId: 0,
-                  menuId: 0,
-                  parentMenuId: 0,
-                  subRoleId: 0,
-                  subRoleName: '',
-                  subRoleCode: '',
-                  subRoleDesc: '',
-                  displayOrder: 0,
-                  defaultChildMenuId: 0,
-                  menuIconUrl: '',
-                  templatePath: '',
-                  isParent: 0,
-                  childrenCount: 0,
-                  childIsParent: 0,
-                  projectId: this.PROJECT_ID
-                } 
+            
 
-                this.menuService.getMenuForUser(MenuDTO).subscribe(
-                  (userMenu) => {
-                    let menuList = userMenu.items.map(res => res.subRoleCode)
-                    localStorage.setItem('menuList',menuList.toString())
-                    this.authService.saveUserData(res)
-                    this.router.navigate(['/'])
-                  }
-                )
+                /**
+                 * This is a temp fix untill GetMenuForUser api isnt fix please remove this afterwards
+                 */
+                this.authService.saveUserData(res)
+                this.router.navigate(['/'])
+                /**
+                 * END
+                 */
+                
+                // let MenuDTO:ParentMenu = {
+                //   userId: res.userId,
+                //   roleId: 0,
+                //   menuId: 0,
+                //   parentMenuId: 0,
+                //   subRoleId: 0,
+                //   subRoleName: '',
+                //   subRoleCode: '',
+                //   subRoleDesc: '',
+                //   displayOrder: 0,
+                //   defaultChildMenuId: 0,
+                //   menuIconUrl: '',
+                //   templatePath: '',
+                //   isParent: 0,
+                //   childrenCount: 0,
+                //   childIsParent: 0,
+                //   projectId: this.PROJECT_ID
+                // } 
+                // this.menuService.getMenuForUser(MenuDTO).subscribe(
+                //   (userMenu) => {
+                //     let menuList = userMenu.items.map(res => res.subRoleCode)
+                //     localStorage.setItem('menuList',menuList.toString())
+                //     this.authService.saveUserData(res)
+                //     this.router.navigate(['/'])
+                //   }
+                // )
 
 
               },

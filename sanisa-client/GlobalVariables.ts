@@ -1,18 +1,31 @@
 'use strict';
 
 import { environment } from "src/environments/environment";
-const BaseURL: string = environment.apiURL;
-const Auth_BaseURL: string = BaseURL + '/auth/';
+const BaseURL: string = environment.apiURL; //https://dev.sanisa.vnccy.com
+const APIGateWay: string = BaseURL + '/apig/'; //https://dev.sanisa.vnccy.com/apig/
+
 const Menu_BaseURL: string = BaseURL + '/menus/';
-const UnifiedAuth_BaseURL: string = BaseURL + '/UA/'
+
+const UnifiedAuth_BaseURL: string = APIGateWay + 'UA/'  //https://dev.sanisa.vnccy.com/apig/UA
+
+
+//#region Master URLs
 const UserMaster_BaseURL: string = UnifiedAuth_BaseURL + 'UM/'
 const CompanyMaster_BaseURL: string = UnifiedAuth_BaseURL + 'CM/'
 const BankMaster_BaseURL: string = UnifiedAuth_BaseURL + 'BM/'
+const UserLogin_BaseURL: string = UnifiedAuth_BaseURL + 'UL/'
+//#endregion
 
 
-//#region Authentication API
-export const Auth = Auth_BaseURL + 'auth'
-export const ValidateToken = Auth_BaseURL + 'ValidateToken'
+//#region UserLogin API
+export const CreateUserLogin = UserLogin_BaseURL + 'Create'
+export const UpdateUserLogin = UserLogin_BaseURL + 'Update'
+export const DeleteUserLogin = UserLogin_BaseURL + 'Delete'
+export const ReadUserLoginByUserId = UserLogin_BaseURL + 'ReadByUserId'
+export const ValidateUserName = UserLogin_BaseURL + 'ValidateUserName'
+export const Auth = UserLogin_BaseURL + 'auth'
+export const AzureAuth = UserLogin_BaseURL + 'AzureAuth'
+export const ValidateToken = UserLogin_BaseURL + 'ValidateToken'
 //#endregion
 
 //#region Menu API

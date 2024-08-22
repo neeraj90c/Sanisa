@@ -1,8 +1,8 @@
 export const environment = {
     production: false,
     title: 'Sanisa',
-    apiURL: 'https://apigateway.dev.systelusa.com',
-    COMPANY_CODE : "2",
-    PROJECT_ID : 4,
-    appClientId:''
+    apiURL: 'https://dev.sanisa.vnccy.com',
+    COMPANY_CODE : "1",
+    PROJECT_ID : 1,
+    appClientId:'sanisa01082024'
 }
