@@ -1,135 +1,237 @@
 <div class="heading">
-    <div>
-     
-        <h5>Manage User</h5>
-        <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae.</p>
-    </div>
-    <div class="btn btn-sm primary-btn"     (click)="OpenAddUserModal()">New User</div>
+  <div>
+
+    <h5>Manage User</h5>
+    <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae.</p>
+  </div>
+  <div class="btn btn-sm primary-btn" (click)="OpenAddUserModal()">New User</div>
 </div>
 
-<button class="btn btn-primary" [routerLink]="['/store']"> back to store </button>
 <div class="main-container">
-    <div class="tableHeader mb-3 d-flex flex-wrap gap-1 justify-content-between">
-        <div class="d-flex align-items-center gap-2 ml-2">
+  <div class="tableHeader mb-3 d-flex flex-wrap gap-1 justify-content-between">
+    <app-pagination [EnablePageSize]="true" [rowData]="UserList"
+      (pageSizeChanged)="handlePageSizeChange($event)"></app-pagination>
+    <!-- <div class="d-flex align-items-center gap-2 ml-2">
           <label class="font-weight-600">Showing </label>
           <select class="form-control form-control-sm" placeholder="10">
             <option>10</option>
             <option>20</option>
           </select>
           <label> Entries</label>
-        </div>
-        
-      </div>
-      <div class="tablebody border">
-        <table class="dataTable">
-          <thead>
-            <tr>
-              <th style="width:5%">Sr.No.</th>
-              <th style="width:21%">User Name</th>
-              <th style="width:22%">Company Name</th>
-              <th style="width:22%">Email Address</th>
-              <th style="width:8%"></th>
-            </tr>
-          </thead>
-          <tbody>
+        </div> -->
 
-            <tr *ngFor="let user of UserList; let i=index">
-              <td class="text-center">{{i+1}}</td>
-              <td>
-                <div class="d-flex align-items-center gap-2">
-                  <div class="usericonBox" style="background-color: #572196; color: #fff;">{{getInitials(user)}}</div>{{getFullname(user)}}
-                </div>
-              </td>
-              <td>Lorem ipsum dolor sit amet</td>
-              <td>olivia&#64;abcftry.com</td>              
-              <td>
-                <div class="dataTableicon d-flex align-items-center justify-content-around">
-                  <i class="bi bi-trash"></i><i class="bi bi-pen"></i>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>     
+  </div>
+  <div class="tablebody border" style="min-height: 530px;">
+    <table class="dataTable">
+      <thead>
+        <tr>
+          <th style="width:2%"></th>
+          <th style="width:21%">User Name</th>
+          <th style="width:22%">Company Name</th>
+          <th style="width:22%">Email Address</th>
+          <th style="width:8%"></th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let user of UserList; let i=index">
+          <!-- <td class="text-center">{{i+1}}</td> -->
+          <td></td>
+          <td>
+            <div class="d-flex align-items-center gap-2">
+              <div class="usericonBox" style="background-color: #572196; color: #fff;">{{getInitials(user)}}</div>
+              {{getFullname(user)}}
+            </div>
+          </td>
+          <td>Lorem ipsum dolor sit amet</td>
+          <td>olivia&#64;abcftry.com</td>
+          <td>
+            <div class="dataTableicon d-flex align-items-center justify-content-around">
+              <i class="bi bi-trash"></i><i class="bi bi-pen"></i>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+  </div>
+  <app-pagination [EnableNavigation]="true" [rowData]="UserList"
+    (pageSizeChanged)="handlePageSizeChange($event)"></app-pagination>
 </div>
 
 <ng-template #addUser>
-    <div class="modal-header">
-      <h6 class="modal-title font-weight-600">Add New User</h6>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-   <div class="modal-body">
-      <div class="form-container">
-        <form >
-            <div class="py-4 formBody">
-              <div class="row align-items-top">
-            
-                  <div class="col-lg-12">
-                    <div class="row">
-                      <div class="col-lg-6">
-                        <div class="form-group mb-3">
-                          <label for="firstName" class="form-label">First Name</label><span class="text-danger h6">*</span>
-                          <input id="firstName" formControlName="firstName" class="form-control form-control-sm"  required />
-                        </div>
-                      </div>
-                      
-                      <div class="col-lg-6">
-                        <div class="form-group mb-3">
-                          <label for="lastName" class="form-label">Last Name</label><span class="text-danger h6">*</span>
-                          <input id="lastName" formControlName="lastName" class="form-control form-control-sm"  required />
-                        </div>
-                      </div>
-                    
-                      <div class="col-lg-6">
-                        <div class="form-group mb-3">
-                          <label for="email" class="form-label">Email</label> <span class="text-danger h6">*</span>
-                          <input id="email" formControlName="email" type="email" class="form-control form-control-sm" required />
-                        </div>
-                      </div>
-                      
-                      <div class="col-lg-6">
-                        <div class="form-group mb-3">
-                          <label for="contactNumber" class="form-label">Contact Number</label>
-                          <input id="contactNumber" formControlName="contactNumber" class="form-control form-control-sm"  required />
-                        </div>
-                      </div>
-                      <div class="col-lg-6">
-                        <div class="form-group mb-3">
-                          <label for="companyMail" class="form-label">Role</label> <span class="text-danger h6">*</span>
-                          <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                            <option selected> select Role</option>
-                            <option value="Admin">Admin</option>
-                            <option value="Volunteers">Volunteers</option>
-                          </select>
-                        </div>
-                      </div>                   
-                      
-                     
-                    </div>  
-                    <hr>
-                    <div class="row mt-2">
-                      <label class="mb-2" style="color: var(--primary-col);"><i class="bi bi-person-lock" style="font-size: 21px;"></i> Login Credentials</label>
-                      <div class="col-lg-6">
-                       
-                        <div class="form-group mb-3">
-                          <label for="companyName" class="form-label">User Name</label><span class="text-danger h6">*</span>
-                          <input id="companyName" formControlName="companyName" class="form-control form-control-sm"  required />
-                        </div>
-                      </div>
-                      
-                      <div class="col-lg-6">
-                        <div class="form-group mb-3">
-                          <label for="companyAddress" class="form-label">Password</label><span class="text-danger h6">*</span>
-                          <input id="companyAddress" formControlName="companyAddress" class="form-control form-control-sm"  required />
-                        </div>
-                      </div>
-                    </div>          
+  <div class="modal-header">
+    <h6 class="modal-title font-weight-600">Add New User</h6>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <div class="form-container">
+      <form [formGroup]="UserForm">
+        <div class="py-4 formBody">
+          <div class="row align-items-top">
+
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group mb-3">
+                    <label for="firstName" class="form-label">First Name</label><span class="text-danger h6">*</span>
+                    <input id="firstName" formControlName="firstName" class="form-control form-control-sm" required />
+                    <div class="text-danger"
+                      *ngIf="(UserForm.get('firstName')?.touched && UserForm.get('firstName')?.invalid )">
+                      <ng-container *ngIf="UserForm.get('firstName')?.errors">
+                        <ng-container *ngIf="UserForm.get('firstName')?.errors?.['required']">Input field is
+                          required</ng-container>
+                        <ng-container
+                          *ngIf="!UserForm.get('firstName')?.errors?.['required'] && UserForm.get('firstName')?.errors?.['whitespace']">No
+                          empty spaces allowed</ng-container>
+                        <ng-container
+                          *ngIf="!UserForm.get('firstName')?.errors?.['required'] && !UserForm.get('firstName')?.errors?.['whitespace'] && UserForm.get('firstName')?.errors?.['minlength']">Minimum
+                          characters required</ng-container>
+                      </ng-container>
+                    </div>
                   </div>
-                </div>    
+                </div>
+
+                <div class="col-lg-6">
+                  <div class="form-group mb-3">
+                    <label for="lastName" class="form-label">Last Name</label><span class="text-danger h6">*</span>
+                    <input id="lastName" formControlName="lastName" class="form-control form-control-sm" />
+                    <div class="text-danger"
+                      *ngIf="(UserForm.get('lastName')?.touched && UserForm.get('lastName')?.invalid )">
+                      <ng-container *ngIf="UserForm.get('lastName')?.errors">
+                        <ng-container *ngIf="UserForm.get('lastName')?.errors?.['required']">Input field is
+                          required</ng-container>
+                        <ng-container
+                          *ngIf="!UserForm.get('lastName')?.errors?.['required'] && UserForm.get('lastName')?.errors?.['whitespace']">No
+                          empty spaces allowed</ng-container>
+                        <ng-container
+                          *ngIf="!UserForm.get('lastName')?.errors?.['required'] && !UserForm.get('lastName')?.errors?.['whitespace'] && UserForm.get('lastName')?.errors?.['minlength']">Minimum
+                          characters required</ng-container>
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-6">
+                  <div class="form-group mb-3">
+                    <label for="email" class="form-label">Email</label> <span class="text-danger h6">*</span>
+                    <input id="email" formControlName="email" type="email" class="form-control form-control-sm"
+                      required />
+                    <div class="text-danger"
+                      *ngIf="(UserForm.get('email')?.touched && UserForm.get('email')?.invalid )">
+                      <ng-container *ngIf="UserForm.get('email')?.errors">
+
+                        <ng-container *ngIf="UserForm.get('email')?.errors?.['required']">
+                          Input field is required
+                        </ng-container>
+
+                        <ng-container
+                          *ngIf="!UserForm.get('email')?.errors?.['required'] && UserForm.get('email')?.errors?.['email']">
+                          Enter a valid email eg : abc&#64;gmail.com
+                        </ng-container>
+
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-6">
+                  <div class="form-group mb-3">
+                    <label for="contactNumber" class="form-label">Contact Number</label> <span
+                      class="text-danger h6">*</span>
+                    <input id="contactNumber" formControlName="contact" class="form-control form-control-sm" required />
+                    <div class="text-danger"
+                      *ngIf="(UserForm.get('contact')?.touched && UserForm.get('contact')?.invalid )">
+                      <ng-container *ngIf="UserForm.get('contact')?.errors">
+                        <ng-container *ngIf="UserForm.get('contact')?.errors?.['required']">Input field is
+                          required</ng-container>
+                        <ng-container
+                          *ngIf="!UserForm.get('contact')?.errors?.['required'] && UserForm.get('contact')?.errors?.['whitespace']">No
+                          empty spaces allowed</ng-container>
+                        <ng-container
+                          *ngIf="!UserForm.get('contact')?.errors?.['required'] && !UserForm.get('contact')?.errors?.['whitespace'] && UserForm.get('contact')?.errors?.['minlength']">Minimum
+                          characters required</ng-container>
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group mb-3">
+                    <label for="companyMail" class="form-label">Role</label> <span class="text-danger h6">*</span>
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                      <option selected> select Role</option>
+                      <option value="Admin">Admin</option>
+                      <option value="Volunteers">Volunteers</option>
+                    </select>
+                  </div>
+                </div>
+
+
+              </div>
+
             </div>
-            
+          </div>
+        </div>
+
       </form>
-      </div>
-    </div> 
- 
-  </ng-template>
+      <hr>
+      <form class="row mt-2" [formGroup]="UserLoginForm">
+        <label class="mb-2" style="color: var(--primary-col);"><i class="bi bi-person-lock"
+            style="font-size: 21px;"></i> Login Credentials</label>
+        <div class="col-lg-6">
+
+          <div class="form-group mb-3">
+            <label for="companyName" class="form-label">User Name</label><span class="text-danger h6">*</span>
+            <div class="d-flex align-items-center gap-1">
+              <input id="companyName" class="form-control form-control-sm" formControlName="userName" (blur)="validateUsername($event)" /> 
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="ValidationIsLoading"></span>
+              <i class="bi bi-check-circle-fill" style="color: green;" *ngIf="!ValidationIsLoading && ValidationSuccess"></i>
+              <i class="bi bi-x-circle-fill" style="color: red;" *ngIf="!ValidationIsLoading && ValidationSuccess === false"></i>
+            </div>
+
+            <div class="text-danger"
+              *ngIf="(UserLoginForm.get('userName')?.touched && UserLoginForm.get('userName')?.invalid )">
+              <ng-container *ngIf="UserLoginForm.get('userName')?.errors">
+                <ng-container *ngIf="UserLoginForm.get('userName')?.errors?.['required']">Input field is
+                  required</ng-container>
+                <ng-container
+                  *ngIf="!UserLoginForm.get('userName')?.errors?.['required'] && UserLoginForm.get('userName')?.errors?.['whitespace']">No
+                  empty spaces allowed</ng-container>
+                <ng-container
+                  *ngIf="!UserLoginForm.get('userName')?.errors?.['required'] && !UserLoginForm.get('userName')?.errors?.['whitespace'] && UserLoginForm.get('userName')?.errors?.['minlength']">Minimum
+                  characters required</ng-container>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="form-group mb-3">
+            <label for="companyAddress" class="form-label">Password</label><span class="text-danger h6">*</span>
+            <input id="companyAddress" type="password" class="form-control form-control-sm"
+              formControlName="userPassword" />
+            <div class="text-danger"
+              *ngIf="(UserLoginForm.get('userPassword')?.touched && UserLoginForm.get('userPassword')?.invalid )">
+              <ng-container *ngIf="UserLoginForm.get('userPassword')?.errors">
+                <ng-container *ngIf="UserLoginForm.get('userPassword')?.errors?.['required']">Input field is
+                  required</ng-container>
+                <ng-container
+                  *ngIf="!UserLoginForm.get('userPassword')?.errors?.['required'] && UserLoginForm.get('userPassword')?.errors?.['whitespace']">No
+                  empty spaces allowed</ng-container>
+                <ng-container
+                  *ngIf="!UserLoginForm.get('userPassword')?.errors?.['required'] && !UserLoginForm.get('userPassword')?.errors?.['whitespace'] && UserLoginForm.get('userPassword')?.errors?.['minlength']">Minimum
+                  characters required</ng-container>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="modal-footer text-end">
+    <button class="btn btn-sm secondary-btn me-2" (click)="addUserModal.close()">Close</button>
+    <button class="btn btn-sm primary-btn" (click)="submitUserForm()">Submit</button>
+  </div>
+
+</ng-template>

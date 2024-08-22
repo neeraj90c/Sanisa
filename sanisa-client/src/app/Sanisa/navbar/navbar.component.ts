@@ -56,10 +56,6 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // this.router.events.subscribe(event => {
-    //   console.log('ROUTER NAVIGATION EVENT',event);
-    // });
-
     if (this.authService.isAuthenticated() && this.authService.tokenValidated) {
       
 

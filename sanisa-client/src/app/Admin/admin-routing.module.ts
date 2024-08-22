@@ -7,6 +7,7 @@ const routes: Routes = [
   {
     
     path: '', component: NavbarComponent, children: [
+      { path: '', redirectTo: 'users', pathMatch: 'full' },
       { path:'users', component:UsersComponent, title:'Users'}
     ], title : 'Admin'
   }

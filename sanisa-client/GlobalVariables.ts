@@ -17,8 +17,14 @@ const UserLogin_BaseURL: string = UnifiedAuth_BaseURL + 'UL/'
 //#endregion
 
 
-//#region Authentication API
+//#region UserLogin API
+export const CreateUserLogin = UserLogin_BaseURL + 'Create'
+export const UpdateUserLogin = UserLogin_BaseURL + 'Update'
+export const DeleteUserLogin = UserLogin_BaseURL + 'Delete'
+export const ReadUserLoginByUserId = UserLogin_BaseURL + 'ReadByUserId'
+export const ValidateUserName = UserLogin_BaseURL + 'ValidateUserName'
 export const Auth = UserLogin_BaseURL + 'auth'
+export const AzureAuth = UserLogin_BaseURL + 'AzureAuth'
 export const ValidateToken = UserLogin_BaseURL + 'ValidateToken'
 //#endregion
 
