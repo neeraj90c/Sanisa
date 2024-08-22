@@ -14,6 +14,10 @@ export class StoreComponent {
     console.log('enter');
     this.quickViewModal = this.modalService.open(this.quickViewModalContent, { size: 'lg' });
   }
+
+  closequickViewModal(){
+    this.quickViewModal.close();
+  }
   
   disabled = false;
   max = 100;

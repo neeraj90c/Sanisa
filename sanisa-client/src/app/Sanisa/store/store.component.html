@@ -80,10 +80,9 @@
           </select>
          
         </div>
-      </div>
-     
-      <div class="row">
-        <div class="col-md-3 col-sm-6">
+      </div>     
+      <div class="row row-cols-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
+        <div class="col">
           <div class="product-grid">
             <div class="product-image">
               <a href="#" class="image">
@@ -109,7 +108,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-3 col-sm-6">
+        <div class="col">
           <div class="product-grid">
             <div class="product-image">
               <a href="#" class="image">
@@ -136,7 +135,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-3 col-sm-6">
+        <div class="col">
           <div class="product-grid">
             <div class="product-image">
               <a href="#" class="image">
@@ -162,7 +161,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-3 col-sm-6">
+        <div class="col">
           <div class="product-grid">
             <div class="product-image">
               <a href="#" class="image">
@@ -189,7 +188,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-3 col-sm-6">
+        <div class="col">
           <div class="product-grid">
             <div class="product-image">
               <a href="#" class="image">
@@ -215,7 +214,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-3 col-sm-6">
+        <div class="col">
           <div class="product-grid">
             <div class="product-image">
               <a href="#" class="image">
@@ -242,7 +241,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-3 col-sm-6">
+        <div class="col">
           <div class="product-grid">
             <div class="product-image">
               <a href="#" class="image">
@@ -268,7 +267,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-3 col-sm-6">
+        <div class="col">
           <div class="product-grid">
             <div class="product-image">
               <a href="#" class="image">
@@ -295,7 +294,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-3 col-sm-6">
+        <div class="col">
           <div class="product-grid">
             <div class="product-image">
               <a href="#" class="image">
@@ -321,7 +320,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-3 col-sm-6">
+        <div class="col">
           <div class="product-grid">
             <div class="product-image">
               <a href="#" class="image">
@@ -359,7 +358,10 @@
   <div class="container p-3">
     
     <div class="row">
-      <div class="col-lg-6">
+      <div class="col-lg-5">
+        <div class="closeModalBTn d-block d-lg-none d-md-block">
+          <i (click)="closequickViewModal()" style="cursor: pointer;" class="bi bi-x-lg float-end mb-3 "></i>
+        </div>
         <div class="tab-content" id="preview-thumbnail">
           <div class="tab-pane fade show active" id="pic1-tab-pane" role="tabpanel" aria-labelledby="pic1-tab" tabindex="0">
             <img class="preview-thumbnail-img" src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-023.jpg" />
@@ -371,7 +373,7 @@
             <img class="preview-thumbnail-img"  src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-049.jpg" />
           </div>
         </div>
-        <ul class="nav nav-tabs border-0 preview-pic" id="myTab" role="tablist">
+        <ul class="nav nav-tabs border-0 preview-pic justify-content-center" id="myTab" role="tablist">
           <li class="nav-item" role="presentation">
             <span class="nav-link active" id="pic1-tab" data-bs-toggle="tab" data-bs-target="#pic1-tab-pane" type="button" role="tab" aria-controls="pic1-tab-pane" aria-selected="true">
               <img   src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-023.jpg" />
@@ -390,56 +392,72 @@
     
         </ul>
       </div>
-      <div class="col-lg-6">
-        <div class="details">
-          <h3 class="product-title">Bajri Methi Khakhra</h3>
-          <div class="rating d-flex gap-2">
-            <div class="stars">
-              <span class="bi bi-star checked"></span>
-              <span class="bi bi-star checked"></span>
-              <span class="bi bi-star checked"></span>
-              <span class="bi bi-star"></span>
-              <span class="bi bi-star"></span>
-            </div>
-            <span class="review-no">41 reviews</span>
-          </div>
-          <p class="product-description">A niche in this domain with a premium quality, indigenous flavor. A fast seller, must try !</p>
-          <h5 class="price">current price: <span>$180</span></h5>
-          <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
-          
-          <div class="netWeight">
 
-            <h5>Net Weight:    </h5>
-            <div class=" d-flex flex-wrap gap-2">
-              <div class="custom-radio">
-                <input type="radio" id="cardPay" name="paymentMethods"  value="cardPay">
-                <label for="cardPay">200 gm</label>
-              </div>
-              <div class="custom-radio">
-                <input type="radio" id="paypal" name="paymentMethods" value="paypal">
-                <label for="paypal">300 gm</label>
-              </div>
-              <div class="custom-radio">
-                <input type="radio" id="applePay" name="paymentMethods" 
-                  value="applePay">
-                <label for="applePay">400 gm</label>
-              </div>
+      <div class="col-lg-7">
+        <div class="modal-header border-0 justify-content-end">
+          <div class="closeModalBTn d-none d-lg-block">
+            <i (click)="closequickViewModal()" style="cursor: pointer;" class="bi bi-x-lg float-end"></i>
+          </div>
+          
+        </div>
+        <div class="productDetail">
+          <span class="category">Roasted Crispies</span>
+          <h2 class="productName mt-2">Product Name Title Here</h2>
+
+          <div class="d-flex gap-2 align-item-center">
+            <div class="rating">
+              <i class="bi bi-star-fill rated"></i>
+              <i class="bi bi-star-fill rated"></i>
+              <i class="bi bi-star-fill rated"></i>
+              <i class="bi bi-star nonRated"></i>
+              <i class="bi bi-star nonRated"></i>
             </div>
-            
+            <small style="margin-top: 3px; color: green"
+              >(109 reviews)</small
+            >
           </div>
-          <h5 class="colors">colors:
-            <span class="color orange not-available" data-bs-toggle="tooltip" title="Not In store"></span>
-            <span class="color green"></span>
-            <span class="color blue"></span>
-          </h5>
-          <div class="action">
-            <button class="primary-btn btn btn-sm"> 
-              <span>Shop Now</span>
-              <i class="bi bi-arrow-right"></i>
-            </button>
-            <button class="add-to-cart btn btn-sm" type="button">Add To Wishlist</button>
-           
+
+          <div class="productDescription py-2">
+            <p>
+             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse consectetur omnis maxime distinctio reiciendis quas debitis ratione eveniet rerum rem exercitationem numquam dignissimos illo laboriosam quis, natus totam! Nam, dignissimos.
+            </p>
           </div>
+          <div class="stockBadge"></div>
+          <div class="price-container d-flex gap-2 align-items-end">
+            <h4 class="productPrize mb-0">₹258.00</h4>
+            <h5 class="discountPrice mb-0">₹125.00</h5>
+            <span class="discountPercentage">40.0%</span>
+          </div>
+          <div class="netWeightContainer mt-4 d-flex gap-2 align-items-top">   
+              <span>Net Weight:</span>
+              <div class="d-flex flex-wrap gap-2">
+                <div class="custom-radio">
+                  <input type="radio" id="cardPay" name="paymentMethods"  value="cardPay">
+                  <label for="cardPay">200 gm</label>
+                </div>
+                <div class="custom-radio">
+                  <input type="radio" id="paypal" name="paymentMethods" value="paypal">
+                  <label for="paypal">300 gm</label>
+                </div>
+                <div class="custom-radio">
+                  <input type="radio" id="applePay" name="paymentMethods" 
+                    value="applePay">
+                  <label for="applePay">400 gm</label>
+                </div>
+              </div>
+          </div>
+          <div class="quantityContainer d-flex gap-2 align-items-top my-3">
+            <span>Quantity: </span>
+            <div class="input-group input-spinner ">
+               <input type="button" value="-" class="button-minus btn btn-sm" >
+               <input type="text" value="1" name="quantity" class=" form-control-sm form-input">
+               <input type="button" value="+" class="button-plus btn btn-sm" >
+            </div>
+          </div>
+          <button class="btn btn-sm buyNow-btn">
+            <i class="bi bi-bag-check-fill"></i> By Now
+          </button>
+          <button class="btn btn-sm bg-light-btn"><i class="bi bi-cart-plus-fill" ></i></button>
         </div>
       </div>
     </div>
