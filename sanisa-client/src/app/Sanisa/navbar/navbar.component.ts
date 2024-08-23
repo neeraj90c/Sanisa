@@ -56,29 +56,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if (this.authService.isAuthenticated() && this.authService.tokenValidated) {
-      
-
-    } else {
-      this.authService.validateToken().subscribe(
-        {
-          next: (res) => {
-            /**
-             * This is a temp fix untill GetMenuForUser api isnt fix please remove this afterwards
-             */
-            this.authService.saveUserData(res)
-            // this.router.navigate(['/'])
-            /**
-             * END
-             */
-          },
-          error: (err) => {
-            this.authService.SignOutUser();
-          }
-        }
-      )
-    }
-
+ 
 
   }
 

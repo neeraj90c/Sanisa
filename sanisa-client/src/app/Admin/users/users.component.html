@@ -7,7 +7,7 @@
   <div class="btn btn-sm primary-btn" (click)="OpenAddUserModal()">New User</div>
 </div>
 
-<div class="main-container">
+<div >
   <div class="tableHeader mb-3 d-flex flex-wrap gap-1 justify-content-between">
     <app-pagination [EnablePageSize]="true" [rowData]="UserList"
       (pageSizeChanged)="handlePageSizeChange($event)"></app-pagination>
@@ -27,7 +27,7 @@
         <tr>
           <th style="width:2%"></th>
           <th style="width:21%">User Name</th>
-          <th style="width:22%">Company Name</th>
+          <th style="width:22%">Contact</th>
           <th style="width:22%">Email Address</th>
           <th style="width:8%"></th>
         </tr>
@@ -43,11 +43,12 @@
               {{getFullname(user)}}
             </div>
           </td>
-          <td>Lorem ipsum dolor sit amet</td>
-          <td>olivia&#64;abcftry.com</td>
+          <td>{{user.mobileNo}}</td>
+          <td>{{user.emailId}}</td>
           <td>
             <div class="dataTableicon d-flex align-items-center justify-content-around">
-              <i class="bi bi-trash"></i><i class="bi bi-pen"></i>
+              <a class="bi bi-trash"></a>
+              <a class="bi bi-pen" (click)="openEditModal(user)"></a>
             </div>
           </td>
         </tr>
@@ -63,7 +64,7 @@
 <ng-template #addUser>
   <div class="modal-header">
     <h6 class="modal-title font-weight-600">Add New User</h6>
-    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <button type="button" class="btn-close" (click)="addUserModal.close()"></button>
   </div>
   <div class="modal-body">
     <div class="form-container">
@@ -116,18 +117,18 @@
                 <div class="col-lg-6">
                   <div class="form-group mb-3">
                     <label for="email" class="form-label">Email</label> <span class="text-danger h6">*</span>
-                    <input id="email" formControlName="email" type="email" class="form-control form-control-sm"
+                    <input id="email" formControlName="emailId" type="email" class="form-control form-control-sm"
                       required />
                     <div class="text-danger"
-                      *ngIf="(UserForm.get('email')?.touched && UserForm.get('email')?.invalid )">
-                      <ng-container *ngIf="UserForm.get('email')?.errors">
+                      *ngIf="(UserForm.get('emailId')?.touched && UserForm.get('emailId')?.invalid )">
+                      <ng-container *ngIf="UserForm.get('emailId')?.errors">
 
-                        <ng-container *ngIf="UserForm.get('email')?.errors?.['required']">
+                        <ng-container *ngIf="UserForm.get('emailId')?.errors?.['required']">
                           Input field is required
                         </ng-container>
 
                         <ng-container
-                          *ngIf="!UserForm.get('email')?.errors?.['required'] && UserForm.get('email')?.errors?.['email']">
+                          *ngIf="!UserForm.get('emailId')?.errors?.['required'] && UserForm.get('emailId')?.errors?.['email']">
                           Enter a valid email eg : abc&#64;gmail.com
                         </ng-container>
 
@@ -140,22 +141,25 @@
                   <div class="form-group mb-3">
                     <label for="contactNumber" class="form-label">Contact Number</label> <span
                       class="text-danger h6">*</span>
-                    <input id="contactNumber" formControlName="contact" class="form-control form-control-sm" required />
+                    <input id="contactNumber" formControlName="mobileNo" class="form-control form-control-sm"
+                      required />
                     <div class="text-danger"
-                      *ngIf="(UserForm.get('contact')?.touched && UserForm.get('contact')?.invalid )">
-                      <ng-container *ngIf="UserForm.get('contact')?.errors">
-                        <ng-container *ngIf="UserForm.get('contact')?.errors?.['required']">Input field is
+                      *ngIf="(UserForm.get('mobileNo')?.touched && UserForm.get('mobileNo')?.invalid )">
+                      <ng-container *ngIf="UserForm.get('mobileNo')?.errors">
+                        <ng-container *ngIf="UserForm.get('mobileNo')?.errors?.['required']">Input field is
                           required</ng-container>
                         <ng-container
-                          *ngIf="!UserForm.get('contact')?.errors?.['required'] && UserForm.get('contact')?.errors?.['whitespace']">No
+                          *ngIf="!UserForm.get('mobileNo')?.errors?.['required'] && UserForm.get('mobileNo')?.errors?.['whitespace']">No
                           empty spaces allowed</ng-container>
                         <ng-container
-                          *ngIf="!UserForm.get('contact')?.errors?.['required'] && !UserForm.get('contact')?.errors?.['whitespace'] && UserForm.get('contact')?.errors?.['minlength']">Minimum
+                          *ngIf="!UserForm.get('mobileNo')?.errors?.['required'] && !UserForm.get('mobileNo')?.errors?.['whitespace'] && UserForm.get('mobileNo')?.errors?.['minlength']">Minimum
+                          10
                           characters required</ng-container>
                       </ng-container>
                     </div>
                   </div>
                 </div>
+
                 <div class="col-lg-6">
                   <div class="form-group mb-3">
                     <label for="companyMail" class="form-label">Role</label> <span class="text-danger h6">*</span>
@@ -167,6 +171,19 @@
                   </div>
                 </div>
 
+                <div class="col-lg-6">
+                  <div class="form-group mb-3">
+                    <label class="form-label">DOB</label> <span class="text-danger h6">*</span>
+                    <input formControlName="dob" class="form-control form-control-sm" type="date" />
+                    <div class="text-danger" *ngIf="(UserForm.get('dob')?.touched && UserForm.get('dob')?.invalid )">
+                      <ng-container *ngIf="UserForm.get('dob')?.errors">
+                        <ng-container *ngIf="UserForm.get('dob')?.errors?.['required']">
+                          Input field is required
+                        </ng-container>
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
 
               </div>
 
@@ -184,10 +201,13 @@
           <div class="form-group mb-3">
             <label for="companyName" class="form-label">User Name</label><span class="text-danger h6">*</span>
             <div class="d-flex align-items-center gap-1">
-              <input id="companyName" class="form-control form-control-sm" formControlName="userName" (blur)="validateUsername($event)" /> 
-              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="ValidationIsLoading"></span>
-              <i class="bi bi-check-circle-fill" style="color: green;" *ngIf="!ValidationIsLoading && ValidationSuccess"></i>
-              <i class="bi bi-x-circle-fill" style="color: red;" *ngIf="!ValidationIsLoading && ValidationSuccess === false"></i>
+              <input id="companyName" class="form-control form-control-sm" formControlName="userName" />
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                *ngIf="ValidationIsLoading"></span>
+              <i class="bi bi-check-circle-fill" style="color: green;"
+                *ngIf="!ValidationIsLoading && ValidationSuccess === true"></i>
+              <i class="bi bi-x-circle-fill" style="color: red;"
+                *ngIf="!ValidationIsLoading && ValidationSuccess === false"></i>
             </div>
 
             <div class="text-danger"
@@ -198,6 +218,9 @@
                 <ng-container
                   *ngIf="!UserLoginForm.get('userName')?.errors?.['required'] && UserLoginForm.get('userName')?.errors?.['whitespace']">No
                   empty spaces allowed</ng-container>
+                <ng-container
+                  *ngIf="!UserLoginForm.get('userName')?.errors?.['required'] && !UserLoginForm.get('userName')?.errors?.['whitespace'] && UserLoginForm.get('userName')?.errors?.['invalidUsername']">Username
+                  not available.</ng-container>
                 <ng-container
                   *ngIf="!UserLoginForm.get('userName')?.errors?.['required'] && !UserLoginForm.get('userName')?.errors?.['whitespace'] && UserLoginForm.get('userName')?.errors?.['minlength']">Minimum
                   characters required</ng-container>
