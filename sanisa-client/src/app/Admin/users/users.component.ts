@@ -1,12 +1,16 @@
 import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { UsersService } from './users.service';
-import { ReadAllPaginated, UserMaster } from './users.interface';
+import { CreateUserDTO, ReadAllPaginated, UpdateUserDTO, UserMaster } from './users.interface';
 import { environment } from 'src/environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { noWhitespaceValidator } from 'src/app/shared/validators/noWhitespaceValidator';
 import { UserloginService } from './userlogin.service';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { AuthService } from 'src/app/Common/Authentication/auth.service';
+import { CreateUserLoginDTO } from './userLogin.interface';
+import { UserLoginDTO } from 'src/app/login/login.interface';
 
 @Component({
   selector: 'app-users',
@@ -24,6 +28,8 @@ export class UsersComponent implements OnInit {
   public route = inject(ActivatedRoute)
   public router = inject(Router)
 
+  public User = inject(AuthService).User()
+
   PaginationData: ReadAllPaginated = {
     projectId: this.PROJECT_ID,
     companyId: parseInt(this.Company_ID),
@@ -33,10 +39,12 @@ export class UsersComponent implements OnInit {
   UserList: UserMaster[] = [];
 
   UserForm = new FormGroup({
+    userId: new FormControl(0),
     firstName: new FormControl('', [Validators.required, Validators.minLength(3), noWhitespaceValidator()]),
     lastName: new FormControl('', [Validators.required, Validators.minLength(3), noWhitespaceValidator()]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    contact: new FormControl('', [Validators.required, Validators.minLength(10), noWhitespaceValidator()]),
+    emailId: new FormControl('', [Validators.required, Validators.email]),
+    mobileNo: new FormControl('', [Validators.required, Validators.minLength(10), noWhitespaceValidator()]),
+    dob: new FormControl(new Date(),[Validators.required]),
   })
 
 
@@ -61,6 +69,15 @@ export class UsersComponent implements OnInit {
     }
     this.ReadAllUsersPaginated(this.PaginationData)
 
+    this.UserLoginForm.get('userName')?.valueChanges
+      .pipe(
+        debounceTime(500),
+        distinctUntilChanged()
+      )
+      .subscribe(value => {
+        this.validateUsername(value);
+      });
+
   }
 
   @ViewChild('addUser', { static: false }) addUserModalContent!: ElementRef;
@@ -68,6 +85,8 @@ export class UsersComponent implements OnInit {
 
 
   OpenAddUserModal() {
+    this.UserForm.reset()
+    this.UserLoginForm.reset()
     this.addUserModal = this.modalService.open(this.addUserModalContent, { size: 'lg' });
   }
 
@@ -104,30 +123,90 @@ export class UsersComponent implements OnInit {
 
 
   submitUserForm() {
-    console.log(this.UserForm.value);
-    console.log(this.UserLoginForm.value);
 
+    this.UserForm.markAllAsTouched()
+    this.UserLoginForm.markAllAsTouched()
+
+    if (this.UserForm.valid && this.UserLoginForm.valid) {
+      console.log('FormData : ', this.UserForm.value, 'FormValidation: ', this.UserForm.valid);
+      console.log('FormData : ', this.UserLoginForm.value, 'FormValidation: ', this.UserLoginForm.valid);
+
+      let userFormData = { ...this.UserForm.value } 
+      let userData: CreateUserDTO = {
+        companyId: parseInt(this.Company_ID),
+        firstName: userFormData.firstName as string,
+        lastName: userFormData.lastName as string,
+        mobileNo: userFormData.mobileNo as string,
+        emailId: userFormData.emailId as string,
+        actionUser: this.User.userId.toString(),
+        dob : userFormData.dob as Date
+      }
+
+
+      this.createUser(userData)
+
+
+    } else if (this.UserForm.valid && (this.UserForm.controls.userId.value && this.UserForm.controls.userId.value != 0)) {
+      //update code
+    }
   }
 
 
   ValidationIsLoading: boolean = false
   ValidationSuccess: boolean | null = null
-  validateUsername(event: any) {
+
+  validateUsername(userName: string | null) {
+    if (userName === null) {
+      this.ValidationSuccess = null; // or handle it according to your needs
+      this.ValidationIsLoading = false;
+      return;
+    }
+
     this.ValidationIsLoading = true;
     const data = {
-      userName: event.target.value,
+      userName: userName,
       companyId: parseInt(this.Company_ID)
     };
 
     this.userLoginService.ValidateUserName(data).subscribe(res => {
       this.ValidationIsLoading = false;
-      if (res.responseCode == 200) {
-        this.ValidationSuccess = true
+      if (res.responseCode === 200) {
+        this.ValidationSuccess = true;
+        // this.UserLoginForm.controls['userName'].setErrors(null);
       } else {
-        this.ValidationSuccess = false
+        this.ValidationSuccess = false;
+        this.UserLoginForm.controls['userName'].setErrors({ invalidUsername: true });
       }
-    }
-    );
+    });
+  }
+
+  createUser(data: CreateUserDTO) {
+    this.userService.CreateUser(data).subscribe(res => {
+
+      if(res.userId && this.UserLoginForm.valid){
+        let userloginData: CreateUserLoginDTO = {
+          userId: res.userId,
+          userName: this.UserLoginForm.value.userName as string,
+          userPassword: this.UserLoginForm.value.userPassword as string,
+          actionUser: this.User.userId.toString()
+        }
+        this.createUserLogin(userloginData)
+      }
+
+    })
+  }
+
+  updateUser(data: UpdateUserDTO) {
+    this.userService.UpdateUserById(data).subscribe(res => {
+
+    })
+  }
+
+
+  createUserLogin(data:CreateUserLoginDTO){
+    this.userLoginService.CreateUserLogin(data).subscribe(res=>{
+
+    })
   }
 
 

@@ -2,7 +2,7 @@ export interface UserMaster {
     userId: number;
     companyId: number;
     firstName: string;
-    middleName: string | null;
+    middleName?: string ;
     lastName: string;
     dob: string;
     mobileNo: string;
@@ -39,13 +39,13 @@ export interface ReadAllPaginated {
 export interface CreateUserDTO {
     companyId: number,
     firstName: string,
-    middleName: string,
+    middleName?: string,
     lastName: string,
     dob: Date,
     mobileNo: string,
     emailId: string,
-    designation: string,
-    profileImage: string,
+    designation?: string,
+    profileImage?: string,
     actionUser: string
 }
 
