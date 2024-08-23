@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatStepperModule } from '@angular/material/stepper';
 import { PaginationComponent } from './pagination/pagination.component';
+import { MatSliderModule } from '@angular/material/slider';
+
 
 
 
@@ -17,14 +19,16 @@ import { PaginationComponent } from './pagination/pagination.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MatStepperModule
+    MatStepperModule,
+    MatSliderModule
   ],
-  exports:[
+  exports: [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     MatStepperModule,
-    PaginationComponent
+    PaginationComponent,
+    MatSliderModule
   ]
 })
 export class SharedModule { }
