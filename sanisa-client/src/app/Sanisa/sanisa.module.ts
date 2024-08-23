@@ -5,13 +5,15 @@ import { SharedModule } from '../shared/shared.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { StoreComponent } from './store/store.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
     HomeComponent,
-    StoreComponent
+    StoreComponent,
+    ProductDetailsComponent
   ],
   imports: [
     CommonModule,
