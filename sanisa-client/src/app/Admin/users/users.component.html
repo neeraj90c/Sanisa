@@ -7,7 +7,7 @@
   <div class="btn btn-sm primary-btn" (click)="OpenAddUserModal()">New User</div>
 </div>
 
-<div class="main-container">
+<div >
   <div class="tableHeader mb-3 d-flex flex-wrap gap-1 justify-content-between">
     <app-pagination [EnablePageSize]="true" [rowData]="UserList"
       (pageSizeChanged)="handlePageSizeChange($event)"></app-pagination>
