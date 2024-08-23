@@ -1,4 +1,5 @@
 import { Component, ElementRef, inject, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -7,6 +8,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./store.component.css']
 })
 export class StoreComponent {
+  constructor(private router: Router){}
   @ViewChild('quickView', { static: false }) quickViewModalContent!: ElementRef;
   quickViewModal!: NgbModalRef;
   public modalService = inject(NgbModal)
@@ -35,4 +37,7 @@ export class StoreComponent {
     return `${value}`;
   }
 
+  openProductDetails(){
+    this.router.navigate(['/project-details']);
+  }
 }
