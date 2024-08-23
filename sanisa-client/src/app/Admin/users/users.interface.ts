@@ -4,7 +4,7 @@ export interface UserMaster {
     firstName: string;
     middleName?: string ;
     lastName: string;
-    dob: string;
+    dob: Date;
     mobileNo: string;
     emailId: string;
     designation: string;
@@ -53,14 +53,14 @@ export interface UpdateUserDTO {
     userId: number,
     companyId: number,
     firstName: string,
-    middleName: string,
+    middleName?: string,
     lastName: string,
     dob: Date,
     mobileNo: string,
     emailId: string,
-    designation: string,
+    designation?: string,
     isActive: number,
-    profileImage: string,
+    profileImage?: string,
     actionUser: string
 }
 

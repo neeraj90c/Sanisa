@@ -20,6 +20,30 @@ export class NavbarComponent {
     });
     // Initially set the sidebar to be open
     this.isSidebarClosed = false;
+
+    if (this.authService.isAuthenticated() && this.authService.tokenValidated) {
+      
+
+    } else {
+      this.authService.validateToken().subscribe(
+        {
+          next: (res) => {
+            /**
+             * This is a temp fix untill GetMenuForUser api isnt fix please remove this afterwards
+             */
+            this.authService.saveUserData(res)
+            // this.router.navigate(['/'])
+            /**
+             * END
+             */
+          },
+          error: (err) => {
+            this.authService.SignOutUser();
+          }
+        }
+      )
+    }
+
   }
 
   toggleSidebar(): void {

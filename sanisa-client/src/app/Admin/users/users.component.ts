@@ -11,6 +11,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { AuthService } from 'src/app/Common/Authentication/auth.service';
 import { CreateUserLoginDTO } from './userLogin.interface';
 import { UserLoginDTO } from 'src/app/login/login.interface';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-users',
@@ -44,7 +45,7 @@ export class UsersComponent implements OnInit {
     lastName: new FormControl('', [Validators.required, Validators.minLength(3), noWhitespaceValidator()]),
     emailId: new FormControl('', [Validators.required, Validators.email]),
     mobileNo: new FormControl('', [Validators.required, Validators.minLength(10), noWhitespaceValidator()]),
-    dob: new FormControl(new Date(),[Validators.required]),
+    dob: new FormControl(),
   })
 
 
@@ -91,6 +92,26 @@ export class UsersComponent implements OnInit {
   }
 
 
+
+  openEditModal(user: UserMaster) {
+    this.UserForm.reset()
+    this.UserLoginForm.reset()
+    this.UserLoginForm.disable()
+    console.log(user);
+
+    this.UserForm.patchValue({
+      firstName: user.firstName,
+      lastName: user.lastName,
+      mobileNo: user.mobileNo,
+      userId: user.userId,
+      dob: formatDate(user.dob, 'yyyy-MM-dd', 'en'),
+      emailId: user.emailId,
+
+    })
+    this.addUserModal = this.modalService.open(this.addUserModalContent, { size: 'lg' });
+  }
+
+
   ReadAllUsersPaginated(data: ReadAllPaginated) {
     this.userService.ReadAllUsersPaginated(data).subscribe(res => {
       this.UserList = res.items
@@ -126,12 +147,11 @@ export class UsersComponent implements OnInit {
 
     this.UserForm.markAllAsTouched()
     this.UserLoginForm.markAllAsTouched()
+    console.log(this.UserLoginForm.valid);
+
 
     if (this.UserForm.valid && this.UserLoginForm.valid) {
-      console.log('FormData : ', this.UserForm.value, 'FormValidation: ', this.UserForm.valid);
-      console.log('FormData : ', this.UserLoginForm.value, 'FormValidation: ', this.UserLoginForm.valid);
-
-      let userFormData = { ...this.UserForm.value } 
+      let userFormData = { ...this.UserForm.value }
       let userData: CreateUserDTO = {
         companyId: parseInt(this.Company_ID),
         firstName: userFormData.firstName as string,
@@ -139,15 +159,25 @@ export class UsersComponent implements OnInit {
         mobileNo: userFormData.mobileNo as string,
         emailId: userFormData.emailId as string,
         actionUser: this.User.userId.toString(),
-        dob : userFormData.dob as Date
+        dob: userFormData.dob
       }
-
-
       this.createUser(userData)
 
-
     } else if (this.UserForm.valid && (this.UserForm.controls.userId.value && this.UserForm.controls.userId.value != 0)) {
-      //update code
+
+      let userFormData = { ...this.UserForm.value }
+      let userData: UpdateUserDTO = {
+        companyId: parseInt(this.Company_ID),
+        firstName: userFormData.firstName as string,
+        lastName: userFormData.lastName as string,
+        mobileNo: userFormData.mobileNo as string,
+        emailId: userFormData.emailId as string,
+        actionUser: this.User.userId.toString(),
+        dob: userFormData.dob as Date,
+        userId: userFormData.userId as number,
+        isActive: 1,
+      }
+      this.updateUser(userData)
     }
   }
 
@@ -183,7 +213,7 @@ export class UsersComponent implements OnInit {
   createUser(data: CreateUserDTO) {
     this.userService.CreateUser(data).subscribe(res => {
 
-      if(res.userId && this.UserLoginForm.valid){
+      if (res.userId && this.UserLoginForm.valid) {
         let userloginData: CreateUserLoginDTO = {
           userId: res.userId,
           userName: this.UserLoginForm.value.userName as string,
@@ -198,14 +228,20 @@ export class UsersComponent implements OnInit {
 
   updateUser(data: UpdateUserDTO) {
     this.userService.UpdateUserById(data).subscribe(res => {
-
+      this.UserForm.reset()
+      this.UserLoginForm.reset()
+      this.addUserModal.close()
+      this.ReadAllUsersPaginated(this.PaginationData)
     })
   }
 
 
-  createUserLogin(data:CreateUserLoginDTO){
-    this.userLoginService.CreateUserLogin(data).subscribe(res=>{
-
+  createUserLogin(data: CreateUserLoginDTO) {
+    this.userLoginService.CreateUserLogin(data).subscribe(res => {
+      this.UserForm.reset()
+      this.UserLoginForm.reset()
+      this.addUserModal.close()
+      this.ReadAllUsersPaginated(this.PaginationData)
     })
   }
 
