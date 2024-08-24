@@ -6,6 +6,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { StoreComponent } from './store/store.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { ContactComponent } from './contact/contact.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     NavbarComponent,
     HomeComponent,
     StoreComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    ContactComponent
   ],
   imports: [
     CommonModule,
