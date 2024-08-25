@@ -118,7 +118,7 @@ export class NavbarComponent implements OnInit {
       subRoleId: 473,
       subRoleName: "About Us",
       subRoleCode: "MAD",
-      subRoleDesc: "Menu management Single Page",
+      subRoleDesc: "about",
       displayOrder: 1,
       defaultChildMenuId: 0,
       menuIconUrl: "<i class=\fa fa-th me-2\>",
