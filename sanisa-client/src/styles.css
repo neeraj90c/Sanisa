@@ -1076,6 +1076,12 @@ background-size:100%;
 .bg-light-btn:hover{border: 1px solid var(--primary-col) !important;}
 
 /* ****************Product Detail page************** */
+aside {
+  /* position: sticky;
+  top: 100px;
+  height: 100vh; */
+}
+
 .productDetailsTabs .nav-pills .nav-link{background-color: transparent !important; color: var(--secondary-col) !important;
  border: 0px; border-radius: 0;  font-size: 16px;
  font-weight: 600;}
@@ -1108,7 +1114,7 @@ background-size:100%;
 .sectionHeading p{color: #93969c;}
 
  .contactBanner {  position: relative;  background-image: url(./assets/images/contactBanner.jpg);
-   background-size: cover;   background-position: center;   height: 100vh;   display: flex;   justify-content: center;
+   background-size: cover;   background-position: center;   height: 70vh;   display: flex;   justify-content: center;
    align-items: center;   color: white;   text-align: center; }
  .contactBanner .overlay {   position: absolute;   top: 0;   left: 0;   width: 100%;   height: 100%;
    background-color: rgba(0, 0, 0, 0.8);    display: flex;   flex-direction: column;   justify-content: center;  

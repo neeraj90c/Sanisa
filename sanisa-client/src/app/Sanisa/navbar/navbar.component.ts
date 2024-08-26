@@ -117,7 +117,7 @@ export class NavbarComponent implements OnInit {
       parentMenuId: 0,
       subRoleId: 473,
       subRoleName: "About Us",
-      subRoleCode: "MAD",
+      subRoleCode: "about",
       subRoleDesc: "about",
       displayOrder: 1,
       defaultChildMenuId: 0,
