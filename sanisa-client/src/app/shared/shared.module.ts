@@ -9,7 +9,6 @@ import { MatSliderModule } from '@angular/material/slider';
 
 
 
-
 @NgModule({
   declarations: [
     PaginationComponent,
@@ -29,6 +28,7 @@ import { MatSliderModule } from '@angular/material/slider';
     MatStepperModule,
     PaginationComponent,
     MatSliderModule
+    
   ]
 })
 export class SharedModule { }
