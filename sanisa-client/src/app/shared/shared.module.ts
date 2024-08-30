@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatStepperModule } from '@angular/material/stepper';
 import { PaginationComponent } from './pagination/pagination.component';
 import { MatSliderModule } from '@angular/material/slider';
-
+import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -20,7 +20,8 @@ import { MatSliderModule } from '@angular/material/slider';
     FormsModule,
     ReactiveFormsModule,
     MatStepperModule,
-    MatSliderModule
+    MatSliderModule,
+    NgbPopover
   ],
   exports: [
     HttpClientModule,
@@ -28,7 +29,9 @@ import { MatSliderModule } from '@angular/material/slider';
     ReactiveFormsModule,
     MatStepperModule,
     PaginationComponent,
-    MatSliderModule
+    MatSliderModule,
+    NgbPopover
+    
   ]
 })
 export class SharedModule { }

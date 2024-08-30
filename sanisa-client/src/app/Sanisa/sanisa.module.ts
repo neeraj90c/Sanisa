@@ -6,6 +6,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { StoreComponent } from './store/store.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { ContactComponent } from './contact/contact.component';
+import { TestimonialComponent } from './testimonial/testimonial.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -13,7 +17,11 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     NavbarComponent,
     HomeComponent,
     StoreComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    ContactComponent,
+    TestimonialComponent,
+    AboutUsComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,

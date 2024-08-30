@@ -17,19 +17,19 @@
         </a>
         <div class="dropdown-menu megamenuDropdown border-0 shadow">
           <div class="menu">
-            <div class="menu-item">
+            <div class="menu-item" [routerLink]="['/store']">
               <span class="icon"></span>
               <span class="text">Chaaakri - Khakhras & Savories</span>
             </div>
-            <div class="menu-item">
+            <div class="menu-item" [routerLink]="['/store']">
               <span class="icon"></span>
               <span class="text">Devinite - Chocolate</span>
             </div>
-            <div class="menu-item">
+            <div class="menu-item" [routerLink]="['/store']">
               <span class="icon"></span>
               <span class="text">All Things Yum</span>
             </div>
-            <div class="menu-item">
+            <div class="menu-item" [routerLink]="['/store']">
               <span class="icon"></span>
               <span class="text">Puro - Body & Soul</span>
             </div>
@@ -135,3 +135,4 @@
 <div class="content-wrapper">
   <router-outlet></router-outlet>
 </div>
+<app-footer></app-footer>
