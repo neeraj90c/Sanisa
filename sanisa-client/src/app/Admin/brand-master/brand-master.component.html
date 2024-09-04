@@ -1,0 +1,115 @@
+<div class="heading">
+    <div>
+        <h5>Manage Brands</h5>
+        <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae.</p>
+    </div>
+    <div class="btn btn-sm btn-primary" (click)="openBrandForm()">New Brand</div>
+</div>
+
+<div>
+    <app-pagination [EnablePageSize]="true" [rowData]="BrandList"
+        (pageSizeChanged)="handlePageSizeChange($event)"></app-pagination>
+    <div class="tablebody border" style="min-height: 530px;">
+        <table class="dataTable">
+            <thead>
+                <tr>
+                    <th style="width:2%">Sr No</th>
+                    <th style="width:21%">Brand Name</th>
+                    <th style="width:22%">Code</th>
+                    <th style="width:22%">Description</th>
+                    <th style="width:8%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let brand of BrandList; let i=index">
+                    <td class="text-center">{{i+1}}</td>
+                    <td>
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="usericonBox" style="background-color: #572196; color: #fff;">
+                                dsfd</div>
+                            {{brand.bName}}
+                        </div>
+                    </td>
+                    <td>{{brand.bCode}}</td>
+                    <td>{{brand.bDesc}}</td>
+                    <td>
+                        <div class="dataTableicon d-flex align-items-center justify-content-around">
+                            <a class="bi bi-trash" (click)="deleteBrand(brand)"></a>
+                            <a class="bi bi-pen" (click)="openEditModal(brand)"></a>
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+
+    </div>
+    <app-pagination [EnableNavigation]="true" [rowData]="BrandList"
+        (pageSizeChanged)="handlePageSizeChange($event)"></app-pagination>
+</div>
+
+
+
+<ng-template #brandForm>
+    <div class="modal-header">
+        <h6 class="modal-title font-weight-600">Add New Brand</h6>
+        <button type="button" class="btn-close" (click)="addBrandModal.close()"></button>
+    </div>
+    <div class="modal-body">
+        <form class="container" [formGroup]="brandMasterForm">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="label font-sb mb-1">Brand Name  <span style="color: red;">*</span></label>
+                        <input type="text" class="form-control form-control-sm" formControlName="bName">
+                        <div class="text-danger"
+                        *ngIf="(brandMasterForm.get('bName')?.touched && brandMasterForm.get('bName')?.invalid )">
+                        <ng-container *ngIf="brandMasterForm.get('bName')?.errors">
+                          <ng-container *ngIf="brandMasterForm.get('bName')?.errors?.['required']">Input field is
+                            required</ng-container>
+                          <ng-container
+                            *ngIf="!brandMasterForm.get('bName')?.errors?.['required'] && brandMasterForm.get('bName')?.errors?.['whitespace']">No
+                            empty spaces allowed</ng-container>
+                          <ng-container
+                            *ngIf="!brandMasterForm.get('bName')?.errors?.['required'] && !brandMasterForm.get('bName')?.errors?.['whitespace'] && brandMasterForm.get('bName')?.errors?.['minlength']">Minimum
+                            characters required</ng-container>
+                        </ng-container>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="label font-sb mb-1">Brand Code  <span style="color: red;">*</span></label>
+                        <input type="text" class="form-control form-control-sm" formControlName="bCode">
+                        <div class="text-danger"
+                        *ngIf="(brandMasterForm.get('bCode')?.touched && brandMasterForm.get('bCode')?.invalid )">
+                        <ng-container *ngIf="brandMasterForm.get('bCode')?.errors">
+                          <ng-container *ngIf="brandMasterForm.get('bCode')?.errors?.['required']">Input field is
+                            required</ng-container>
+                          <ng-container
+                            *ngIf="!brandMasterForm.get('bCode')?.errors?.['required'] && brandMasterForm.get('bCode')?.errors?.['whitespace']">No
+                            empty spaces allowed</ng-container>
+                          <ng-container
+                            *ngIf="!brandMasterForm.get('bCode')?.errors?.['required'] && !brandMasterForm.get('bCode')?.errors?.['whitespace'] && brandMasterForm.get('bCode')?.errors?.['minlength']">Minimum
+                            characters required</ng-container>
+                        </ng-container>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="label font-sb mb-1">Brand Description</label>
+                        <textarea type="text" class="form-control" rows="6" formControlName="bDesc"></textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer text-end">
+        <button class="btn btn-sm secondary-btn me-2" (click)="addBrandModal.close()">Close</button>
+        <button class="btn btn-sm primary-btn" (click)="submitBrandForm()">Submit</button>
+      </div>
+</ng-template>

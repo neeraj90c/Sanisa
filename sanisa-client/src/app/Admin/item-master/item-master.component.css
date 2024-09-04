@@ -1,0 +1,50 @@
+.item-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.item-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.item-card:hover {
+    transform: translateY(-5px);
+}
+
+.item-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.item-details {
+    padding: 15px;
+    text-align: center;
+}
+
+.item-name {
+    font-size: 1.5em;
+    margin: 10px 0;
+    color: #333;
+}
+
+.item-category {
+    font-size: 1em;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.item-price {
+    font-size: 1.2em;
+    color: #e91e63;
+    font-weight: bold;
+}
+
+.col-md-6,.col-md-12{
+    margin-top: 10px
+}

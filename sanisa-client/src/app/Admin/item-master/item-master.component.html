@@ -1,0 +1,110 @@
+<div class="heading">
+    <div>
+        <h5>Manage Items</h5>
+        <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae.</p>
+    </div>
+    <div class="btn btn-sm btn-primary" (click)="openItemForm()">New Item</div>
+</div>
+
+<div class="item-grid mt-4">
+    <div class="item-card" *ngFor="let item of ItemList">
+        <img src="https://plus.unsplash.com/premium_photo-1675896084254-dcb626387e1e?q=80&w=2135&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Item 1" class="item-image">
+        <div class="item-details">
+            <h2 class="item-name">{{item.iName}}</h2>
+            <p class="item-category">{{item.iType}}</p>
+            <p class="item-price">{{item.mrpPrinted|currency}} 1000$</p>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #itemForm>
+    <div class="modal-header">
+        <h6 class="modal-title font-weight-600">Add New Item</h6>
+        <button type="button" class="btn-close" (click)="addItemModal.close()"></button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="ItemForm">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="iName">Item Name</label>
+                        <input class="form-control form-control-sm" type="text" id="iName" formControlName="iName" >
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="iCode">Item Code</label>
+                        <input class="form-control form-control-sm" type="text" id="iCode" formControlName="iCode" >
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="brand">Brand</label>
+                        <select class="form-select form-select-sm" formControlName="brandId">
+                            <option value="">Select Brand</option>
+                            <option [value]="brand.brandId" *ngFor="let brand of BrandList">{{brand.bName}}</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="packaging">Packaging</label>
+                        <select id="packaging" name="packaging" class="form-select form-select-sm" formControlName="packingId">
+                            <option value="">Select Packaging</option>
+                            <option value="1">Box</option>
+                            <option value="2">Bag</option>
+                            <option value="3">Bottle</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+         
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="iDesc">Item Description</label>
+                        <textarea id="iDesc"  rows="6" class="form-control form-control-sm" formControlName="iDesc"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="iType">Item Type</label>
+                        <input class="form-control form-control-sm" type="text" id="iType" formControlName="iType" >
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="iSize">Item Size</label>
+                        <input class="form-control form-control-sm" type="text" id="iSize" formControlName="iSize" >
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="mrp">MRP Printed</label>
+                        <input class="form-control form-control-sm" type="number" id="mrp" formControlName="mrpPrinted" >
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="moq">Minimum Order Quantity (MOQ)</label>
+                        <input class="form-control form-control-sm" type="number" id="moq" formControlName="moq" >
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer text-end">
+        <button class="btn btn-sm secondary-btn me-2" (click)="addItemModal.close()">Close</button>
+        <button class="btn btn-sm primary-btn" (click)="submitItemForm()">Submit</button>
+      </div>
+</ng-template>
