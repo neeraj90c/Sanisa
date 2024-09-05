@@ -41,13 +41,16 @@ ul,li {  list-style-type: none}
 .secondary-btn-outline {  background-color: #fff !important;  color: var(--secondary-col) !important;  border: 1px solid var(--secondary-col) !important;  padding: 5px 20px !important;
   font-weight: 600 !important;  border-radius: 5px !important;}
 .secondary-btn:hover {  border: 1px solid var(--secondary-col) !important;  color: var(--secondary-col) !important;  background-color: #fff !important;  transition: background-color .3s ease-in;}
+.btn-outline-secondary:hover{color: #fff !important;}
 .font-weight-600 {  font-weight: 600;}
+.form-control{cursor:text;}
 .form-control:focus,.form-select:focus {  color: var(--bs-body-color);  background-color: var(--bs-body-bg);  border-color: var(--primary-col) !important;  outline: 0;  box-shadow: 0 0 0 .25rem #0d6efd00 !important;}
 .action-btn {  border: 1px solid #C2C2C2 !important;}
 .action-btn:hover {  border: 1px solid #C2C2C2 !important;  background-color: var(--secondary-col) !important;  color: #fff !important;  transition: background-color .3s ease-in;}
 input {  color: #93969c !important;  font-weight: 500 !important;}
 .form-label {  color: var(--secondary-col);  font-weight: 600;  font-size: 15px;}
 input::placeholder, textarea::placeholder {    opacity: 0.5; font-size: 14px;  color: gray !important;}
+
 
 /* ****************************** Login Container ******************************** */
 .loginBanner {  background-image: url(./assets/images/loginBackground.png);  background-size: 100%;  background-position: center;  animation: zoomEffect 5s infinite alternate ease-in-out;  height: 100%;}
@@ -1434,10 +1437,12 @@ aside {
  }
 
  .offcanvas-end { width: 30rem !important;}
-.curserPointer{cursor: pointer;}
+
+.actionDropdown{cursor: pointer;}
 .actionDropdown .dropdown-menu{border-radius: 0%; min-width: 3rem; border: 1px solid #eaeaea;}
 .actionDropdown li{border-bottom: 1px solid #eaeaea;}
 .actionDropdown li .dropdown-item{font-size: 14px; font-weight: 500;}
+.cursorPointer{cursor: pointer;}
 
 .ellipsis-text {
   display: -webkit-box;
