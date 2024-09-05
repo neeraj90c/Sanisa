@@ -2,6 +2,7 @@ import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core'
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Common/Authentication/auth.service';
 import { MenuService } from 'src/app/Common/Menu/menu.service';
+import { LoaderService } from 'src/app/shared/loader/loader.service';
 import { environment } from 'src/environments/environment';
 
 export interface ParentMenu {
@@ -45,6 +46,8 @@ export class NavbarComponent implements OnInit {
   menuService = inject(MenuService)
   router = inject(Router)
 
+  loader = inject(LoaderService)
+
   Logout() {
     this.authService.SignOutUser()
   }
@@ -55,7 +58,6 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
  
 
   }
@@ -63,7 +65,7 @@ export class NavbarComponent implements OnInit {
 
 
   ngAfterViewInit() {
-    this.clickListener = this.renderer.listen('document', 'click', this.handleDocumentClick.bind(this));
+    // this.clickListener = this.renderer.listen('document', 'click', this.handleDocumentClick.bind(this));
   }
 
   toggleNav(): void {

@@ -1,14 +1,14 @@
 export interface CreateItemDTO {
-    iCode: string,
-    iName: string,
-    iDesc: string,
-    iType: string,
-    packingId: number,
-    iSize: string,
-    mrpPrinted: string,
-    moq: number,
-    brandId: number,
-    actionUser: string
+    iCode: string;
+    iName: string;
+    iDesc: string;
+    iType: string;
+    packingId: number;
+    iSize: string;
+    mrpPrinted: string;
+    moq: number;
+    brandId: number;
+    actionUser: string;
 }
 
 export interface UpdateItemDTO {

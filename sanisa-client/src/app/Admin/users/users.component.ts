@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/Common/Authentication/auth.service';
 import { CreateUserLoginDTO } from './userLogin.interface';
 import { UserLoginDTO } from 'src/app/login/login.interface';
 import { formatDate } from '@angular/common';
+import { LoaderService } from 'src/app/shared/loader/loader.service';
 
 @Component({
   selector: 'app-users',
@@ -28,6 +29,7 @@ export class UsersComponent implements OnInit {
   public modalService = inject(NgbModal)
   public route = inject(ActivatedRoute)
   public router = inject(Router)
+  public loader = inject(LoaderService)
 
   public User = inject(AuthService).User()
 
@@ -113,8 +115,10 @@ export class UsersComponent implements OnInit {
 
 
   ReadAllUsersPaginated(data: ReadAllPaginated) {
+    this.loader.enable()
     this.userService.ReadAllUsersPaginated(data).subscribe(res => {
       this.UserList = res.items
+      this.loader.disable()
     })
   }
 

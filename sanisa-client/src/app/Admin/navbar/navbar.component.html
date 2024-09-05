@@ -31,6 +31,20 @@
         </a>
       
       </li> 
+      <li [routerLinkActive]="'active'" [routerLink]="['./manage-brands']"> 
+        <a >
+            <i class="bi bi-clipboard-data"></i>
+          <span class="link_name">Manage Brands</span>
+        </a>
+      
+      </li> 
+      <li [routerLinkActive]="'active'" [routerLink]="['./manage-items']"> 
+        <a >
+            <i class="bi bi-clipboard-data"></i>
+          <span class="link_name">Manage Items</span>
+        </a>
+      
+      </li> 
       <!-- <li>
         <div class="icon-link">
           <a >
@@ -50,7 +64,7 @@
     </ul>
   </div>
   <section class="home-section">
-    <div class="home-content-topbar justify-content-end">    
+    <div class="home-content-topbar justify-content-end sticky-top">    
       <!-- <form role="search" action="">
         <div class="input-container">
               <input type="search" class="form-control form-control-sm" value="" name="s" placeholder="Search Here..." />
