@@ -1,11 +1,11 @@
-import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef, NgbOffcanvas, NgbOffcanvasRef } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/Common/Authentication/auth.service';
 import { ConfirmmodalserviceService } from 'src/app/shared/confirm-delete-modal/confirmmodalservice.service';
 import { ItemMasterService } from './item-master.service';
 import { environment } from 'src/environments/environment';
-import { CreateItemDTO, ItemMaster, ReadAllItemsPaginatedDTO } from './item-master.interface';
+import { CreateItemDTO, ItemMaster, ReadAllItemsPaginatedDTO, UpdateItemDTO } from './item-master.interface';
 import { BrandMasterDTO } from '../brand-master/brand-master.interface';
 import { BrandMasterService } from '../brand-master/brand-master.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -28,9 +28,13 @@ export class ItemMasterComponent implements OnInit {
   private loader = inject(LoaderService)
 
   public confirmModal = inject(ConfirmmodalserviceService)
+  public offcanvasService = inject(NgbOffcanvas);
   User = inject(AuthService).User()
   @ViewChild('itemForm', { static: false }) addItemModalContent!: ElementRef;
+  @ViewChild('productDetails', { static: false }) productDetailContent!: ElementRef;
   addItemModal!: NgbModalRef;
+
+  viewProductDetailModal: NgbOffcanvasRef | null = null;
 
   ReadAllDTO: ReadAllItemsPaginatedDTO = {
     rowNum: 0,
@@ -51,9 +55,9 @@ export class ItemMasterComponent implements OnInit {
     iType: new FormControl('', [Validators.required, noWhitespaceValidator, Validators.minLength(3)]),
     packingId: new FormControl(0),
     iSize: new FormControl('', [Validators.required, noWhitespaceValidator]),
-    mrpPrinted: new FormControl('', [Validators.required,]),
-    moq: new FormControl(0),
-    brandId: new FormControl(0),
+    mrpPrinted: new FormControl('', [Validators.required, noWhitespaceValidator]),
+    moq: new FormControl(0, [Validators.required, noWhitespaceValidator]),
+    brandId: new FormControl(0, [Validators.required, noWhitespaceValidator]),
     isActive: new FormControl(0),
     actionUser: new FormControl('')
   })
@@ -86,15 +90,24 @@ export class ItemMasterComponent implements OnInit {
   getAllBrandList() {
     this.brandMasterService.ReadAllBrands().subscribe(res => {
       this.BrandList = res.items
-
       console.log(res.items);
-
     })
   }
 
   createItem(data: CreateItemDTO) {
     this.loader.enable()
     this.itemMasterService.CreateItem(data).subscribe(res => {
+      this.getItemListPaginated(this.ReadAllDTO)
+      this.addItemModal.close()
+      this.loader.disable()
+    })
+  }
+
+  updateItem(data: UpdateItemDTO) {
+    this.loader.enable()
+    this.itemMasterService.UpdateItem(data).subscribe(res => {
+      this.getItemListPaginated(this.ReadAllDTO)
+      this.addItemModal.close()
       this.loader.disable()
     })
   }
@@ -104,6 +117,9 @@ export class ItemMasterComponent implements OnInit {
     this.ItemForm.markAllAsTouched();
     if (this.ItemForm.valid) {
       if (formData.itemId) {
+        let data: UpdateItemDTO = this.ItemForm.value as UpdateItemDTO
+        console.log(data);
+        this.updateItem(data)
 
 
       } else {
@@ -119,10 +135,7 @@ export class ItemMasterComponent implements OnInit {
           brandId: formData.brandId as number,
           actionUser: this.User.userId.toString()
         }
-
-        console.log(data);
         this.createItem(data)
-
       }
     }
 
@@ -144,6 +157,39 @@ export class ItemMasterComponent implements OnInit {
   openItemForm() {
     this.ItemForm.reset()
     this.addItemModal = this.modalService.open(this.addItemModalContent, { size: 'lg' })
+  }
+  openItemEditForm(item: ItemMaster) {
+    console.log(item);
+    this.ItemForm.reset()
+    this.ItemForm.patchValue({
+      actionUser: this.User.userId.toString(),
+      brandId: item.brandId,
+      iCode: item.iCode,
+      iDesc: item.iDesc,
+      iName: item.iName,
+      isActive: item.isActive,
+      iSize: item.iSize,
+      itemId: item.itemId,
+      iType: item.iType,
+      moq: item.moq,
+      mrpPrinted: item.mrpPrinted,
+      packingId: item.packingId
+    })
+    this.addItemModal = this.modalService.open(this.addItemModalContent, { size: 'lg' })
+  }
+
+  openProductDetail(productDetailContent: TemplateRef<any>) {
+    if (this.viewProductDetailModal) {
+      // If off-canvas is already open, close it
+      this.viewProductDetailModal.close();
+      this.viewProductDetailModal = null;
+    } else {
+      // If off-canvas is not open, open it
+      this.viewProductDetailModal = this.offcanvasService.open(productDetailContent, {
+        position: 'end',
+        backdrop: false
+      });
+    }
   }
 
   onBrancChange() {

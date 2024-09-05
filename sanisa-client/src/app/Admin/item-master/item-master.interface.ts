@@ -41,6 +41,7 @@ export interface ReadAllItemsPaginatedDTO {
 }
 
 export interface ItemMaster {
+    itemId: number,
     iCode: string,
     iName: string,
     iDesc: string,

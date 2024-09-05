@@ -1432,3 +1432,29 @@ aside {
  .bi-trash{
   cursor: pointer;
  }
+
+ .offcanvas-end { width: 30rem !important;}
+.curserPointer{cursor: pointer;}
+.actionDropdown .dropdown-menu{border-radius: 0%; min-width: 3rem; border: 1px solid #eaeaea;}
+.actionDropdown li{border-bottom: 1px solid #eaeaea;}
+.actionDropdown li .dropdown-item{font-size: 14px; font-weight: 500;}
+
+.ellipsis-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  /* Number of lines before truncation */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.comboDetailCard img{height: 150px; border-radius: 10px;}
+.comboItemCard img{height: 100px; width: 100px; border-radius: 10px;} 
+
+.itemCard .title{font-size: 15px;}
+.itemCard .category{font-size: 12px; font-weight: 600;}
+/* .itemCard  .product-image img{height: 200px; } */
+.itemCard .price{color: var(--primary-col); font-size: 14px;}
+.offcanvas-header{align-items:start !important;}
+.viewProductImg{height: 300px; width: 100%;}
+.com-table thead th{background-color: #36536B; color: #fff; font-weight: 600 !important;}
