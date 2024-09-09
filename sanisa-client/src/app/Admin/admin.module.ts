@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { BrandMasterComponent } from './brand-master/brand-master.component';
 import { ItemMasterComponent } from './item-master/item-master.component';
+import { PackagingMasterComponent } from './packaging-master/packaging-master.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { ItemMasterComponent } from './item-master/item-master.component';
     NavbarComponent,
     UsersComponent,
     BrandMasterComponent,
-    ItemMasterComponent
+    ItemMasterComponent,
+    PackagingMasterComponent
   ],
   imports: [
     CommonModule,

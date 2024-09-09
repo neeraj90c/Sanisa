@@ -4,6 +4,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { UsersComponent } from './users/users.component';
 import { BrandMasterComponent } from './brand-master/brand-master.component';
 import { ItemMasterComponent } from './item-master/item-master.component';
+import { PackagingMasterComponent } from './packaging-master/packaging-master.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
       { path:'users', component:UsersComponent, title:'Users'},
       { path:'manage-brands', component:BrandMasterComponent, title:'Manage Brand'},
       { path:'manage-items', component:ItemMasterComponent, title:'Manage Items'},
+      { path:'manage-packaging', component:PackagingMasterComponent, title:'Manage Packaging'},
     ], title : 'Admin'
   }
 ];

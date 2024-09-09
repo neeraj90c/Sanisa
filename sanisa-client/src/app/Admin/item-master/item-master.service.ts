@@ -36,7 +36,6 @@ export class ItemMasterService {
 
   DeleteItem(data: DeleteItemDTO): Observable<void> {
     return this.http.post<void>(DeleteItem, data)
-
   }
 
 }

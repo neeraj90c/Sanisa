@@ -17,13 +17,13 @@
         </a>
       
       </li>
-      <li [routerLinkActive]="'active'">
+      <!-- <li [routerLinkActive]="'active'">
         <a >
             <i class="bi bi-grid-1x2"></i>
           <span class="link_name">Products</span>
         </a>
       
-      </li>
+      </li> -->
       <li [routerLinkActive]="'active'">
         <a >
             <i class="bi bi-clipboard-data"></i>
@@ -41,7 +41,14 @@
       <li [routerLinkActive]="'active'" [routerLink]="['./manage-items']"> 
         <a >
             <i class="bi bi-clipboard-data"></i>
-          <span class="link_name">Manage Items</span>
+          <span class="link_name">Manage Products</span>
+        </a>
+      
+      </li> 
+      <li [routerLinkActive]="'active'" [routerLink]="['./manage-packaging']"> 
+        <a >
+            <i class="bi bi-clipboard-data"></i>
+          <span class="link_name">Manage Packaging</span>
         </a>
       
       </li> 

@@ -5,12 +5,16 @@ import { AuthService } from 'src/app/Common/Authentication/auth.service';
 import { ConfirmmodalserviceService } from 'src/app/shared/confirm-delete-modal/confirmmodalservice.service';
 import { ItemMasterService } from './item-master.service';
 import { environment } from 'src/environments/environment';
-import { CreateItemDTO, ItemMaster, ReadAllItemsPaginatedDTO, UpdateItemDTO } from './item-master.interface';
+import { CreateItemDTO, DeleteItemDTO, ItemMaster, ReadAllItemsPaginatedDTO, UpdateItemDTO } from './item-master.interface';
 import { BrandMasterDTO } from '../brand-master/brand-master.interface';
 import { BrandMasterService } from '../brand-master/brand-master.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { noWhitespaceValidator } from 'src/app/shared/validators/noWhitespaceValidator';
 import { LoaderService } from 'src/app/shared/loader/loader.service';
+import { nonZeroValidator } from 'src/app/shared/validators/nonZeroValidator';
+import { MatStepper } from '@angular/material/stepper';
+import { ItemPriceService } from './item-price.service';
+import { CreateItemPriceDTO, ReadItemPriceByItemIdDTO } from './item-price.interface';
 
 @Component({
   selector: 'app-item-master',
@@ -24,9 +28,9 @@ export class ItemMasterComponent implements OnInit {
   private route = inject(ActivatedRoute)
   private router = inject(Router)
   private itemMasterService = inject(ItemMasterService)
+  private itemPriceService = inject(ItemPriceService)
   private brandMasterService = inject(BrandMasterService)
   private loader = inject(LoaderService)
-
   public confirmModal = inject(ConfirmmodalserviceService)
   public offcanvasService = inject(NgbOffcanvas);
   User = inject(AuthService).User()
@@ -62,6 +66,16 @@ export class ItemMasterComponent implements OnInit {
     actionUser: new FormControl('')
   })
 
+  ItemPriceForm = new FormGroup({
+    priceId: new FormControl(0),
+    itemId: new FormControl(0, [Validators.required]),
+    mrp: new FormControl(0, [Validators.required, nonZeroValidator()]),
+    iP1: new FormControl(0, [Validators.required, nonZeroValidator()]),
+    iP2: new FormControl(0, [Validators.required, nonZeroValidator()]),
+    iP3: new FormControl(0, [Validators.required, nonZeroValidator()]),
+    cp: new FormControl(0, [Validators.required, nonZeroValidator()]),
+    actionUser: new FormControl('')
+  })
 
 
   ngOnInit(): void {
@@ -97,9 +111,18 @@ export class ItemMasterComponent implements OnInit {
   createItem(data: CreateItemDTO) {
     this.loader.enable()
     this.itemMasterService.CreateItem(data).subscribe(res => {
-      this.getItemListPaginated(this.ReadAllDTO)
-      this.addItemModal.close()
-      this.loader.disable()
+      let itemPriceForm = { ...this.ItemPriceForm.value }
+      let itemPrice: CreateItemPriceDTO = {
+        itemId: res.itemId,
+        mrp: itemPriceForm.mrp as number as number,
+        iP1: itemPriceForm.iP1 as number,
+        iP2: itemPriceForm.iP2 as number,
+        iP3: itemPriceForm.iP3 as number,
+        cp: itemPriceForm.cp as number,
+        actionUser: this.User.userId.toString()
+      }
+      this.createITemPrice(itemPrice)
+
     })
   }
 
@@ -112,16 +135,42 @@ export class ItemMasterComponent implements OnInit {
     })
   }
 
+  deleteItem(item: ItemMaster) {
+    this.confirmModal.openDeleteModal(item.iName, item).subscribe(res => {
+      if (res) {
+        let ddata: DeleteItemDTO = {
+          itemId: item.itemId,
+          actionUser: this.User.userId.toString()
+        }
+        this.itemMasterService.DeleteItem(ddata).subscribe(res => {
+          this.getItemListPaginated(this.ReadAllDTO)
+        }
+        )
+      }
+    })
+
+  }
+
+  createITemPrice(itemPrice: CreateItemPriceDTO) {
+    this.itemPriceService.CreateItemPrice(itemPrice).subscribe(res => {
+      this.getItemListPaginated(this.ReadAllDTO);
+      this.ItemPriceForm.reset();
+      this.addItemModal.close();
+      this.loader.disable();
+    });
+  }
+
   submitItemForm() {
     let formData = { ...this.ItemForm.value }
     this.ItemForm.markAllAsTouched();
-    if (this.ItemForm.valid) {
+    this.ItemPriceForm.markAllAsTouched();
+    console.log(this.ItemPriceForm.value);
+
+    if (this.ItemForm.valid && this.ItemPriceForm.valid) {
       if (formData.itemId) {
         let data: UpdateItemDTO = this.ItemForm.value as UpdateItemDTO
         console.log(data);
         this.updateItem(data)
-
-
       } else {
         let data: CreateItemDTO = {
           iCode: formData.iCode as string,
@@ -138,29 +187,26 @@ export class ItemMasterComponent implements OnInit {
         this.createItem(data)
       }
     }
-
-    // let data: CreateItemDTO = {
-    //   iCode: 'formData.iCode as string',
-    //   iName: 'formData.iName as string',
-    //   iDesc: 'formData.iDesc as string',
-    //   iType: 'formData.iType as string',
-    //   packingId: 1,
-    //   iSize: 'formData.iSize as string',
-    //   mrpPrinted: 'formData.mrpPrinted as string',
-    //   moq: 2,
-    //   brandId: 2,
-    //   actionUser: this.User.userId.toString()
-    // }
-
-
   }
   openItemForm() {
     this.ItemForm.reset()
     this.addItemModal = this.modalService.open(this.addItemModalContent, { size: 'lg' })
+
+    this.ItemPriceForm.patchValue({
+      itemId: 0,
+      actionUser: this.User.userId.toString(),
+      cp: 0,
+      iP1: 0,
+      iP2: 0,
+      iP3: 0,
+      mrp: 0,
+      priceId: 0
+    })
   }
   openItemEditForm(item: ItemMaster) {
-    console.log(item);
+
     this.ItemForm.reset()
+    this.ItemPriceForm.reset()
     this.ItemForm.patchValue({
       actionUser: this.User.userId.toString(),
       brandId: item.brandId,
@@ -175,6 +221,20 @@ export class ItemMasterComponent implements OnInit {
       mrpPrinted: item.mrpPrinted,
       packingId: item.packingId
     })
+
+    this.itemPriceService.ReadPriceByItemId({ itemId: item.itemId }).subscribe(res => {
+      this.ItemPriceForm.patchValue({
+        itemId: res.itemId,
+        actionUser: this.User.userId.toString(),
+        cp: res.cp,
+        iP1: res.iP1,
+        iP2: res.iP2,
+        iP3: res.iP3,
+        mrp: res.mrp,
+        priceId: res.priceId
+      })
+    })
+
     this.addItemModal = this.modalService.open(this.addItemModalContent, { size: 'lg' })
   }
 
@@ -196,4 +256,11 @@ export class ItemMasterComponent implements OnInit {
     console.log(this.ItemForm.value);
   }
 
+  validateStepperForm(stepper: MatStepper) {
+    let currentForm = stepper.steps.toArray()[stepper.selectedIndex].stepControl
+    currentForm.markAllAsTouched()
+    if (currentForm.valid) {
+      stepper.next()
+    }
+  }
 }

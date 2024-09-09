@@ -63,6 +63,8 @@ export interface ItemMaster {
     totalCount: number;
     whereClause: string | null;
     orderByClause: string | null;
+    imagePath: string;
+    mrp: number
 }
 
 export interface ItemList {
