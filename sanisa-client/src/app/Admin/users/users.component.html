@@ -4,22 +4,13 @@
     <h5>Manage User</h5>
     <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae.</p>
   </div>
-  <div class="btn btn-sm primary-btn" (click)="OpenAddUserModal()">New User</div>
+  <div class="btn btn-sm btn-primary" (click)="OpenAddUserModal()">New User</div>
 </div>
 
-<div >
+<div>
   <div class="tableHeader mb-3 d-flex flex-wrap gap-1 justify-content-between">
     <app-pagination [EnablePageSize]="true" [rowData]="UserList"
       (pageSizeChanged)="handlePageSizeChange($event)"></app-pagination>
-    <!-- <div class="d-flex align-items-center gap-2 ml-2">
-          <label class="font-weight-600">Showing </label>
-          <select class="form-control form-control-sm" placeholder="10">
-            <option>10</option>
-            <option>20</option>
-          </select>
-          <label> Entries</label>
-        </div> -->
-
   </div>
   <div class="tablebody border" style="min-height: 530px;">
     <table class="dataTable">
@@ -254,7 +245,7 @@
   </div>
   <div class="modal-footer text-end">
     <button class="btn btn-sm secondary-btn me-2" (click)="addUserModal.close()">Close</button>
-    <button class="btn btn-sm primary-btn" (click)="submitUserForm()">Submit</button>
+    <button class="btn btn-sm btn-primary" (click)="submitUserForm()">Submit</button>
   </div>
 
 </ng-template>

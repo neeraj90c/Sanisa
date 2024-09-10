@@ -7,6 +7,7 @@ import { catchError, of, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ParentMenu } from '../Common/Menu/menu.interface';
 import { MenuService } from '../Common/Menu/menu.service';
+import { LoaderService } from '../shared/loader/loader.service';
 
 @Component({
   selector: 'app-login',
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private menuService: MenuService,
+    private loader: LoaderService
 
     //private loaderService: LoaderService
   ) { }
@@ -46,7 +48,7 @@ export class LoginComponent implements OnInit {
     if (this.LoginForm.valid) {
       const formData = this.LoginForm.value;
       formData.companyCode = this.COMPANY_CODE
-
+      this.loader.enable()
       this.authService.userlogin(formData as UserLoginDTO).subscribe(res => {
         if (res.data.token.trim() != "") {
           localStorage.setItem('access_token', res.data.token.trim())
@@ -59,6 +61,7 @@ export class LoginComponent implements OnInit {
                  * This is a temp fix untill GetMenuForUser api isnt fix please remove this afterwards
                  */
                 this.authService.saveUserData(res)
+                this.loader.disable()
                 this.router.navigate(['/'])
                 /**
                  * END
@@ -95,6 +98,7 @@ export class LoginComponent implements OnInit {
               },
               error: (err) => {
                 this.authService.SignOutUser();
+                this.loader.disable()
               }
             }
           )

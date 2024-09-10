@@ -1,0 +1,101 @@
+<div class="heading">
+    <div>
+        <h5>Manage Packagings</h5>
+        <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae.</p>
+    </div>
+    <div class="btn btn-sm btn-primary" (click)="openPackagingForm()">Add New Package</div>
+</div>
+
+<div>
+    <app-pagination [EnablePageSize]="true" [rowData]="PackageList"
+        (pageSizeChanged)="handlePageSizeChange($event)"></app-pagination>
+
+    <div class="tablebody border" style="min-height: 530px;">
+        <table class="dataTable">
+            <thead>
+                <tr>
+                    <th style="width:2%">Sr No</th>
+                    <th style="width:21%">Packaging Name</th>
+                    <th style="width:21%">Image</th>
+                    <th style="width:22%">Code</th>
+                    <th style="width:22%">Description</th>
+                    <th style="width:8%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let package of PackageList; let i=index">
+                    <td class="text-center">{{i+1}}</td>
+                    <td>
+                        <div class="d-flex align-items-center gap-2">
+                            <!-- <div class="usericonBox" style="background-color: #572196; color: #fff;">
+                                dsfd</div> -->
+
+
+
+                            {{package.pName}}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="w-100 text-center">
+                            <img src="../../../assets/images/mmBannerN.png" alt="" width="150px">
+                        </div>
+                    </td>
+                    <td>{{package.pCode}}</td>
+                    <td>{{package.pDesc}}</td>
+                    <td>
+                        <div class="dataTableicon d-flex align-items-center justify-content-around">
+                            <a class="bi bi-trash" (click)="deletePackage(package)"></a>
+                            <a class="bi bi-pen" (click)="openEditPackagingForm(package)"></a>
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+
+    </div>
+    <app-pagination [EnableNavigation]="true" [rowData]="PackageList"
+        (pageSizeChanged)="handlePageSizeChange($event)"></app-pagination>
+</div>
+
+
+
+<ng-template #packageForm>
+    <div class="modal-header">
+        <h6 class="modal-title font-weight-600">Add New Item</h6>
+        <button type="button" class="btn-close" (click)="packageFormModal.close()"></button>
+    </div>
+    <div class="modal-body">
+        <form class="container">
+            <div class="row" [formGroup]="PackageForm">
+                <!-- <div class="col-md-12">
+                    <input type="file" id="fileInput" accept="image/*">
+                    <img id="preview" alt="Image Preview">
+                </div> -->
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="label font-sb mb-1">Packing Name <span style="color: red;">*</span></label>
+                        <input type="text" class="form-control form-control-sm" formControlName="pName">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="label font-sb mb-1">Packing Code<span style="color: red;">*</span></label>
+                        <input type="text" class="form-control form-control-sm" formControlName="pCode">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="label font-sb mb-1">Description<span style="color: red;">*</span></label>
+                        <textarea type="text" class="form-control" rows="6" formControlName="pDesc"></textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-secondary me-2" (click)="packageFormModal.close()">Close</button>
+        <button type="button" class="btn btn-primary btn-sm" (click)="submitForm()">Save changes</button>
+    </div>
+</ng-template>

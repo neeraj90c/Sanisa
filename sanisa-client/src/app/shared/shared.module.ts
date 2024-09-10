@@ -6,6 +6,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { PaginationComponent } from './pagination/pagination.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
+import { LoaderComponent } from './loader/loader.component';
 
 
 
@@ -13,6 +14,7 @@ import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     PaginationComponent,
+    LoaderComponent,
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
     MatStepperModule,
     PaginationComponent,
     MatSliderModule,
-    NgbPopover
+    NgbPopover,
+    LoaderComponent
     
   ]
 })

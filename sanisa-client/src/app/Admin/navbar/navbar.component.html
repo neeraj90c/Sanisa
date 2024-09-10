@@ -17,17 +17,45 @@
         </a>
       
       </li>
-      <li [routerLinkActive]="'active'">
+      <!-- <li [routerLinkActive]="'active'">
         <a >
             <i class="bi bi-grid-1x2"></i>
           <span class="link_name">Products</span>
         </a>
       
-      </li>
+      </li> -->
       <li [routerLinkActive]="'active'">
         <a >
             <i class="bi bi-clipboard-data"></i>
           <span class="link_name">Orders</span>
+        </a>
+      
+      </li> 
+      <li [routerLinkActive]="'active'" [routerLink]="['./manage-brands']"> 
+        <a >
+            <i class="bi bi-clipboard-data"></i>
+          <span class="link_name">Manage Brands</span>
+        </a>
+      
+      </li> 
+      <li [routerLinkActive]="'active'" [routerLink]="['./manage-items']"> 
+        <a >
+            <i class="bi bi-clipboard-data"></i>
+          <span class="link_name">Manage Products</span>
+        </a>
+      
+      </li> 
+      <li [routerLinkActive]="'active'" [routerLink]="['./manage-packaging']"> 
+        <a >
+            <i class="bi bi-clipboard-data"></i>
+          <span class="link_name">Manage Packaging</span>
+        </a>
+      
+      </li> 
+      <li [routerLinkActive]="'active'" [routerLink]="['./manage-kit']"> 
+        <a >
+            <i class="bi bi-clipboard-data"></i>
+          <span class="link_name">Manage Kit</span>
         </a>
       
       </li> 
@@ -50,11 +78,11 @@
     </ul>
   </div>
   <section class="home-section">
-    <div class="home-content-topbar justify-content-end">    
+    <div class="home-content-topbar justify-content-end sticky-top">    
       <!-- <form role="search" action="">
         <div class="input-container">
               <input type="search" class="form-control form-control-sm" value="" name="s" placeholder="Search Here..." />
-          <button type="submit" class="search-submit btn btn-sm primary-btn" name="submit"><i class="material-icons">search</i></button>
+          <button type="submit" class="search-submit btn btn-sm btn-primary" name="submit"><i class="material-icons">search</i></button>
         </div>
       </form> -->
       
@@ -92,7 +120,7 @@
             </div>
           </div>
           <div class="profile-footer d-flex justify-content-center">
-            <div class="btn btn-sm primary-btn m-3" (click)="Logout()">Logout  <i class="bi bi-box-arrow-right"></i></div>
+            <div class="btn btn-sm btn-primary m-3" (click)="Logout()">Logout  <i class="bi bi-box-arrow-right"></i></div>
 
             <!-- <div class="logout-option" (click)="Logout()">
               <i class="bi bi-box-arrow-right"></i>
@@ -121,7 +149,7 @@
           <div class="user-details d-none d-sm-none d-lg-block">
             <div class="user-name">Admin Name</div>
             <div class="user-role">Sales Team Lead</div>
-            <div class="btn btn-sm primary-btn my-3" (click)="Logout()">Logout  <i class="bi bi-box-arrow-right"></i></div>
+            <div class="btn btn-sm btn-primary my-3" (click)="Logout()">Logout  <i class="bi bi-box-arrow-right"></i></div>
           </div> 
         </div> 
       </div>
