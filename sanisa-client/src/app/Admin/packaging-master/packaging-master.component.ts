@@ -1,12 +1,11 @@
 import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from 'src/app/Common/Authentication/auth.service';
+import { ConfirmmodalserviceService } from 'src/app/shared/confirm-delete-modal/confirmmodalservice.service';
 import { CreatePackagingDTO, DeletePackagingDTO, PackagingDTO, PackagingReadAllPaginatedDTO, UpdatePackagingDTO } from './packaging-master.interface';
 import { PackagingMasterService } from './packaging-master.service';
-import { FormControl, FormGroup } from '@angular/forms';
-import { ConfirmmodalserviceService } from 'src/app/shared/confirm-delete-modal/confirmmodalservice.service';
-import { UsersService } from '../users/users.service';
-import { AuthService } from 'src/app/Common/Authentication/auth.service';
 
 @Component({
   selector: 'app-packaging-master',

@@ -1489,3 +1489,8 @@ aside {
 .offcanvas-header{align-items:start !important;}
 .viewProductImg{height: 300px; width: 100%;}
 .com-table thead th{background-color: #36536B; color: #fff; font-weight: 600 !important;}
+
+
+tr{
+  border:1.5px solid #EAECF0 !important;
+}
