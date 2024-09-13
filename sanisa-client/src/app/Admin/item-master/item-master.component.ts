@@ -35,7 +35,6 @@ export class ItemMasterComponent implements OnInit {
   public offcanvasService = inject(NgbOffcanvas);
   User = inject(AuthService).User()
   @ViewChild('itemForm', { static: false }) addItemModalContent!: ElementRef;
-  @ViewChild('productDetails', { static: false }) productDetailContent!: ElementRef;
   addItemModal!: NgbModalRef;
 
   viewProductDetailModal: NgbOffcanvasRef | null = null;
@@ -262,5 +261,9 @@ export class ItemMasterComponent implements OnInit {
     if (currentForm.valid) {
       stepper.next()
     }
+  }
+
+  ngOnDestroy(){
+    this.viewProductDetailModal?.close()
   }
 }

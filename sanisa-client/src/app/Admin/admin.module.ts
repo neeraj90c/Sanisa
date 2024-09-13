@@ -9,6 +9,12 @@ import { BrandMasterComponent } from './brand-master/brand-master.component';
 import { ItemMasterComponent } from './item-master/item-master.component';
 import { PackagingMasterComponent } from './packaging-master/packaging-master.component';
 import { KitMasterComponent } from './kit-master/kit-master.component';
+import { ComboMasterComponent } from './combo-master/combo-master.component';
+import { QuoteMasterComponent } from './quote-master/quote-master.component';
+import { QuoteDetailComponent } from './quote-master/quote-detail/quote-detail.component';
+import { KitDetailsComponent } from './kit-master/kit-details/kit-details.component';
+import { ComboDetailComponent } from './combo-master/combo-detail/combo-detail.component';
+import { RoleMasterComponent } from './role-master/role-master.component';
 
 
 @NgModule({
@@ -18,7 +24,13 @@ import { KitMasterComponent } from './kit-master/kit-master.component';
     BrandMasterComponent,
     ItemMasterComponent,
     PackagingMasterComponent,
-    KitMasterComponent
+    KitMasterComponent,
+    ComboMasterComponent,
+    QuoteMasterComponent,
+    QuoteDetailComponent,
+    KitDetailsComponent,
+    ComboDetailComponent,
+    RoleMasterComponent
   ],
   imports: [
     CommonModule,

@@ -16,7 +16,7 @@ export class NavbarComponent {
   router = inject(Router)
   ngOnInit(): void {
     this.router.events.subscribe(event => {
-      console.log(event);
+      // console.log(event);
     });
     // Initially set the sidebar to be open
     this.isSidebarClosed = false;

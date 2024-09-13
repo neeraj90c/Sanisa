@@ -7,6 +7,7 @@ import { PaginationComponent } from './pagination/pagination.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
 import { LoaderComponent } from './loader/loader.component';
+import { PageHeaderComponent } from './page-header/page-header.component';
 
 
 
@@ -15,6 +16,7 @@ import { LoaderComponent } from './loader/loader.component';
   declarations: [
     PaginationComponent,
     LoaderComponent,
+    PageHeaderComponent,
   ],
   imports: [
     CommonModule,
@@ -33,8 +35,8 @@ import { LoaderComponent } from './loader/loader.component';
     PaginationComponent,
     MatSliderModule,
     NgbPopover,
-    LoaderComponent
-    
+    LoaderComponent,
+    PageHeaderComponent
   ]
 })
 export class SharedModule { }

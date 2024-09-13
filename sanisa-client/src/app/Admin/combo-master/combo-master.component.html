@@ -1,9 +1,10 @@
-<app-page-header Heading="Manage Kit">
-    <div class="btn btn-sm btn-primary" (click)="openKitForm()">Add New Kit</div>
+
+<app-page-header Heading="Manage combos">
+    <div class="btn btn-sm btn-primary" (click)="opencomboForm()">Add New Kit</div>
 </app-page-header>
 
 <div>
-    <app-pagination [EnablePageSize]="true" [rowData]="kitList"
+    <app-pagination [EnablePageSize]="true" [rowData]="comboList"
         (pageSizeChanged)="handlePageSizeChange($event)"></app-pagination>
 
     <div class="tablebody border" style="min-height: 530px;">
@@ -11,7 +12,7 @@
             <thead>
                 <tr>
                     <th style="width:2%">Sr No</th>
-                    <th style="width:21%">Kit Name</th>
+                    <th style="width:21%">combo Name</th>
                     <th style="width:21%">Image</th>
                     <th style="width:22%">Code</th>
                     <th style="width:22%">Description</th>
@@ -19,7 +20,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let kit of kitList; let i=index">
+                <tr *ngFor="let combo of comboList; let i=index">
                     <td class="text-center">{{i+1}}</td>
                     <td>
                         <div class="d-flex align-items-center gap-2">
@@ -28,21 +29,21 @@
 
 
 
-                            {{kit.kName}}
+                            {{combo.cName}}
                         </div>
                     </td>
                     <td>
                         <div class="w-100 text-center">
-                            <img src="../../../assets/images/kitReference.png" alt="" width="150px">
+                            <img src="../../../assets/images/comboReference.png" alt="" width="150px">
                         </div>
                     </td>
-                    <td>{{kit.kCode}}</td>
-                    <td>{{kit.kDescription}}</td>
+                    <td>{{combo.cCode}}</td>
+                    <td>{{combo.cDescription}}</td>
                     <td>
                         <div class="dataTableicon d-flex align-items-center justify-content-around">
-                            <a class="bi bi-trash" (click)="deleteKit(kit)"></a>
-                            <a class="bi bi-eye" [routerLink]="['./'+kit.kitId]"></a>
-                            <a class="bi bi-pen" (click)="openEditKitForm(kit)"></a>
+                            <a class="bi bi-trash" (click)="deletecombo(combo)"></a>
+                            <a class="bi bi-eye" [routerLink]="['./'+combo.comboId]"></a>
+                            <a class="bi bi-pen" (click)="openEditcomboForm(combo)"></a>
                         </div>
                     </td>
                 </tr>
@@ -52,38 +53,38 @@
 
 
     </div>
-    <app-pagination [EnableNavigation]="true" [rowData]="kitList"
+    <app-pagination [EnableNavigation]="true" [rowData]="comboList"
         (pageSizeChanged)="handlePageSizeChange($event)"></app-pagination>
 </div>
 
 
 
-<ng-template #kitForm>
+<ng-template #ComboMasterForm>
     <div class="modal-header">
         <h6 class="modal-title font-weight-600">Add New Item</h6>
-        <button type="button" class="btn-close" (click)="kitFormModal.close()"></button>
+        <button type="button" class="btn-close" (click)="comboFormModal.close()"></button>
     </div>
     <div class="modal-body">
         <form class="container">
-            <div class="row" [formGroup]="KitForm">
+            <div class="row" [formGroup]="comboForm">
                 <!-- <div class="col-md-12">
                     <input type="file" id="fileInput" accept="image/*">
                     <img id="preview" alt="Image Preview">
                 </div> -->
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="label font-sb mb-1">Kit Name <span style="color: red;">*</span></label>
-                        <input type="text" class="form-control form-control-sm" formControlName="kName">
+                        <label class="label font-sb mb-1">combo Name <span style="color: red;">*</span></label>
+                        <input type="text" class="form-control form-control-sm" formControlName="cName">
                         <div class="text-danger"
-                        *ngIf="(KitForm.get('kName')?.touched && KitForm.get('kName')?.invalid )">
-                        <ng-container *ngIf="KitForm.get('kName')?.errors">
-                            <ng-container *ngIf="KitForm.get('kName')?.errors?.['required']">Input field is
+                        *ngIf="(comboForm.get('cName')?.touched && comboForm.get('cName')?.invalid )">
+                        <ng-container *ngIf="comboForm.get('cName')?.errors">
+                            <ng-container *ngIf="comboForm.get('cName')?.errors?.['required']">Input field is
                                 required</ng-container>
                             <ng-container
-                                *ngIf="!KitForm.get('kName')?.errors?.['required'] && KitForm.get('kName')?.errors?.['whitespace']">No
+                                *ngIf="!comboForm.get('cName')?.errors?.['required'] && comboForm.get('cName')?.errors?.['whitespace']">No
                                 empty spaces allowed</ng-container>
                             <ng-container
-                                *ngIf="!KitForm.get('kName')?.errors?.['required'] && !KitForm.get('kName')?.errors?.['whitespace'] && KitForm.get('kName')?.errors?.['minlength']">Minimum
+                                *ngIf="!comboForm.get('cName')?.errors?.['required'] && !comboForm.get('cName')?.errors?.['whitespace'] && comboForm.get('cName')?.errors?.['minlength']">Minimum
                                 characters required</ng-container>
                         </ng-container>
                     </div>
@@ -91,21 +92,21 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="label font-sb mb-1">Kit Code<span style="color: red;">*</span></label>
-                        <input type="text" class="form-control form-control-sm" formControlName="kCode">
+                        <label class="label font-sb mb-1">combo Code<span style="color: red;">*</span></label>
+                        <input type="text" class="form-control form-control-sm" formControlName="cCode">
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
                         <label class="label font-sb mb-1">Description<span style="color: red;">*</span></label>
-                        <textarea type="text" class="form-control" rows="6" formControlName="kDescription"></textarea>
+                        <textarea type="text" class="form-control form-control-sm" rows="6" formControlName="cDescription"></textarea>
                     </div>
                 </div>
             </div>
         </form>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-sm btn-secondary me-2" (click)="kitFormModal.close()">Close</button>
+        <button type="button" class="btn btn-sm btn-secondary me-2" (click)="comboFormModal.close()">Close</button>
         <button type="button" class="btn btn-primary btn-sm" (click)="submitForm()">Save changes</button>
     </div>
 </ng-template>

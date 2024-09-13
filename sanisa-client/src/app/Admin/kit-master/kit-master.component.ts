@@ -5,7 +5,7 @@ import { ConfirmmodalserviceService } from 'src/app/shared/confirm-delete-modal/
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { CreateKitDTO, DeleteKitDTO, KitList, KitMasterDTO, ReadAllKitPaginatedDTO, UpdateKitDTO } from './kit-master.interface';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-kit-master',
@@ -36,7 +36,7 @@ export class KitMasterComponent implements OnInit {
   KitForm = new FormGroup({
     kitId: new FormControl(0),
     kCode: new FormControl(''),
-    kName: new FormControl(''),
+    kName: new FormControl('', [Validators.required]),
     kDescription: new FormControl(''),
     isActive: new FormControl(0),
     actionUser: new FormControl('')
@@ -125,27 +125,30 @@ export class KitMasterComponent implements OnInit {
   submitForm() {
     this.KitForm.markAllAsTouched()
     if (this.KitForm.valid) {
-      let formdata = { ...this.KitForm.value }
-      let data: CreateKitDTO = {
-        actionUser: this.User.userId.toString(),
-        kCode: formdata.kCode as string,
-        kName: formdata.kName as string,
-        kDescription: formdata.kDescription as string
+      if (this.KitForm.value.kitId && this.KitForm.value.kitId != 0) {
+        let formdata = { ...this.KitForm.value }
+        let data: UpdateKitDTO = {
+          actionUser: this.User.userId.toString(),
+          isActive: 1,
+          kitId: formdata.kitId as number,
+          kCode: formdata.kCode as string,
+          kName: formdata.kName as string,
+          kDescription: formdata.kDescription as string
+        }
+        this.updateKit(data)
+      } else {
+        let formdata = { ...this.KitForm.value }
+        let data: CreateKitDTO = {
+          actionUser: this.User.userId.toString(),
+          kCode: formdata.kCode as string,
+          kName: formdata.kName as string,
+          kDescription: formdata.kDescription as string
+        }
+        this.createKit(data)
       }
-      this.createKit(data)
-    } else {
-      let formdata = { ...this.KitForm.value }
-      let data: UpdateKitDTO = {
-        actionUser: this.User.userId.toString(),
-        isActive: 1,
-        kitId: formdata.kitId as number,
-        kCode: formdata.kCode as string,
-        kName: formdata.kName as string,
-        kDescription: formdata.kDescription as string
-      }
-      this.updateKit(data)
     }
   }
+
 
   handlePageSizeChange(e: { currentPage: number; pageSize: number; }) {
     this.ReadAllDTO.pageNo = e.currentPage

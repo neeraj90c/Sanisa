@@ -1,8 +1,7 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { inject } from '@angular/core';
 import { Observable, catchError, finalize, throwError } from 'rxjs';
 import { environment } from '../environments/environment';
-import { Router } from '@angular/router';
-import { inject } from '@angular/core';
 import { AuthService } from './Common/Authentication/auth.service';
 
 
@@ -13,6 +12,9 @@ export class ValidationInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const token = localStorage.getItem('access_token');
+
+    console.log('TOKEN IN INTERCEPTORS', token);
+    
     if (token) {
       request = request.clone({
         setHeaders: {
