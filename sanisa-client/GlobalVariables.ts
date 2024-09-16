@@ -95,6 +95,7 @@ export const ReadAllItemsPaginated = ItemMaster_BaseURL + 'ReadAllPaginated'
 export const CreateItem = ItemMaster_BaseURL + 'Create'
 export const UpdateItem = ItemMaster_BaseURL + 'Update'
 export const ReadItemById = ItemMaster_BaseURL + 'ReadById'
+export const ReadItemByKitId = ItemMaster_BaseURL + 'ReadByKitId'
 export const DeleteItem = ItemMaster_BaseURL + 'Delete'
 //#endregion
 

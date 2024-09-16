@@ -47,9 +47,9 @@
 <ng-template #kitITemForm>
     <div class="modal-header">
         <h6 class="modal-title font-weight-600">Add New Item</h6>
-        <button type="button" class="btn-close" ></button>
+        <button type="button" class="btn-close" (click)="itemFormModal.close()"></button>
     </div>
-    <div class="modal-body">
+    <div class="modal-body" style="height: 500px;">
         <form class="container">
             <div class="row">
                 <p>
@@ -58,7 +58,7 @@
                 <input type="text" class="form-control form-control-sm">             
             </div>
             <div class="row">
-                
+
                 <div *ngFor="let item of kitItems" class="d-flex justify-content-between">
                     <div>
                         {{item.iName}}

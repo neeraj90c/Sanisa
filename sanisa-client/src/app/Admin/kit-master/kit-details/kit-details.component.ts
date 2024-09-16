@@ -15,9 +15,9 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./kit-details.component.css']
 })
 export class KitDetailsComponent implements OnInit {
-submitForm() {
-throw new Error('Method not implemented.');
-}
+  submitForm() {
+    throw new Error('Method not implemented.');
+  }
 
 
   private router = inject(Router)
@@ -46,7 +46,7 @@ throw new Error('Method not implemented.');
       if (res.has('id')) {
         let kitId = parseInt(res.get('id') as string)
         this.ReadKitByKitId(kitId)
-        this.GetItemsByKitId()
+        this.GetItemsByKitId(kitId)
       }
     })
     console.log(currentParams);
@@ -72,8 +72,8 @@ throw new Error('Method not implemented.');
     })
   }
 
-  GetItemsByKitId() {
-    this.itemMasterServcie.ReadAllItems().subscribe(res => {
+  GetItemsByKitId(kitId: number) {
+    this.itemMasterServcie.ReadItemByKitId({ kitId }).subscribe(res => {
       this.kitItems = res.items
     })
   }
