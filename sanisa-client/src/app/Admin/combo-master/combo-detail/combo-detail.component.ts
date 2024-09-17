@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-combo-detail',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./combo-detail.component.css']
 })
 export class ComboDetailComponent {
+  @ViewChild('addComboItem', { static: false }) addComboItemModalContent!: ElementRef;
+
+addComboItemModal!: NgbModalRef;
+public modalService = inject(NgbModal);
+
+OpenaddComboItemModal() {
+this.addComboItemModal = this.modalService.open(this.addComboItemModalContent,);
+}
 
 }
