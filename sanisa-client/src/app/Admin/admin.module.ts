@@ -15,6 +15,8 @@ import { QuoteDetailComponent } from './quote-master/quote-detail/quote-detail.c
 import { KitDetailsComponent } from './kit-master/kit-details/kit-details.component';
 import { ComboDetailComponent } from './combo-master/combo-detail/combo-detail.component';
 import { RoleMasterComponent } from './role-master/role-master.component';
+import { CategoryMasterComponent } from './category-master/category-master.component';
+import { CategoryDetailComponent } from './category-master/category-detail/category-detail.component';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { RoleMasterComponent } from './role-master/role-master.component';
     QuoteDetailComponent,
     KitDetailsComponent,
     ComboDetailComponent,
-    RoleMasterComponent
+    RoleMasterComponent,
+    CategoryMasterComponent,
+    CategoryDetailComponent
   ],
   imports: [
     CommonModule,

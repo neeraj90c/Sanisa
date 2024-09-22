@@ -42,7 +42,7 @@ export class PackagingMasterComponent implements OnInit {
     isActive: new FormControl(0),
     actionUser: new FormControl('')
   })
-
+  loading: boolean = true;
 
   ngOnInit(): void {
     let currentParams = this.route.snapshot.queryParams
@@ -81,8 +81,10 @@ export class PackagingMasterComponent implements OnInit {
   }
 
   getPackageListPaginated(ReadAllDTO: PackagingReadAllPaginatedDTO) {
+    this.loading = true
     this.pmService.ReadAllPackagingsPaginated(ReadAllDTO).subscribe(res => {
       this.PackageList = res.items
+      this.loading = false
     })
   }
 

@@ -12,6 +12,8 @@ import { QuoteDetailComponent } from './quote-master/quote-detail/quote-detail.c
 import { KitDetailsComponent } from './kit-master/kit-details/kit-details.component';
 import { ComboDetailComponent } from './combo-master/combo-detail/combo-detail.component';
 import { RoleMasterComponent } from './role-master/role-master.component';
+import { CategoryMasterComponent } from './category-master/category-master.component';
+import { CategoryDetailComponent } from './category-master/category-detail/category-detail.component';
 
 const routes: Routes = [
   {
@@ -29,6 +31,8 @@ const routes: Routes = [
       { path: 'quote', component: QuoteMasterComponent, title: 'Manage Quotes' },
       { path: 'quote/:id', component: QuoteDetailComponent, title: 'Quote Detail' },
       { path: 'roles', component: RoleMasterComponent, title: 'Manage Role' },
+      { path: 'category', component: CategoryMasterComponent, title: 'Manage Categories' },
+      { path: 'category/:id', component: CategoryDetailComponent, title: 'Category Detail' },
     ], title: 'Admin'
   }
 ];

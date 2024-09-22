@@ -25,6 +25,8 @@ const KitDetail_BaseURL: string = Sanisa_BaseURL + 'KITD/'
 const ProductComboMaster_BaseURL: string = Sanisa_BaseURL + 'PRCO/'
 const PackagingMaster_BaseURL: string = Sanisa_BaseURL + 'PCM/'
 const QuoteMaster_BaseURL: string = Sanisa_BaseURL + 'QUMT/'
+const CategoryMaster_BaseURL: string = Sanisa_BaseURL + 'CTM/'
+const CategoryDetail_BaseURL: string = Sanisa_BaseURL + 'CTD/'
 //#endregion
 
 
@@ -156,6 +158,14 @@ export const ReadQuoteById = QuoteMaster_BaseURL + 'ReadById'
 export const DeleteQuote = QuoteMaster_BaseURL + 'Delete'
 export const ReadAllQuotes = QuoteMaster_BaseURL + 'ReadAll'
 export const ReadAllQuotesPaginated = QuoteMaster_BaseURL + 'ReadAllPaginated'
+//#endregion
+
+//#region Quote Master API QuoteMaster_BaseURL
+export const CreateCategory = CategoryMaster_BaseURL + 'Create'
+export const UpdateCategory = CategoryMaster_BaseURL + 'Update'
+export const ReadCategoryById = CategoryMaster_BaseURL + 'ReadById'
+export const DeleteCategory = CategoryMaster_BaseURL + 'Delete'
+export const ReadAllCategory = CategoryMaster_BaseURL + 'ReadAll'
 //#endregion
 
 
