@@ -35,6 +35,7 @@ export class CategoryMasterComponent {
     isActive: new FormControl(0),
     actionUser: new FormControl('')
   })
+  loading: boolean = true;
 
   ngOnInit(): void {
     // let currentParams = this.route.snapshot.queryParams
@@ -81,8 +82,10 @@ export class CategoryMasterComponent {
 
 
   getCategoryList() {
+    this.loading = true
     this.categoryMasterServcie.ReadAllCategory().subscribe(res => {
       this.categoryList = res.items
+    this.loading = false
     })
   }
 

@@ -27,6 +27,10 @@ const PackagingMaster_BaseURL: string = Sanisa_BaseURL + 'PCM/'
 const QuoteMaster_BaseURL: string = Sanisa_BaseURL + 'QUMT/'
 const CategoryMaster_BaseURL: string = Sanisa_BaseURL + 'CTM/'
 const CategoryDetail_BaseURL: string = Sanisa_BaseURL + 'CTD/'
+const EventMaster_BaseURL: string = Sanisa_BaseURL + 'EVTM/'
+const EventDetail_BaseURL: string = Sanisa_BaseURL + 'EVTD/'
+
+
 //#endregion
 
 
@@ -160,7 +164,7 @@ export const ReadAllQuotes = QuoteMaster_BaseURL + 'ReadAll'
 export const ReadAllQuotesPaginated = QuoteMaster_BaseURL + 'ReadAllPaginated'
 //#endregion
 
-//#region Quote Master API QuoteMaster_BaseURL
+//#region Category Master API CategoryMaster_BaseURL
 export const CreateCategory = CategoryMaster_BaseURL + 'Create'
 export const UpdateCategory = CategoryMaster_BaseURL + 'Update'
 export const ReadCategoryById = CategoryMaster_BaseURL + 'ReadById'
@@ -168,4 +172,31 @@ export const DeleteCategory = CategoryMaster_BaseURL + 'Delete'
 export const ReadAllCategory = CategoryMaster_BaseURL + 'ReadAll'
 //#endregion
 
+//#region Category Detail API CategoryDetail_BaseURL
+export const CreateCategoryDetail = CategoryDetail_BaseURL + 'Create'
+export const UpdateCategoryDetail = CategoryDetail_BaseURL + 'Update'
+export const ReadCategoryDetailById = CategoryDetail_BaseURL + 'ReadById'
+export const ReadDetailByCategoryId = CategoryDetail_BaseURL + 'ReadByCategoryId'
+export const DeleteCategoryDetail = CategoryDetail_BaseURL + 'Delete'
+export const ReadAllCategoryDetail = CategoryDetail_BaseURL + 'ReadAll'
+//#endregion
+
+
+//#region Event Master API EventMaster_BaseURL
+export const CreateEvent = EventMaster_BaseURL + 'Create'
+export const UpdateEvent = EventMaster_BaseURL + 'Update'
+export const ReadEventById = EventMaster_BaseURL + 'ReadById'
+export const DeleteEvent = EventMaster_BaseURL + 'Delete'
+export const ReadAllEvent = EventMaster_BaseURL + 'ReadAll'
+//#endregion
+
+
+//#region Event Detail API EventDetail_BaseURL
+export const CreateEventDetail = EventDetail_BaseURL + 'Create'
+export const UpdateEventDetail = EventDetail_BaseURL + 'Update'
+export const ReadEventDetailById = EventDetail_BaseURL + 'ReadById'
+export const DeleteEventDetail = EventDetail_BaseURL + 'Delete'
+export const ReadAllEventDetail = EventDetail_BaseURL + 'ReadAll'
+export const ReadDetailByEventId = EventDetail_BaseURL + 'ReadByEventId'
+//#endregion
 

@@ -17,6 +17,8 @@ import { ComboDetailComponent } from './combo-master/combo-detail/combo-detail.c
 import { RoleMasterComponent } from './role-master/role-master.component';
 import { CategoryMasterComponent } from './category-master/category-master.component';
 import { CategoryDetailComponent } from './category-master/category-detail/category-detail.component';
+import { EventMasterComponent } from './event-master/event-master.component';
+import { EventDetailComponent } from './event-master/event-detail/event-detail.component';
 
 
 @NgModule({
@@ -34,7 +36,9 @@ import { CategoryDetailComponent } from './category-master/category-detail/categ
     ComboDetailComponent,
     RoleMasterComponent,
     CategoryMasterComponent,
-    CategoryDetailComponent
+    CategoryDetailComponent,
+    EventMasterComponent,
+    EventDetailComponent
   ],
   imports: [
     CommonModule,
