@@ -14,6 +14,8 @@ import { ComboDetailComponent } from './combo-master/combo-detail/combo-detail.c
 import { RoleMasterComponent } from './role-master/role-master.component';
 import { CategoryMasterComponent } from './category-master/category-master.component';
 import { CategoryDetailComponent } from './category-master/category-detail/category-detail.component';
+import { EventMasterComponent } from './event-master/event-master.component';
+import { EventDetailComponent } from './event-master/event-detail/event-detail.component';
 
 const routes: Routes = [
   {
@@ -33,6 +35,8 @@ const routes: Routes = [
       { path: 'roles', component: RoleMasterComponent, title: 'Manage Role' },
       { path: 'category', component: CategoryMasterComponent, title: 'Manage Categories' },
       { path: 'category/:id', component: CategoryDetailComponent, title: 'Category Detail' },
+      { path: 'event', component: EventMasterComponent, title: 'Manage Event' },
+      { path: 'event/:id', component: EventDetailComponent, title: 'Event Detail' },
     ], title: 'Admin'
   }
 ];
