@@ -1,0 +1,111 @@
+<app-page-header Heading="Manage quote">
+    <div class="btn btn-sm btn-primary" (click)="openQuoteForm()">Add New quote</div>
+</app-page-header>
+
+
+<div>
+    <app-pagination [EnablePageSize]="true" [rowData]="quoteList"
+        (pageSizeChanged)="handlePageSizeChange($event)"></app-pagination>
+
+    <div class="tablebody border" style="min-height: 530px;">
+        <table class="dataTable">
+            <thead>
+                <tr>
+                    <th style="width:2%">Sr No</th>
+                    <th style="width:21%">quote Name</th>
+                    <th style="width:21%">Image</th>
+                    <th style="width:22%">Code</th>
+                    <th style="width:22%">Description</th>
+                    <th style="width:8%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let quote of quoteList; let i=index">
+                    <td class="text-center">{{i+1}}</td>
+                    <td>
+                        <div class="d-flex align-items-center gap-2">
+                            <!-- <div class="usericonBox" style="background-color: #572196; color: #fff;">
+                                dsfd</div> -->
+
+
+
+                            {{quote.kName}}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="w-100 text-center">
+                            <img src="../../../assets/images/quoteReference.png" alt="" width="150px">
+                        </div>
+                    </td>
+                    <td>{{quote.kCode}}</td>
+                    <td>{{quote.kDescription}}</td>
+                    <td>
+                        <div class="dataTableicon d-flex align-items-center justify-content-around">
+                            <a class="bi bi-trash" (click)="deletequote(quote)"></a>
+                            <a class="bi bi-pen" (click)="openEditquoteForm(quote)"></a>
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+
+    </div>
+    <app-pagination [EnableNavigation]="true" [rowData]="quoteList"
+        (pageSizeChanged)="handlePageSizeChange($event)"></app-pagination>
+</div>
+
+
+
+<ng-template #quoteFormTemplate>
+    <div class="modal-header">
+        <h6 class="modal-title font-weight-600">Add New Item</h6>
+        <button type="button" class="btn-close" (click)="quoteFormModal.close()"></button>
+    </div>
+    <div class="modal-body">
+        <form class="container">
+            <div class="row" [formGroup]="QuoteForm">
+                <!-- <div class="col-md-12">
+                    <input type="file" id="fileInput" accept="image/*">
+                    <img id="preview" alt="Image Preview">
+                </div> -->
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="label font-sb mb-1">quote Name <span style="color: red;">*</span></label>
+                        <input type="text" class="form-control form-control-sm" formControlName="kName">
+                        <div class="text-danger"
+                        *ngIf="(QuoteForm.get('kName')?.touched && QuoteForm.get('kName')?.invalid )">
+                        <ng-container *ngIf="QuoteForm.get('kName')?.errors">
+                            <ng-container *ngIf="QuoteForm.get('kName')?.errors?.['required']">Input field is
+                                required</ng-container>
+                            <ng-container
+                                *ngIf="!QuoteForm.get('kName')?.errors?.['required'] && QuoteForm.get('kName')?.errors?.['whitespace']">No
+                                empty spaces allowed</ng-container>
+                            <ng-container
+                                *ngIf="!QuoteForm.get('kName')?.errors?.['required'] && !QuoteForm.get('kName')?.errors?.['whitespace'] && QuoteForm.get('kName')?.errors?.['minlength']">Minimum
+                                characters required</ng-container>
+                        </ng-container>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="label font-sb mb-1">quote Code<span style="color: red;">*</span></label>
+                        <input type="text" class="form-control form-control-sm" formControlName="kCode">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="label font-sb mb-1">Description<span style="color: red;">*</span></label>
+                        <textarea type="text" class="form-control" rows="6" formControlName="kDescription"></textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-secondary me-2" (click)="quoteFormModal.close()">Close</button>
+        <button type="button" class="btn btn-primary btn-sm" (click)="submitForm()">Save changes</button>
+    </div>
+</ng-template>

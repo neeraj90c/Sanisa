@@ -1494,3 +1494,24 @@ aside {
 tr{
   border:1.5px solid #EAECF0 !important;
 }
+
+/* *****************Combo Detsils******************* */
+
+/* .comboCard .product-image img {
+  height: 127px;
+  width: 152px;
+  margin: 22px 0px;} */
+  .ellipsis-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /* Number of lines before truncation */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .comboDetailCard{height: 90vh; border-right: 1px solid #eaeaea;}
+  .comboDetailCard img{height: 190px; border-radius: 10px;}
+  .comboItemCard img{height: 100px; width: 100px; border-radius: 10px;}
+  .custom-file-upload{cursor: pointer;  border: 1px dashed #eb793e !important;  background: #fff9f5;}
+

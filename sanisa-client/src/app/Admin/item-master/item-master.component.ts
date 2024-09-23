@@ -35,10 +35,10 @@ export class ItemMasterComponent implements OnInit {
   public offcanvasService = inject(NgbOffcanvas);
   User = inject(AuthService).User()
   @ViewChild('itemForm', { static: false }) addItemModalContent!: ElementRef;
-  @ViewChild('productDetails', { static: false }) productDetailContent!: ElementRef;
   addItemModal!: NgbModalRef;
 
   viewProductDetailModal: NgbOffcanvasRef | null = null;
+  loading:boolean = true
 
   ReadAllDTO: ReadAllItemsPaginatedDTO = {
     rowNum: 0,
@@ -96,8 +96,10 @@ export class ItemMasterComponent implements OnInit {
   }
 
   getItemListPaginated(ReadAllDTO: ReadAllItemsPaginatedDTO) {
+    this.loading = true
     this.itemMasterService.ReadAllItemsPaginated(ReadAllDTO).subscribe(res => {
       this.ItemList = res.items
+      this.loading = false
     })
   }
 
@@ -262,5 +264,9 @@ export class ItemMasterComponent implements OnInit {
     if (currentForm.valid) {
       stepper.next()
     }
+  }
+
+  ngOnDestroy(){
+    this.viewProductDetailModal?.close()
   }
 }

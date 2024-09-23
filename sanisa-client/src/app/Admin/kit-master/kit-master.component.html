@@ -1,17 +1,13 @@
-<div class="heading">
-    <div>
-        <h5>Manage Kits</h5>
-        <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae.</p>
-    </div>
+<app-page-header Heading="Manage Kit">
     <div class="btn btn-sm btn-primary" (click)="openKitForm()">Add New Kit</div>
-</div>
+</app-page-header>
 
 <div>
     <app-pagination [EnablePageSize]="true" [rowData]="kitList"
         (pageSizeChanged)="handlePageSizeChange($event)"></app-pagination>
 
     <div class="tablebody border" style="min-height: 530px;">
-        <table class="dataTable">
+        <table class="dataTable" *ngIf="!loading">
             <thead>
                 <tr>
                     <th style="width:2%">Sr No</th>
@@ -45,6 +41,7 @@
                     <td>
                         <div class="dataTableicon d-flex align-items-center justify-content-around">
                             <a class="bi bi-trash" (click)="deleteKit(kit)"></a>
+                            <a class="bi bi-eye" [routerLink]="['./'+kit.kitId]"></a>
                             <a class="bi bi-pen" (click)="openEditKitForm(kit)"></a>
                         </div>
                     </td>
@@ -52,6 +49,13 @@
 
             </tbody>
         </table>
+        <div class="d-flex justify-content-center align-items-center" style="height:500px" *ngIf="loading">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <span class="status">Loading...</span>
+
+        </div>
 
 
     </div>
@@ -77,6 +81,19 @@
                     <div class="form-group">
                         <label class="label font-sb mb-1">Kit Name <span style="color: red;">*</span></label>
                         <input type="text" class="form-control form-control-sm" formControlName="kName">
+                        <div class="text-danger"
+                        *ngIf="(KitForm.get('kName')?.touched && KitForm.get('kName')?.invalid )">
+                        <ng-container *ngIf="KitForm.get('kName')?.errors">
+                            <ng-container *ngIf="KitForm.get('kName')?.errors?.['required']">Input field is
+                                required</ng-container>
+                            <ng-container
+                                *ngIf="!KitForm.get('kName')?.errors?.['required'] && KitForm.get('kName')?.errors?.['whitespace']">No
+                                empty spaces allowed</ng-container>
+                            <ng-container
+                                *ngIf="!KitForm.get('kName')?.errors?.['required'] && !KitForm.get('kName')?.errors?.['whitespace'] && KitForm.get('kName')?.errors?.['minlength']">Minimum
+                                characters required</ng-container>
+                        </ng-container>
+                    </div>
                     </div>
                 </div>
                 <div class="col-md-6">

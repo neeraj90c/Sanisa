@@ -7,6 +7,7 @@ const APIGateWay: string = BaseURL + '/apig/'; //https://dev.sanisa.vnccy.com/ap
 const Menu_BaseURL: string = BaseURL + '/menus/';
 
 const UnifiedAuth_BaseURL: string = APIGateWay + 'UA/'  //https://dev.sanisa.vnccy.com/apig/UA
+const UnifiedRole_BaseURL: string = APIGateWay + 'UR/'  //https://dev.sanisa.vnccy.com/apig/UA
 
 const Sanisa_BaseURL: string = APIGateWay + 'SA/'
 
@@ -15,6 +16,7 @@ const UserMaster_BaseURL: string = UnifiedAuth_BaseURL + 'UM/'
 const CompanyMaster_BaseURL: string = UnifiedAuth_BaseURL + 'CM/'
 const BankMaster_BaseURL: string = UnifiedAuth_BaseURL + 'BM/'
 const UserLogin_BaseURL: string = UnifiedAuth_BaseURL + 'UL/'
+const RoleMaster_BaseURL: string = UnifiedRole_BaseURL + 'R/'
 const BrandMaster_BaseURL: string = Sanisa_BaseURL + 'BRM/'
 const ItemMaster_BaseURL: string = Sanisa_BaseURL + 'ITM/'
 const ItemPrice_BaseURL: string = Sanisa_BaseURL + 'ITPR/'
@@ -22,6 +24,13 @@ const KitMaster_BaseURL: string = Sanisa_BaseURL + 'KITM/'
 const KitDetail_BaseURL: string = Sanisa_BaseURL + 'KITD/'
 const ProductComboMaster_BaseURL: string = Sanisa_BaseURL + 'PRCO/'
 const PackagingMaster_BaseURL: string = Sanisa_BaseURL + 'PCM/'
+const QuoteMaster_BaseURL: string = Sanisa_BaseURL + 'QUMT/'
+const CategoryMaster_BaseURL: string = Sanisa_BaseURL + 'CTM/'
+const CategoryDetail_BaseURL: string = Sanisa_BaseURL + 'CTD/'
+const EventMaster_BaseURL: string = Sanisa_BaseURL + 'EVTM/'
+const EventDetail_BaseURL: string = Sanisa_BaseURL + 'EVTD/'
+
+
 //#endregion
 
 
@@ -49,6 +58,16 @@ export const UpdateUserStatus = UserMaster_BaseURL + 'UpdateStatus'
 export const ReadUserById = UserMaster_BaseURL + 'ReadById'
 export const DeleteUserById = UserMaster_BaseURL + 'Delete'
 //#endregion
+
+//#region RoleMaster API
+export const CreateRole = RoleMaster_BaseURL + 'Create'
+export const UpdateRole = RoleMaster_BaseURL + 'Update'
+export const DeleteRole = RoleMaster_BaseURL + 'Delete'
+export const GetDictionaryRole = RoleMaster_BaseURL + 'GetDictionary'
+export const ReadAllPaginatedRole = RoleMaster_BaseURL + 'ReadAllPaginated'
+//#endregion
+
+
 
 
 //#region CompanyMaster API
@@ -82,6 +101,7 @@ export const ReadAllItemsPaginated = ItemMaster_BaseURL + 'ReadAllPaginated'
 export const CreateItem = ItemMaster_BaseURL + 'Create'
 export const UpdateItem = ItemMaster_BaseURL + 'Update'
 export const ReadItemById = ItemMaster_BaseURL + 'ReadById'
+export const ReadItemByKitId = ItemMaster_BaseURL + 'ReadByKitId'
 export const DeleteItem = ItemMaster_BaseURL + 'Delete'
 //#endregion
 
@@ -134,4 +154,49 @@ export const ReadAllPackagings = PackagingMaster_BaseURL + 'ReadAll'
 export const ReadAllPackagingsPaginated = PackagingMaster_BaseURL + 'ReadAllPaginated'
 //#endregion
 
+
+//#region Quote Master API QuoteMaster_BaseURL
+export const CreateQuote = QuoteMaster_BaseURL + 'Create'
+export const UpdateQuote = QuoteMaster_BaseURL + 'Update'
+export const ReadQuoteById = QuoteMaster_BaseURL + 'ReadById'
+export const DeleteQuote = QuoteMaster_BaseURL + 'Delete'
+export const ReadAllQuotes = QuoteMaster_BaseURL + 'ReadAll'
+export const ReadAllQuotesPaginated = QuoteMaster_BaseURL + 'ReadAllPaginated'
+//#endregion
+
+//#region Category Master API CategoryMaster_BaseURL
+export const CreateCategory = CategoryMaster_BaseURL + 'Create'
+export const UpdateCategory = CategoryMaster_BaseURL + 'Update'
+export const ReadCategoryById = CategoryMaster_BaseURL + 'ReadById'
+export const DeleteCategory = CategoryMaster_BaseURL + 'Delete'
+export const ReadAllCategory = CategoryMaster_BaseURL + 'ReadAll'
+//#endregion
+
+//#region Category Detail API CategoryDetail_BaseURL
+export const CreateCategoryDetail = CategoryDetail_BaseURL + 'Create'
+export const UpdateCategoryDetail = CategoryDetail_BaseURL + 'Update'
+export const ReadCategoryDetailById = CategoryDetail_BaseURL + 'ReadById'
+export const ReadDetailByCategoryId = CategoryDetail_BaseURL + 'ReadByCategoryId'
+export const DeleteCategoryDetail = CategoryDetail_BaseURL + 'Delete'
+export const ReadAllCategoryDetail = CategoryDetail_BaseURL + 'ReadAll'
+//#endregion
+
+
+//#region Event Master API EventMaster_BaseURL
+export const CreateEvent = EventMaster_BaseURL + 'Create'
+export const UpdateEvent = EventMaster_BaseURL + 'Update'
+export const ReadEventById = EventMaster_BaseURL + 'ReadById'
+export const DeleteEvent = EventMaster_BaseURL + 'Delete'
+export const ReadAllEvent = EventMaster_BaseURL + 'ReadAll'
+//#endregion
+
+
+//#region Event Detail API EventDetail_BaseURL
+export const CreateEventDetail = EventDetail_BaseURL + 'Create'
+export const UpdateEventDetail = EventDetail_BaseURL + 'Update'
+export const ReadEventDetailById = EventDetail_BaseURL + 'ReadById'
+export const DeleteEventDetail = EventDetail_BaseURL + 'Delete'
+export const ReadAllEventDetail = EventDetail_BaseURL + 'ReadAll'
+export const ReadDetailByEventId = EventDetail_BaseURL + 'ReadByEventId'
+//#endregion
 

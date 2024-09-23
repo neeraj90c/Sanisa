@@ -1,65 +1,90 @@
 <div class="sidebar" [ngClass]="{'close': isSidebarClosed}" #sidebar>
-    <div class="logo-details text-center" [routerLink]="['/']">
-      <!-- <i class='bi bi-list' ></i> -->
-      <img src="../../../assets/images/sanisaLogo.png" alt="" style="width: 108px; margin: 0px auto;">
-    </div>
-    <ul class="nav-links">
-      <li [routerLink]="['/admin']" >
-        <a >
-            <i class="bi bi-house-door"></i>
-          <span class="link_name">Home</span>
-        </a>        
-      </li>
-      <li [routerLink]="['./users']" [routerLinkActive]="'active'">
-        <a >
-            <i class="bi bi-people"></i>
-          <span class="link_name">Users</span>
-        </a>
-      
-      </li>
-      <!-- <li [routerLinkActive]="'active'">
-        <a >
-            <i class="bi bi-grid-1x2"></i>
-          <span class="link_name">Products</span>
-        </a>
-      
-      </li> -->
-      <li [routerLinkActive]="'active'">
-        <a >
-            <i class="bi bi-clipboard-data"></i>
-          <span class="link_name">Orders</span>
-        </a>
-      
-      </li> 
-      <li [routerLinkActive]="'active'" [routerLink]="['./manage-brands']"> 
-        <a >
-            <i class="bi bi-clipboard-data"></i>
-          <span class="link_name">Manage Brands</span>
-        </a>
-      
-      </li> 
-      <li [routerLinkActive]="'active'" [routerLink]="['./manage-items']"> 
-        <a >
-            <i class="bi bi-clipboard-data"></i>
-          <span class="link_name">Manage Products</span>
-        </a>
-      
-      </li> 
-      <li [routerLinkActive]="'active'" [routerLink]="['./manage-packaging']"> 
-        <a >
-            <i class="bi bi-clipboard-data"></i>
-          <span class="link_name">Manage Packaging</span>
-        </a>
-      
-      </li> 
-      <li [routerLinkActive]="'active'" [routerLink]="['./manage-kit']"> 
-        <a >
-            <i class="bi bi-clipboard-data"></i>
-          <span class="link_name">Manage Kit</span>
-        </a>
-      
-      </li> 
-      <!-- <li>
+  <div class="logo-details text-center" [routerLink]="['/']">
+    <!-- <i class='bi bi-list' ></i> -->
+    <img src="../../../assets/images/sanisaLogo.png" alt="" style="width: 108px; margin: 0px auto;">
+  </div>
+  <ul class="nav-links">
+    <li [routerLink]="['/admin']">
+      <a>
+        <i class="bi bi-house-door"></i>
+        <span class="link_name">Home</span>
+      </a>
+    </li>
+    <li [routerLink]="['./users']" [routerLinkActive]="'active'">
+      <a>
+        <i class="bi bi-people"></i>
+        <span class="link_name">Users</span>
+      </a>
+
+    </li>
+    <li [routerLinkActive]="'active'">
+      <a>
+        <i class="bi bi-clipboard-data"></i>
+        <span class="link_name">Orders</span>
+      </a>
+
+    </li>
+    <li [routerLinkActive]="'active'" [routerLink]="['./brands']">
+      <a>
+        <i class="bi bi-clipboard-data"></i>
+        <span class="link_name">Manage Brands</span>
+      </a>
+
+    </li>
+    <li [routerLinkActive]="'active'" [routerLink]="['./items']">
+      <a>
+        <i class="bi bi-clipboard-data"></i>
+        <span class="link_name">Manage Products</span>
+      </a>
+
+    </li>
+    <li [routerLinkActive]="'active'" [routerLink]="['./packaging']">
+      <a>
+        <i class="bi bi-clipboard-data"></i>
+        <span class="link_name">Manage Packaging</span>
+      </a>
+
+    </li>
+    <li [routerLinkActive]="'active'" [routerLink]="['./kit']">
+      <a>
+        <i class="bi bi-clipboard-data"></i>
+        <span class="link_name">Manage Kit</span>
+      </a>
+
+    </li>
+    <li [routerLinkActive]="'active'" [routerLink]="['./combo']">
+      <a>
+        <i class="bi bi-clipboard-data"></i>
+        <span class="link_name">Manage Combo</span>
+      </a>
+
+    </li>
+    <li [routerLinkActive]="'active'" [routerLink]="['./quote']">
+      <a>
+        <i class="bi bi-clipboard-data"></i>
+        <span class="link_name">Manage Quotes</span>
+      </a>
+
+    </li>
+    <li [routerLinkActive]="'active'" [routerLink]="['./roles']">
+      <a>
+        <i class="bi bi-clipboard-data"></i>
+        <span class="link_name">Manage Roles</span>
+      </a>
+    </li>
+    <li [routerLinkActive]="'active'" [routerLink]="['./category']">
+      <a>
+        <i class="bi bi-clipboard-data"></i>
+        <span class="link_name">Manage Categories</span>
+      </a>
+    </li>
+    <li [routerLinkActive]="'active'" [routerLink]="['./event']">
+      <a>
+        <i class="bi bi-clipboard-data"></i>
+        <span class="link_name">Manage Events</span>
+      </a>
+    </li>
+    <!-- <li>
         <div class="icon-link">
           <a >
             <i class='bi bi-cart'></i>
@@ -73,74 +98,76 @@
           <li><a >nav2</a></li>
           <li><a >nav2</a></li>
         </ul>
-      </li> -->
-     
-    </ul>
-  </div>
-  <section class="home-section">
-    <div class="home-content-topbar justify-content-end sticky-top">    
-      <!-- <form role="search" action="">
+      </li>  -->
+
+  </ul>
+</div>
+<section class="home-section">
+  <div class="home-content-topbar justify-content-end sticky-top">
+    <!-- <form role="search" action="">
         <div class="input-container">
               <input type="search" class="form-control form-control-sm" value="" name="s" placeholder="Search Here..." />
           <button type="submit" class="search-submit btn btn-sm btn-primary" name="submit"><i class="material-icons">search</i></button>
         </div>
       </form> -->
-      
-      <div class="position-relative notification me-4">
-        <i class="bi bi-bell"></i>
-        <div class="cartBadge">
-          <span>2</span>
+
+    <div class="position-relative notification me-4">
+      <i class="bi bi-bell"></i>
+      <div class="cartBadge">
+        <span>2</span>
+      </div>
+    </div>
+    <div class="dropdown">
+      <div id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+        <div class="d-flex gap-2 align-items-center">
+          <!-- <i class="bi bi-person iconCircle"></i> -->
+          <img class="userImage"
+            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="">
+          <div class="user-details ">
+            <div class="user-name">Admin Name</div>
+            <div class="user-role">Sales Team Lead</div>
+          </div>
         </div>
       </div>
-      <div class="dropdown">
-        <div  id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-          <div class="d-flex gap-2 align-items-center">
-            <!-- <i class="bi bi-person iconCircle"></i> -->
-             <img class="userImage" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-            <div class="user-details ">
-              <div class="user-name">Admin Name</div>
-              <div class="user-role">Sales Team Lead</div>
-            </div> 
-          </div>           
-        </div>
-        <div class="dropdown-menu userProfile animated--grow-in shadow-lg p-2" aria-labelledby="dropdownMenuLink">
+      <div class="dropdown-menu userProfile animated--grow-in shadow-lg p-2" aria-labelledby="dropdownMenuLink">
 
-          <div class="profile-body p-0">
-            <div class="profile-option">
-              <i class="bi bi-person-circle"></i>
-              <span>Profile</span>
-            </div>
-            <div class="profile-option">
-              <i class="bi bi-gear"></i>
-              <span>Setting</span>
-            </div>
-            <div class="profile-option">
-              <i class="bi bi-info-circle"></i>
-              <span>Help Centre</span>
-            </div>
+        <div class="profile-body p-0">
+          <div class="profile-option">
+            <i class="bi bi-person-circle"></i>
+            <span>Profile</span>
           </div>
-          <div class="profile-footer d-flex justify-content-center">
-            <div class="btn btn-sm btn-primary m-3" (click)="Logout()">Logout  <i class="bi bi-box-arrow-right"></i></div>
+          <div class="profile-option">
+            <i class="bi bi-gear"></i>
+            <span>Setting</span>
+          </div>
+          <div class="profile-option">
+            <i class="bi bi-info-circle"></i>
+            <span>Help Centre</span>
+          </div>
+        </div>
+        <div class="profile-footer d-flex justify-content-center">
+          <div class="btn btn-sm btn-primary m-3" (click)="Logout()">Logout <i class="bi bi-box-arrow-right"></i></div>
 
-            <!-- <div class="logout-option" (click)="Logout()">
+          <!-- <div class="logout-option" (click)="Logout()">
               <i class="bi bi-box-arrow-right"></i>
               <span>Logout</span>
             </div> -->
-          </div>
-        </div>        
-     
+        </div>
       </div>
-     
-    </div>
-    <div class="content-wrapper">
-        <router-outlet></router-outlet>
-    
-    </div>
-    
-  </section>
-  
 
-  <!-- <div class="dropdown-menu userProfile shadow p-2" aria-labelledby="dropdownMenuLink">
+    </div>
+
+  </div>
+  <div class="content-wrapper">
+    <router-outlet></router-outlet>
+
+  </div>
+
+</section>
+
+
+<!-- <div class="dropdown-menu userProfile shadow p-2" aria-labelledby="dropdownMenuLink">
     <div class="profileCard">
       <div class="profileCardBody">
         <div class="d-flex gap-2 flex-column justify-content-center align-items-center">

@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../Common/Authentication/auth.service';
-import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserLoginDTO } from './login.interface';
-import { catchError, of, switchMap } from 'rxjs';
+import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { ParentMenu } from '../Common/Menu/menu.interface';
-import { MenuService } from '../Common/Menu/menu.service';
+import { AuthService } from '../Common/Authentication/auth.service';
 import { LoaderService } from '../shared/loader/loader.service';
+import { UserLoginDTO } from './login.interface';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +12,7 @@ import { LoaderService } from '../shared/loader/loader.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  
+
   COMPANY_CODE = environment.COMPANY_CODE
   PROJECT_ID = environment.PROJECT_ID
 
@@ -26,16 +23,13 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private menuService: MenuService,
     private loader: LoaderService
-
-    //private loaderService: LoaderService
   ) { }
 
   ngOnInit(): void {
-    // if (this.authService.isAuthenticated()) {
-    //   this.router.navigate(['/']);
-    // }
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['/']);
+    }
   }
 
   LoginForm = new FormGroup({
@@ -55,46 +49,9 @@ export class LoginComponent implements OnInit {
           this.authService.validateToken().subscribe(
             {
               next: (res) => {
-            
-
-                /**
-                 * This is a temp fix untill GetMenuForUser api isnt fix please remove this afterwards
-                 */
                 this.authService.saveUserData(res)
                 this.loader.disable()
                 this.router.navigate(['/'])
-                /**
-                 * END
-                 */
-                
-                // let MenuDTO:ParentMenu = {
-                //   userId: res.userId,
-                //   roleId: 0,
-                //   menuId: 0,
-                //   parentMenuId: 0,
-                //   subRoleId: 0,
-                //   subRoleName: '',
-                //   subRoleCode: '',
-                //   subRoleDesc: '',
-                //   displayOrder: 0,
-                //   defaultChildMenuId: 0,
-                //   menuIconUrl: '',
-                //   templatePath: '',
-                //   isParent: 0,
-                //   childrenCount: 0,
-                //   childIsParent: 0,
-                //   projectId: this.PROJECT_ID
-                // } 
-                // this.menuService.getMenuForUser(MenuDTO).subscribe(
-                //   (userMenu) => {
-                //     let menuList = userMenu.items.map(res => res.subRoleCode)
-                //     localStorage.setItem('menuList',menuList.toString())
-                //     this.authService.saveUserData(res)
-                //     this.router.navigate(['/'])
-                //   }
-                // )
-
-
               },
               error: (err) => {
                 this.authService.SignOutUser();

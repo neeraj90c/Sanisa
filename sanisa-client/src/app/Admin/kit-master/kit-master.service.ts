@@ -13,6 +13,8 @@ export class KitMasterService {
   private http = inject(HttpClient)
 
 
+ /****************** KIT MASTER APIS *******************/ 
+
   CreateKit(data: CreateKitDTO): Observable<KitMasterDTO> {
     return this.http.post<KitMasterDTO>(CreateKit, data)
   }
@@ -31,5 +33,10 @@ export class KitMasterService {
   ReadAllKitPaginated(data: ReadAllKitPaginatedDTO): Observable<KitList> {
     return this.http.post<KitList>(ReadAllKitPaginated, data)
   }
+
+
+ /****************** KIT Details APIS *******************/ 
+
+ 
 
 }

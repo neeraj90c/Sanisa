@@ -58,7 +58,10 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
- 
+    // if (!this.authService.isAuthenticated() && !this.authService.tokenValidated) {
+     console.log(this.authService.tokenValidated);
+     
+  //  }
 
   }
 

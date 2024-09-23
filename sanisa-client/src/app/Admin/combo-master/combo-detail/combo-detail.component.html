@@ -1,0 +1,221 @@
+<div class="row">
+    <div class="col-lg-3">
+      <div class="comboDetailCard p-3">
+        <div class="cardHeader mb-3">
+          <img
+            src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-030.jpg"
+            class="w-100"
+          />
+        </div>
+  
+        <div class="cardBody">
+          <h6 class="mb-2 font-weight-600">Combo Name</h6>
+          <p class="text-muted mb-4">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. consequatur
+            accusamus iste quibusdam. Modi, minima culpa! Culpa, esse!
+          </p>
+           <ul class="p-0">
+                  <li class="d-flex justify-content-between align-item-center border-bottom my-3 pb-3">
+                      <h6 class="mb-0 font-weight-600">Packaging</h6> <p class="mb-0 text-muted">Golden Cap Bottle</p>
+                  </li>
+                  <li class="d-flex justify-content-between align-item-center border-bottom my-3 pb-3">
+                      <h6 class="mb-0 font-weight-600">Total price</h6> <p class="mb-0 text-muted">₹ 1452.00</p>
+                  </li>
+                 
+                  <li class="d-flex justify-content-between align-item-center border-bottom my-3 pb-3">
+                      <h6 class="mb-0 font-weight-600">Total Products </h6> <p class="mb-0 text-muted">5</p>
+                  </li>
+  
+                 
+              </ul> 
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-9">
+      <div class="d-flex justify-content-between align-item-center my-2">
+        <h6 class="font-weight-600 mb-0">Item List</h6>
+        <div class="btn primary-btn btn-sm " (click)="OpenaddComboItemModal()">New Item</div>
+      </div>
+      <div class="comboItemCard border p-3 mb-3">
+        <div class="d-flex ">
+          <div >
+            <img
+              src="../../../../assets/images/products/Catelogue_240805_234540.pdf-image-049.jpg"
+              class=""
+              alt="..."
+            />
+          </div>
+          <div class="px-3 w-100">
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <h6 class="mb-2">Combo Item Name</h6>
+                <div class="dropdown actionDropdown ">
+                  <span  data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-three-dots"></i>
+                  </span>
+                  <ul class="dropdown-menu shadow p-0">
+                    <li><span class="dropdown-item" > <i class="bi bi-pen"></i>  Edit</span></li>
+                    <li><span class="dropdown-item" ><i class="bi bi-trash3"></i> Delete</span></li>
+                  </ul>
+                </div>
+              </div>
+              <p class="text-muted">
+                This is a wider card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+              
+                <div class="row">
+                  <div class="col-lg-3">
+                      <small class="text-muted">Price</small>
+                      <p class="mb-0">235</p>
+                  </div>
+                  <div class="col-lg-3">
+                      <small class="text-muted">Packaing</small>
+                      <p class="mb-0">Bottle</p>
+                  </div>
+                  <div class="col-lg-3">
+                      <small class="text-muted">Size</small>
+                      <p class="mb-0">32 ml</p>
+                  </div>
+                  <div class="col-lg-3">
+                      <small class="text-muted">Quantity</small>
+                      <p class="mb-0">32</p>
+                  </div>
+                </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="comboItemCard border p-3 mb-3">
+        <div class="d-flex ">
+          <div >
+            <img
+              src="../../../../assets/images/products/Catelogue_240805_234540.pdf-image-050.jpg"
+              class=""
+              alt="..."
+            />
+          </div>
+          <div class="px-3 w-100">
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <h6 class="mb-2">Combo Item Name</h6>
+                <div class="dropdown actionDropdown ">
+                  <span  data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-three-dots"></i>
+                  </span>
+                  <ul class="dropdown-menu shadow p-0">
+                    <li><span class="dropdown-item" > <i class="bi bi-pen"></i>  Edit</span></li>
+                    <li><span class="dropdown-item" ><i class="bi bi-trash3"></i> Delete</span></li>
+                  </ul>
+                </div>
+              </div>
+              <p class="text-muted">
+                This is a wider card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+              
+                <div class="row">
+                  <div class="col-lg-3">
+                      <small class="text-muted">Price</small>
+                      <p class="mb-0">235</p>
+                  </div>
+                  <div class="col-lg-3">
+                      <small class="text-muted">Packaing</small>
+                      <p class="mb-0">Bottle</p>
+                  </div>
+                  <div class="col-lg-3">
+                      <small class="text-muted">Size</small>
+                      <p class="mb-0">32 ml</p>
+                  </div>
+                  <div class="col-lg-3">
+                      <small class="text-muted">Quantity</small>
+                      <p class="mb-0">32</p>
+                  </div>
+                </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <ng-template #addComboItem>
+    <div class="modal-header">
+      <h6 class="modal-title font-weight-600">Add Combo Item</h6>
+      <button type="button" class="btn-close" (click)="addComboItemModal.close()"></button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="row">
+          <!-- Item Image Upload Section -->
+          <div class="col-md-12">
+            <div class="form-group mb-3">
+              <div class="custom-file-upload text-center p-3">
+                <label class="upload-label" for="cItemImage">
+                  <i class="bi bi-cloud-upload" style="font-size: 24px; color: var(--primary-col);"></i>                
+                  <span class="d-block mt-2" >Upload Item Image</span> 
+                </label>
+                <input type="file" id="cItemImage" class="form-control form-control-sm" style="display: none;" >
+              </div>
+            </div>
+          </div>
+  
+          <!-- Combo Item Name -->
+          <div class="col-md-12">
+            <div class="form-group mb-3">
+              <label for="cItemName">Combo Item Name</label> <span class="text-danger h6">*</span>
+              <input class="form-control form-control-sm" id="cItemName" type="text">
+            </div>
+          </div>
+  
+          <!-- Combo ID -->
+          <div class="col-md-12">
+            <div class="form-group mb-3">
+              <label for="cItemId">Combo ID</label> <span class="text-danger h6">*</span>
+              <input class="form-control form-control-sm" id="cItemId" type="text">
+            </div>
+          </div>
+  
+          <!-- Combo Price -->
+          <div class="col-md-12 mb-3">
+            <div class="form-group">
+              <label for="cCode">Combo Price</label>
+              <input class="form-control form-control-sm" id="cCode" type="text">
+            </div>
+          </div>
+  
+          <!-- Packaging Dropdown -->
+          <div class="col-md-12">
+            <div class="form-group mb-3">
+              <label for="cItempackaging">Packaging</label>
+              <select id="cItempackaging" class="form-select form-select-sm">
+                <option [ngValue]="0">Select Packaging</option>
+                <option [ngValue]="1">Box</option>
+                <option [ngValue]="2">Bag</option>
+                <option [ngValue]="3">Bottle</option>
+              </select>
+            </div>
+          </div>
+  
+          <!-- Item Description -->
+          <div class="col-md-12">
+            <div class="form-group mb-3">
+              <label for="cItemDesc">Item Description</label>
+              <textarea id="cItemDesc" rows="3" class="form-control form-control-sm"></textarea>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  
+    <div class="modal-footer text-end">
+      <button class="btn btn-sm secondary-btn me-2" type="button">Close</button>
+      <button class="btn btn-sm primary-btn" type="submit">Submit</button>
+    </div>
+  </ng-template>

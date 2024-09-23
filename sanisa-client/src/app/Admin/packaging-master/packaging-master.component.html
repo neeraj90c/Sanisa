@@ -22,7 +22,7 @@
                     <th style="width:8%"></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody *ngIf="!loading">
                 <tr *ngFor="let package of PackageList; let i=index">
                     <td class="text-center">{{i+1}}</td>
                     <td>
@@ -49,9 +49,15 @@
                         </div>
                     </td>
                 </tr>
-
             </tbody>
         </table>
+        <div class="d-flex justify-content-center align-items-center" style="height:500px" *ngIf="loading">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <span class="status">Loading...</span>
+
+        </div>
 
 
     </div>
