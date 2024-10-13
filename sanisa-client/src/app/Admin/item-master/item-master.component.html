@@ -46,8 +46,8 @@
                     <button class="btn btn-sm btn-outline-secondary text-primary w-100"
                         (click)="openItemEditForm(item)"> <i class="bi bi-pen"></i> Edit
                     </button>
-                    <button class="btn btn-sm btn-outline-secondary text-danger w-100"
-                        (click)="deleteItem(item)"> <i class="bi bi-trash"></i>
+                    <button class="btn btn-sm btn-outline-secondary text-danger w-100" (click)="deleteItem(item)"> <i
+                            class="bi bi-trash"></i>
                         Delete
                     </button>
                 </div>
@@ -62,13 +62,18 @@
     </div>
 </div>
 
+<!-- NOT TO BE VISIBLE ON REGULAR PAGE -->
+<input type="file" id="cItemImage" class="form-control form-control-sm" style="display: none;" (change)="onFileSelected($event)" #fileInput>
+<!-- NOT TO BE VISIBLE ON REGULAR PAGE -->
+
+
 
 <ng-template #itemForm>
     <div class="modal-header">
         <h6 class="modal-title font-weight-600">Add New Item</h6>
         <button type="button" class="btn-close" (click)="addItemModal.close()"></button>
     </div>
-    <div class="modal-body"  style="height: 586px;">
+    <div class="modal-body" style="min-height: 586px;">
 
         <mat-stepper labelPosition="bottom" #stepper>
             <mat-step [stepControl]="ItemForm">
@@ -77,6 +82,22 @@
                         <h6 class="mb-0 d-none d-sm-none  font-weight-600 d-lg-inline-block">Item Details</h6>
                     </ng-template>
                     <div class="row">
+                        <!-- Item Image Upload Section -->
+                        <div class="col-md-12">
+                            <div class="form-group mb-3">
+                                <div class="custom-file-upload text-center p-3" *ngIf="!imageUrl" (click)="triggerFileInput()" style="cursor: pointer;"> 
+                                    <label class="upload-label">
+                                        <i class="bi bi-cloud-upload"
+                                            style="font-size: 24px; color: var(--primary-col);"></i>
+                                        <span class="d-block mt-2">Upload Item Image</span>
+                                    </label>
+                                    
+                                </div>
+                                <img *ngIf="imageUrl" [src]="imageUrl" [width]="200" alt="Uploaded Image"
+                                class="img-preview mt-2" (click)="triggerFileInput()" style="cursor: pointer;">
+                            </div>
+                        </div>
+
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="iName">Item Name</label> <span class="text-danger h6">*</span>
@@ -199,30 +220,32 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                              <label for="mrp">MRP Printed</label><span class="text-danger h6">*</span>
-                          
-                              <div>
-                                <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" id="mrpYes" formControlName="mrpPrinted" value="1">
-                                  <label class="form-check-label" for="mrpYes">Yes</label>
+                                <label for="mrp">MRP Printed</label><span class="text-danger h6">*</span>
+
+                                <div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="mrpYes"
+                                            formControlName="mrpPrinted" value="1">
+                                        <label class="form-check-label" for="mrpYes">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" id="mrpNo"
+                                            formControlName="mrpPrinted" value="0">
+                                        <label class="form-check-label" for="mrpNo">No</label>
+                                    </div>
                                 </div>
-                                <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" id="mrpNo" formControlName="mrpPrinted" value="0">
-                                  <label class="form-check-label" for="mrpNo">No</label>
+
+                                <div class="text-danger"
+                                    *ngIf="ItemForm.get('mrpPrinted')?.touched && ItemForm.get('mrpPrinted')?.invalid">
+                                    <ng-container *ngIf="ItemForm.get('mrpPrinted')?.errors">
+                                        <ng-container *ngIf="ItemForm.get('mrpPrinted')?.errors?.['required']">
+                                            Please select an option
+                                        </ng-container>
+                                    </ng-container>
                                 </div>
-                              </div>
-                          
-                              <div class="text-danger"
-                                   *ngIf="ItemForm.get('mrpPrinted')?.touched && ItemForm.get('mrpPrinted')?.invalid">
-                                <ng-container *ngIf="ItemForm.get('mrpPrinted')?.errors">
-                                  <ng-container *ngIf="ItemForm.get('mrpPrinted')?.errors?.['required']">
-                                    Please select an option
-                                  </ng-container>
-                                </ng-container>
-                              </div>
                             </div>
-                          </div>
-                          
+                        </div>
+
                         <!-- <div class="col-md-6">
                             <div class="form-group">
                                 <label for="mrp">MRP Printed</label><span class="text-danger h6">*</span>
@@ -384,14 +407,7 @@
 
                 </form>
             </mat-step>
-            <mat-step>
-                <ng-template matStepLabel><i class="bi bi-building me-2" style="font-size: 18px;"></i>
-                    <h6 class="mb-0 d-none d-sm-none  font-weight-600 d-lg-inline-block">Item Images</h6>
-                </ng-template>
-                <div>
 
-                </div>
-            </mat-step>
         </mat-stepper>
 
 
