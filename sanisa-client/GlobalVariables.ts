@@ -29,6 +29,7 @@ const CategoryMaster_BaseURL: string = Sanisa_BaseURL + 'CTM/'
 const CategoryDetail_BaseURL: string = Sanisa_BaseURL + 'CTD/'
 const EventMaster_BaseURL: string = Sanisa_BaseURL + 'EVTM/'
 const EventDetail_BaseURL: string = Sanisa_BaseURL + 'EVTD/'
+const ImageMaster_BaseURL: string = Sanisa_BaseURL + 'IMGM/'
 
 
 //#endregion
@@ -200,3 +201,13 @@ export const ReadAllEventDetail = EventDetail_BaseURL + 'ReadAll'
 export const ReadDetailByEventId = EventDetail_BaseURL + 'ReadByEventId'
 //#endregion
 
+//#region Image Master API ImageMaster_BaseURL
+export const CreateImage = ImageMaster_BaseURL + 'Create'
+export const UpdateImage = ImageMaster_BaseURL + 'Update'
+export const ReadImageById = ImageMaster_BaseURL + 'ReadById'
+export const ReadImageByMasterId = ImageMaster_BaseURL + 'ReadByMasterId'
+export const DeleteImage = ImageMaster_BaseURL + 'Delete'
+export const ReadAllImage = ImageMaster_BaseURL + 'ReadAll'
+
+
+//#endregion

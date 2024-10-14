@@ -15,6 +15,8 @@ import { nonZeroValidator } from 'src/app/shared/validators/nonZeroValidator';
 import { MatStepper } from '@angular/material/stepper';
 import { ItemPriceService } from './item-price.service';
 import { CreateItemPriceDTO, ReadItemPriceByItemIdDTO } from './item-price.interface';
+import { ImageMasterService } from 'src/app/Common/image-master/image-master.service';
+import { CreateImageDTO } from 'src/app/Common/image-master/image-master.interface';
 
 @Component({
   selector: 'app-item-master',
@@ -29,6 +31,7 @@ export class ItemMasterComponent implements OnInit {
   private router = inject(Router)
   private itemMasterService = inject(ItemMasterService)
   private itemPriceService = inject(ItemPriceService)
+  private imageMasterService = inject(ImageMasterService)
   private brandMasterService = inject(BrandMasterService)
   private loader = inject(LoaderService)
   public confirmModal = inject(ConfirmmodalserviceService)
@@ -124,6 +127,7 @@ export class ItemMasterComponent implements OnInit {
         actionUser: this.User.userId.toString()
       }
       this.createITemPrice(itemPrice)
+      this.createItemImage(res)
 
     })
   }
@@ -192,6 +196,7 @@ export class ItemMasterComponent implements OnInit {
   }
   openItemForm() {
     this.ItemForm.reset()
+    this.imageUrl = null
     this.addItemModal = this.modalService.open(this.addItemModalContent, { size: 'lg' })
 
     this.ItemPriceForm.patchValue({
@@ -266,7 +271,51 @@ export class ItemMasterComponent implements OnInit {
     }
   }
 
-  ngOnDestroy(){
+  imageUrl: string | ArrayBuffer | null = null; // To hold the image URL
+  @ViewChild('fileInput', { static: false }) fileInput!: ElementRef;
+  triggerFileInput() {
+    console.log("clicked");
+    console.log(this.fileInput);
+
+    if (this.fileInput) {
+      this.fileInput.nativeElement.click(); // Programmatically click the file input
+    }
+  }
+
+  onFileSelected(event: Event) {
+    const target = event.target as HTMLInputElement;
+    if (target.files && target.files.length > 0) {
+      const file = target.files[0];
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        this.imageUrl = e.target?.result ?? null; // Ensure that the result is not undefined
+      };
+
+      reader.readAsDataURL(file); // Convert the file to a base64 URL
+    }
+    console.log(this.imageUrl);
+    
+  }
+
+  createItemImage(itemdata: ItemMaster){
+    if(this.imageUrl){
+      let data:CreateImageDTO = {
+        masterId:itemdata.itemId,
+        masterType: 0,
+        iName: itemdata.iName,
+        iType: '',
+        iurl: this.imageUrl as string,
+        actionUser: this.User.userId.toString(),
+        isDefault: 1
+      }
+      this.imageMasterService.CreateImage(data).subscribe(res=>{
+  
+      })
+    }
+  }
+
+  ngOnDestroy() {
     this.viewProductDetailModal?.close()
   }
 }
