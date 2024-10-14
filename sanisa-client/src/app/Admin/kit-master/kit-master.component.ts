@@ -23,6 +23,7 @@ export class KitMasterComponent implements OnInit {
   @ViewChild('kitForm', { static: false }) kitFormRef!: ElementRef;
   kitFormModal!: NgbModalRef;
   kitList: KitMasterDTO[] = []
+  loading:boolean = true
 
   ReadAllDTO: ReadAllKitPaginatedDTO = {
     rowNum: 0,
@@ -86,8 +87,10 @@ export class KitMasterComponent implements OnInit {
 
 
   getKitListPaginated(data: ReadAllKitPaginatedDTO) {
+    this.loading = true
     this.kitMasterServcie.ReadAllKitPaginated(data).subscribe(res => {
       this.kitList = res.items
+      this.loading = false
     })
   }
 

@@ -27,7 +27,7 @@ export class BrandMasterComponent implements OnInit {
   User = inject(AuthService).User()
   @ViewChild('brandForm', { static: false }) addBrandModalContent!: ElementRef;
   addBrandModal!: NgbModalRef;
-
+  loading:boolean = true
   brandMasterForm = new FormGroup({
     brandId: new FormControl(0),
     bCode: new FormControl('', [Validators.required, noWhitespaceValidator, Validators.minLength(3)]),
@@ -66,8 +66,10 @@ export class BrandMasterComponent implements OnInit {
   }
 
   getBrandListPaginated(data: ReadAllBrandsPaginatedDTO) {
+    this.loading = true
     this.brandMasterService.ReadAllBrandsPaginated(data).subscribe(res => {
       this.BrandList = res.items
+      this.loading = false
     })
   }
 

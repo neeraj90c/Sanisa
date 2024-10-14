@@ -24,6 +24,7 @@ export class ComboMasterComponent {
   @ViewChild('ComboMasterForm', { static: false }) comboFormRef!: ElementRef;
   comboFormModal!: NgbModalRef;
   comboList: ComboMasterDTO[] = []
+  loading: boolean = true
 
   ReadAllDTO: ReadAllComboPaginatedDTO = {
     rowNum: 0,
@@ -91,8 +92,10 @@ export class ComboMasterComponent {
 
 
   getcomboListPaginated(data: ReadAllComboPaginatedDTO) {
+    this.loading = true
     this.comboMasterService.ReadAllProductCombos().subscribe(res => {
       this.comboList = res.items
+      this.loading = false
     })
   }
 

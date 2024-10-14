@@ -1,13 +1,12 @@
 import { Component, ElementRef, inject, ViewChild } from '@angular/core';
-import { AuthService } from 'src/app/Common/Authentication/auth.service';
-import { ConfirmmodalserviceService } from 'src/app/shared/confirm-delete-modal/confirmmodalservice.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { CategoryMasterService } from './category-master.service';
-import { ReadAllDTO } from 'src/app/Common/common.interface';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CategoryMasterDTO, CreateCategoryDTO, DeleteCategoryDTO, UpdateCategoryDTO } from './category.interface';
+import { AuthService } from 'src/app/Common/Authentication/auth.service';
+import { ConfirmmodalserviceService } from 'src/app/shared/confirm-delete-modal/confirmmodalservice.service';
 import { environment } from 'src/environments/environment';
+import { CategoryMasterService } from './category-master.service';
+import { CategoryMasterDTO, CreateCategoryDTO, DeleteCategoryDTO, UpdateCategoryDTO } from './category.interface';
 
 @Component({
   selector: 'app-category-master',

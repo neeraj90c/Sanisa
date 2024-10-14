@@ -28,7 +28,7 @@
 </div> -->
 
 
-<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-5 g-4">
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-5 g-4" *ngIf="!loading">
     <div class="col" *ngFor="let item of ItemList">
         <div class="itemCard">
             <div class="product-grid text-start">
@@ -66,6 +66,13 @@
 <input type="file" id="cItemImage" class="form-control form-control-sm" style="display: none;" (change)="onFileSelected($event)" #fileInput>
 <!-- NOT TO BE VISIBLE ON REGULAR PAGE -->
 
+<div class="d-flex justify-content-center align-items-center" style="height:500px" *ngIf="loading">
+    <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <span class="status">Loading...</span>
+
+</div>
 
 
 <ng-template #itemForm>
