@@ -53,11 +53,12 @@ export class AuthService {
   authorizedPages: string[] = []
 
   UserIsAdmin(): boolean {
-    if (this.User().roleId.includes('369')) {
-      return true
-    } else {
-      return false
-    }
+    // if (this.User().roleId.includes('369')) {
+    //   return true
+    // } else {
+    //   return false
+    // }
+    return true
   }
 
 

@@ -124,6 +124,7 @@ export class ItemMasterComponent implements OnInit {
         actionUser: this.User.userId.toString()
       }
       this.createITemPrice(itemPrice)
+      this.createItemImage(res)
 
     })
   }
@@ -294,19 +295,21 @@ export class ItemMasterComponent implements OnInit {
     
   }
 
-  createItemImage(data: CreateImageDTO){
-    let ii:CreateImageDTO = {
-      masterId: 0,
-      masterType: 0,
-      iName: '',
-      iType: '',
-      iurl: this.imageUrl as string,
-      actionUser: this.User.userId.toString(),
-      isDefault: 1
+  createItemImage(itemdata: ItemMaster){
+    if(this.imageUrl){
+      let data:CreateImageDTO = {
+        masterId:itemdata.itemId,
+        masterType: 0,
+        iName: itemdata.iName,
+        iType: '',
+        iurl: this.imageUrl as string,
+        actionUser: this.User.userId.toString(),
+        isDefault: 1
+      }
+      this.imageMasterService.CreateImage(data).subscribe(res=>{
+  
+      })
     }
-    this.imageMasterService.CreateImage(data).subscribe(res=>{
-
-    })
   }
 
   ngOnDestroy() {

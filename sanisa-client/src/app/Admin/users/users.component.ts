@@ -13,6 +13,9 @@ import { CreateUserLoginDTO } from './userLogin.interface';
 import { UserLoginDTO } from 'src/app/login/login.interface';
 import { formatDate } from '@angular/common';
 import { LoaderService } from 'src/app/shared/loader/loader.service';
+import { RoleMasterService } from '../role-master/role-master.service';
+import { RoleMasterDTO } from '../role-master/role-master.interface';
+import { ReadAllDTO } from 'src/app/Common/common.interface';
 
 @Component({
   selector: 'app-users',
@@ -30,6 +33,7 @@ export class UsersComponent implements OnInit {
   public route = inject(ActivatedRoute)
   public router = inject(Router)
   public loader = inject(LoaderService)
+  public roleMasterService = inject(RoleMasterService)
 
   public User = inject(AuthService).User()
 
@@ -40,6 +44,7 @@ export class UsersComponent implements OnInit {
     pageNo: 1
   }
   UserList: UserMaster[] = [];
+  roleList: RoleMasterDTO[]=[]
 
   UserForm = new FormGroup({
     userId: new FormControl(0),
@@ -71,6 +76,7 @@ export class UsersComponent implements OnInit {
 
     }
     this.ReadAllUsersPaginated(this.PaginationData)
+    this.getRoleListPaginated()
 
     this.UserLoginForm.get('userName')?.valueChanges
       .pipe(
@@ -246,6 +252,21 @@ export class UsersComponent implements OnInit {
       this.UserLoginForm.reset()
       this.addUserModal.close()
       this.ReadAllUsersPaginated(this.PaginationData)
+    })
+  }
+
+  getRoleListPaginated() {
+    let data: ReadAllDTO = {
+      rowNum: 0,
+      totalCount: 0,
+      whereClause: '',
+      orderByClause: '',
+      pageSize: 10,
+      pageNo: 1,
+      projectId: this.PROJECT_ID
+    };
+    this.roleMasterService.ReadAllPaginatedRole(data).subscribe(res => {
+      this.roleList = res.items
     })
   }
 

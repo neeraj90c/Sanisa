@@ -155,9 +155,7 @@
                   <div class="form-group mb-3">
                     <label for="companyMail" class="form-label">Role</label> <span class="text-danger h6">*</span>
                     <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                      <option selected> select Role</option>
-                      <option value="Admin">Admin</option>
-                      <option value="Volunteers">Volunteers</option>
+                      <option *ngFor="let role of roleList" [value]="role.roleId">{{role.roleName}}</option>
                     </select>
                   </div>
                 </div>
