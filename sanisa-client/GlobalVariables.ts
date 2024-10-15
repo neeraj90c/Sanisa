@@ -9,7 +9,7 @@ const Menu_BaseURL: string = BaseURL + '/menus/';
 const UnifiedAuth_BaseURL: string = APIGateWay + 'UA/'  //https://dev.sanisa.vnccy.com/apig/UA
 const UnifiedRole_BaseURL: string = APIGateWay + 'UR/'  //https://dev.sanisa.vnccy.com/apig/UA
 
-const Sanisa_BaseURL: string = APIGateWay + 'SA/'
+const Sanisa_BaseURL: string = APIGateWay + 'SA/' //https://dev.sanisa.vnccy.com/apig/SA
 
 //#region Master URLs
 const UserMaster_BaseURL: string = UnifiedAuth_BaseURL + 'UM/'
@@ -208,6 +208,4 @@ export const ReadImageById = ImageMaster_BaseURL + 'ReadById'
 export const ReadImageByMasterId = ImageMaster_BaseURL + 'ReadByMasterId'
 export const DeleteImage = ImageMaster_BaseURL + 'Delete'
 export const ReadAllImage = ImageMaster_BaseURL + 'ReadAll'
-
-
 //#endregion
