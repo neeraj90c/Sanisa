@@ -45,14 +45,15 @@
   .sidebar .nav-links li:hover,   .sidebar .nav-links li.active {
     background: #fff;
     font-weight: 600;
-    border-right: 5px solid var(--primary-col);
+    /* border-right: 5px solid var(--primary-col); */
   }
-  .sidebar .sub-menu li:hover,   .sidebar .sub-menu li.active {
+  .sidebar .sub-menu li:hover,   .sidebar .sub-menu li .active {
     /* background: #fff;*/
     font-weight: 600; 
     color: var(--primary-col);
     border-right: 0px solid transparent;
   }
+  .showMenu .icon-link{border-right: 5px solid var(--primary-col); background-color: #fff;}
 
   .sidebar .sub-menu li:hover span{color: var(--primary-col) !important; }
   .sidebar .nav-links li.active span{color: var(--primary-col) !important;}
