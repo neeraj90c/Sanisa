@@ -1,22 +1,23 @@
 import { Component, ElementRef, inject, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef, NgbOffcanvas, NgbOffcanvasRef } from '@ng-bootstrap/ng-bootstrap';
+import { BaseURL } from 'GlobalVariables';
 import { AuthService } from 'src/app/Common/Authentication/auth.service';
+import { CreateImageDTO, ReadByMasterIdDTO } from 'src/app/Common/image-master/image-master.interface';
+import { ImageMasterService } from 'src/app/Common/image-master/image-master.service';
 import { ConfirmmodalserviceService } from 'src/app/shared/confirm-delete-modal/confirmmodalservice.service';
-import { ItemMasterService } from './item-master.service';
-import { environment } from 'src/environments/environment';
-import { CreateItemDTO, DeleteItemDTO, ItemMaster, ReadAllItemsPaginatedDTO, UpdateItemDTO } from './item-master.interface';
-import { BrandMasterDTO } from '../brand-master/brand-master.interface';
-import { BrandMasterService } from '../brand-master/brand-master.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { noWhitespaceValidator } from 'src/app/shared/validators/noWhitespaceValidator';
 import { LoaderService } from 'src/app/shared/loader/loader.service';
 import { nonZeroValidator } from 'src/app/shared/validators/nonZeroValidator';
-import { MatStepper } from '@angular/material/stepper';
+import { noWhitespaceValidator } from 'src/app/shared/validators/noWhitespaceValidator';
+import { environment } from 'src/environments/environment';
+import { BrandMasterDTO } from '../brand-master/brand-master.interface';
+import { BrandMasterService } from '../brand-master/brand-master.service';
+import { CreateItemDTO, DeleteItemDTO, ItemMaster, ReadAllItemsPaginatedDTO, UpdateItemDTO } from './item-master.interface';
+import { ItemMasterService } from './item-master.service';
+import { CreateItemPriceDTO } from './item-price.interface';
 import { ItemPriceService } from './item-price.service';
-import { CreateItemPriceDTO, ReadItemPriceByItemIdDTO } from './item-price.interface';
-import { ImageMasterService } from 'src/app/Common/image-master/image-master.service';
-import { CreateImageDTO } from 'src/app/Common/image-master/image-master.interface';
 
 @Component({
   selector: 'app-item-master',
@@ -41,7 +42,7 @@ export class ItemMasterComponent implements OnInit {
   addItemModal!: NgbModalRef;
 
   viewProductDetailModal: NgbOffcanvasRef | null = null;
-  loading:boolean = true
+  loading: boolean = true
 
   ReadAllDTO: ReadAllItemsPaginatedDTO = {
     rowNum: 0,
@@ -102,6 +103,14 @@ export class ItemMasterComponent implements OnInit {
     this.loading = true
     this.itemMasterService.ReadAllItemsPaginated(ReadAllDTO).subscribe(res => {
       this.ItemList = res.items
+
+      this.ItemList.forEach(item => {
+        if (item.imagePath && !item.imagePath.startsWith('..')) {
+            item.imagePath = BaseURL + item.imagePath; // Update the imagePath
+        }
+    });
+    
+
       this.loading = false
     })
   }
@@ -295,24 +304,34 @@ export class ItemMasterComponent implements OnInit {
       reader.readAsDataURL(file); // Convert the file to a base64 URL
     }
     console.log(this.imageUrl);
-    
+
   }
 
-  createItemImage(itemdata: ItemMaster){
-    if(this.imageUrl){
-      let data:CreateImageDTO = {
-        masterId:itemdata.itemId,
-        masterType: 0,
+  createItemImage(itemdata: ItemMaster) {
+    if (this.imageUrl) {
+      let data: CreateImageDTO = {
+        masterId: itemdata.itemId,
+        masterType: 1,
         iName: itemdata.iName,
         iType: '',
         iurl: this.imageUrl as string,
         actionUser: this.User.userId.toString(),
         isDefault: 1
       }
-      this.imageMasterService.CreateImage(data).subscribe(res=>{
-  
+      this.imageMasterService.CreateImage(data).subscribe(res => {
+
       })
     }
+  }
+
+  getImagesForItems() {
+    let data: ReadByMasterIdDTO = {
+      masterId: 0,
+      masterType: 0
+    }
+    this.imageMasterService.ReadImageByMasterId(data).subscribe(res => {
+
+    })
   }
 
   ngOnDestroy() {

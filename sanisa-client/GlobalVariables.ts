@@ -1,8 +1,8 @@
 'use strict';
 
 import { environment } from "src/environments/environment";
-const BaseURL: string = environment.apiURL; //https://dev.sanisa.vnccy.com
-const APIGateWay: string = BaseURL + '/apig/'; //https://dev.sanisa.vnccy.com/apig/
+export const BaseURL: string = environment.apiURL; //https://dev.sanisa.vnccy.com
+export const APIGateWay: string = BaseURL + '/apig/'; //https://dev.sanisa.vnccy.com/apig/
 
 const Menu_BaseURL: string = BaseURL + '/menus/';
 
