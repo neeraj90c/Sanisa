@@ -10,96 +10,117 @@
         <span class="link_name">Home</span>
       </a>
     </li>
-    <li [routerLink]="['./users']" [routerLinkActive]="'active'">
-      <a>
-        <i class="bi bi-people"></i>
-        <span class="link_name">Users</span>
-      </a>
+    
+   
 
-    </li>
-    <li [routerLinkActive]="'active'">
-      <a>
-        <i class="bi bi-clipboard-data"></i>
-        <span class="link_name">Orders</span>
-      </a>
-
-    </li>
-    <li [routerLinkActive]="'active'" [routerLink]="['./brands']">
-      <a>
-        <i class="bi bi-clipboard-data"></i>
-        <span class="link_name">Manage Brands</span>
-      </a>
-
-    </li>
-    <li [routerLinkActive]="'active'" [routerLink]="['./items']">
-      <a>
-        <i class="bi bi-clipboard-data"></i>
-        <span class="link_name">Manage Products</span>
-      </a>
-
-    </li>
-    <li [routerLinkActive]="'active'" [routerLink]="['./packaging']">
-      <a>
-        <i class="bi bi-clipboard-data"></i>
-        <span class="link_name">Manage Packaging</span>
-      </a>
-
-    </li>
-    <li [routerLinkActive]="'active'" [routerLink]="['./kit']">
-      <a>
-        <i class="bi bi-clipboard-data"></i>
-        <span class="link_name">Manage Kit</span>
-      </a>
-
-    </li>
-    <li [routerLinkActive]="'active'" [routerLink]="['./combo']">
-      <a>
-        <i class="bi bi-clipboard-data"></i>
-        <span class="link_name">Manage Combo</span>
-      </a>
-
-    </li>
-    <li [routerLinkActive]="'active'" [routerLink]="['./quote']">
-      <a>
-        <i class="bi bi-clipboard-data"></i>
-        <span class="link_name">Manage Quotes</span>
-      </a>
-
-    </li>
-    <li [routerLinkActive]="'active'" [routerLink]="['./roles']">
-      <a>
-        <i class="bi bi-clipboard-data"></i>
-        <span class="link_name">Manage Roles</span>
-      </a>
-    </li>
-    <li [routerLinkActive]="'active'" [routerLink]="['./category']">
-      <a>
-        <i class="bi bi-clipboard-data"></i>
-        <span class="link_name">Manage Categories</span>
-      </a>
-    </li>
-    <li [routerLinkActive]="'active'" [routerLink]="['./event']">
-      <a>
-        <i class="bi bi-clipboard-data"></i>
-        <span class="link_name">Manage Events</span>
-      </a>
-    </li>
-    <!-- <li>
+    <li>
         <div class="icon-link">
           <a >
-            <i class='bi bi-cart'></i>
-            <span class="link_name">nav</span>
+            <i class="bi bi-person-gear"></i>
+            <span class="link_name">Master</span>
           </a>
           <i class='bi bi-chevron-right arrow' (click)="toggleMenu($event)"></i>
         </div>
         <ul class="sub-menu">
-          <li><a class="link_name" >nav</a></li>
-          <li><a >nav2</a></li>
-          <li><a >nav2</a></li>
-          <li><a >nav2</a></li>
+          <li [routerLinkActive]="'active'" [routerLink]="['./items']">
+            <a>
+              <i class="bi bi-clipboard-data"></i>
+              <span class="link_name"> Products</span>
+            </a>
+      
+          </li>
+          <li [routerLinkActive]="'active'" [routerLink]="['./kit']">
+            <a>
+              <i class="bi bi-clipboard-data"></i>
+              <span class="link_name"> Kit</span>
+            </a>
+      
+          </li>
+          <li [routerLinkActive]="'active'" [routerLink]="['./combo']">
+            <a>
+              <i class="bi bi-clipboard-data"></i>
+              <span class="link_name"> Combo</span>
+            </a>
+      
+          </li>
+          <li [routerLink]="['./users']" [routerLinkActive]="'active'">
+            <a>
+              <i class="bi bi-people"></i>
+              <span class="link_name">Users</span>
+            </a>
+      
+          </li>
         </ul>
-      </li>  -->
-
+      </li> 
+      <li>
+        <div class="icon-link">
+          <a >
+            <i class="bi bi-graph-up"></i>
+            <span class="link_name">Sales</span>
+          </a>
+          <i class='bi bi-chevron-right arrow' (click)="toggleMenu($event)"></i>
+        </div>
+        <ul class="sub-menu">
+          <li [routerLinkActive]="'active'" [routerLink]="['./quote']">
+            <a>
+              <i class="bi bi-clipboard-data"></i>
+              <span class="link_name"> Quotes</span>
+            </a>
+      
+          </li>
+          <li [routerLinkActive]="'active'">
+            <a>
+              <i class="bi bi-clipboard-data"></i>
+              <span class="link_name">Orders</span>
+            </a>
+      
+          </li>
+        </ul>
+      </li> 
+      <li>
+        <div class="icon-link">
+          <a >
+            <i class="bi bi-person-square"></i>
+            <span class="link_name">Admin</span>
+          </a>
+          <i class='bi bi-chevron-right arrow' (click)="toggleMenu($event)"></i>
+        </div>
+        <ul class="sub-menu">
+          <li [routerLinkActive]="'active'" [routerLink]="['./brands']">
+            <a>
+              <i class="bi bi-clipboard-data"></i>
+              <span class="link_name"> Brands</span>
+            </a>
+      
+          </li>
+        
+          <li [routerLinkActive]="'active'" [routerLink]="['./packaging']">
+            <a>
+              <i class="bi bi-clipboard-data"></i>
+              <span class="link_name"> Packaging</span>
+            </a>
+      
+          </li>   
+          <li [routerLinkActive]="'active'" [routerLink]="['./roles']">
+            <a>
+              <i class="bi bi-clipboard-data"></i>
+              <span class="link_name"> Roles</span>
+            </a>
+          </li>
+          <li [routerLinkActive]="'active'" [routerLink]="['./category']">
+            <a>
+              <i class="bi bi-clipboard-data"></i>
+              <span class="link_name"> Categories</span>
+            </a>
+          </li>
+          <li [routerLinkActive]="'active'" [routerLink]="['./event']">
+            <a>
+              <i class="bi bi-clipboard-data"></i>
+              <span class="link_name"> Events</span>
+            </a>
+          </li>
+        </ul>
+      </li> 
   </ul>
 </div>
 <section class="home-section">
