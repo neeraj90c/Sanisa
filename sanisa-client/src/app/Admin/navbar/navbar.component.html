@@ -66,7 +66,15 @@
               <i class="bi bi-clipboard-data"></i>
               <span class="link_name"> Quotes</span>
             </a>
-      
+            <ul>
+              <li [routerLinkActive]="'active'" [routerLink]="['suggestions']">
+                <a>
+                  <i class="bi bi-clipboard-data"></i>
+                  <span class="link_name"> Suggestions</span>
+                </a>
+          
+              </li>
+            </ul>
           </li>
           <li [routerLinkActive]="'active'">
             <a>
@@ -75,6 +83,7 @@
             </a>
       
           </li>
+
         </ul>
       </li> 
       <li>

@@ -16,6 +16,7 @@ import { CategoryMasterComponent } from './category-master/category-master.compo
 import { CategoryDetailComponent } from './category-master/category-detail/category-detail.component';
 import { EventMasterComponent } from './event-master/event-master.component';
 import { EventDetailComponent } from './event-master/event-detail/event-detail.component';
+import { QuoteSuggestionsComponent } from './quote-master/quote-suggestions/quote-suggestions.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,7 @@ const routes: Routes = [
       { path: 'category/:id', component: CategoryDetailComponent, title: 'Category Detail' },
       { path: 'event', component: EventMasterComponent, title: 'Manage Event' },
       { path: 'event/:id', component: EventDetailComponent, title: 'Event Detail' },
+      { path: 'suggestions', component: QuoteSuggestionsComponent, title: 'Event Detail' },
     ], title: 'Admin'
   }
 ];

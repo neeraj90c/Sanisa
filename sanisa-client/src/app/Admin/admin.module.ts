@@ -19,6 +19,7 @@ import { CategoryMasterComponent } from './category-master/category-master.compo
 import { CategoryDetailComponent } from './category-master/category-detail/category-detail.component';
 import { EventMasterComponent } from './event-master/event-master.component';
 import { EventDetailComponent } from './event-master/event-detail/event-detail.component';
+import { QuoteSuggestionsComponent } from './quote-master/quote-suggestions/quote-suggestions.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { EventDetailComponent } from './event-master/event-detail/event-detail.c
     CategoryMasterComponent,
     CategoryDetailComponent,
     EventMasterComponent,
-    EventDetailComponent
+    EventDetailComponent,
+    QuoteSuggestionsComponent
   ],
   imports: [
     CommonModule,
