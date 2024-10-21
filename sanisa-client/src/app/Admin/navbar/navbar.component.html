@@ -61,14 +61,14 @@
           <i class='bi bi-chevron-right arrow' (click)="toggleMenu($event)"></i>
         </div>
         <ul class="sub-menu">
-          <li [routerLinkActive]="'active'" [routerLink]="['./quote']">
-            <a>
+          <li>
+            <a [routerLinkActive]="'active'" [routerLink]="['./quote']" >
               <i class="bi bi-clipboard-data"></i>
               <span class="link_name"> Quotes</span>
             </a>
             <ul>
-              <li [routerLinkActive]="'active'" [routerLink]="['suggestions']">
-                <a>
+              <li >
+                <a [routerLinkActive]="'active'" [routerLink]="['./suggestions']">
                   <i class="bi bi-clipboard-data"></i>
                   <span class="link_name"> Suggestions</span>
                 </a>
