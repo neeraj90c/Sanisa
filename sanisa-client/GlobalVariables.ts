@@ -3,6 +3,7 @@
 import { environment } from "src/environments/environment";
 export const BaseURL: string = environment.apiURL; //https://dev.sanisa.vnccy.com
 export const APIGateWay: string = BaseURL + '/apig/'; //https://dev.sanisa.vnccy.com/apig/
+export const BaseImageURL: string = BaseURL + '/Images/'
 
 const Menu_BaseURL: string = BaseURL + '/menus/';
 
@@ -30,6 +31,7 @@ const CategoryDetail_BaseURL: string = Sanisa_BaseURL + 'CTD/'
 const EventMaster_BaseURL: string = Sanisa_BaseURL + 'EVTM/'
 const EventDetail_BaseURL: string = Sanisa_BaseURL + 'EVTD/'
 const ImageMaster_BaseURL: string = Sanisa_BaseURL + 'IMGM/'
+
 
 
 //#endregion

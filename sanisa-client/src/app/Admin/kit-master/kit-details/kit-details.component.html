@@ -1,11 +1,11 @@
 <div class="row bg-white" style="height: 100%;">
     <div class="col-lg-3 p-3 card">
-            <img src="../../../../assets/images/kitReference.png" class="card-img-top" alt="...">
-            <div class="card-body text-center">
-                <h5 class="card-title">{{kitDetail?.kName}}</h5>
-                <p class="card-text">{{kitDetail?.kDescription}}</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
+        <img src="../../../../assets/images/kitReference.png" class="card-img-top" alt="...">
+        <div class="card-body text-center">
+            <h5 class="card-title">{{kitDetail?.kName}}</h5>
+            <p class="card-text">{{kitDetail?.kDescription}}</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
     </div>
     <div class="col-lg-9" style="height: 100%;">
         <div class="container p-3 border" style="height: 100%;">
@@ -15,27 +15,29 @@
             <div class="p-2">
                 <div class="card mb-3 " *ngFor="let item of kitItems">
                     <div class="row g-0">
-                      <div class="col-md-2">
-                        <img src="../../../../assets/images/kitReference.png" class="img-fluid rounded-start" alt="..." width="200px">
-                      </div>
-                      <div class="col-md-10">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                                <h5 class="card-title">{{item.iName}}</h5>
-                                <div data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bi bi-three-dots-vertical"></i>
-                                </div>
-                                <ul class="dropdown-menu shadow p-0">
-                                    <li><span class="dropdown-item"> <i class="bi bi-pen"></i> Edit</span></li>
-                                    <li><span class="dropdown-item"><i class="bi bi-trash3"></i> Delete</span></li>
-                                </ul>
-                            </div>
-                          <p class="card-text">{{item.iDesc}}</p>
-                          <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                        <div class="col-md-2">
+                            <img src="../../../../assets/images/kitReference.png" class="img-fluid rounded-start"
+                                alt="..." width="200px">
                         </div>
-                      </div>
+                        <div class="col-md-10">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <h5 class="card-title">{{item.iName}}</h5>
+                                    <div data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-three-dots-vertical"></i>
+                                    </div>
+                                    <ul class="dropdown-menu shadow p-0">
+                                        <li><span class="dropdown-item"> <i class="bi bi-pen"></i> Edit</span></li>
+                                        <li><span class="dropdown-item"><i class="bi bi-trash3"></i> Delete</span></li>
+                                    </ul>
+                                </div>
+                                <p class="card-text">{{item.iDesc}}</p>
+                                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small>
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                  </div>
+                </div>
             </div>
 
 
@@ -52,13 +54,21 @@
     <div class="modal-body" style="height: 500px;">
         <form class="container">
             <div class="row">
-                <p>
-                    Search Product by name
-                </p>
-                <input type="text" class="form-control form-control-sm">             
+                <div class="col-md-6">
+                    <p>Select Brand</p>
+                    <select class="form-select form-select-sm">
+                        <option value="">Brand</option>
+                        <option value="">Brand</option>
+                        <option value="">Brand</option>
+                        <option value="">Brand</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <p>Search Product by name</p>
+                    <input type="text" class="form-control form-control-sm">
+                </div>
             </div>
             <div class="row">
-
                 <div *ngFor="let item of kitItems" class="d-flex justify-content-between">
                     <div>
                         {{item.iName}}

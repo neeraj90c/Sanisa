@@ -32,9 +32,11 @@
     <div class="col" *ngFor="let item of ItemList">
         <div class="itemCard">
             <div class="product-grid text-start">
-                <div class="product-image"><span class="image"><img
-                            [src]="item.imagePath?item.imagePath : '../../../assets/images/products/Catelogue_240805_234540.pdf-image-049.jpg'"
-                            class="pic-1"></span>
+                <div class="product-image">
+                    <span class="image">
+                        <img [width]="100" [src]="item.imagePath?item.imagePath : '../../../assets/images/products/Catelogue_240805_234540.pdf-image-049.jpg'"
+                            class="pic-1">
+                    </span>
                 </div>
                 <div class="product-content"><span class="category"><a>Roasted Crispies</a></span>
                     <h3 class="title"><a>{{item.iName}}</a></h3>
@@ -63,7 +65,8 @@
 </div>
 
 <!-- NOT TO BE VISIBLE ON REGULAR PAGE -->
-<input type="file" id="cItemImage" class="form-control form-control-sm" style="display: none;" (change)="onFileSelected($event)" #fileInput>
+<input type="file" id="cItemImage" class="form-control form-control-sm" style="display: none;"
+    (change)="onFileSelected($event)" #fileInput>
 <!-- NOT TO BE VISIBLE ON REGULAR PAGE -->
 
 <div class="d-flex justify-content-center align-items-center" style="height:500px" *ngIf="loading">
@@ -92,16 +95,17 @@
                         <!-- Item Image Upload Section -->
                         <div class="col-md-12">
                             <div class="form-group mb-3">
-                                <div class="custom-file-upload text-center p-3" *ngIf="!imageUrl" (click)="triggerFileInput()" style="cursor: pointer;"> 
+                                <div class="custom-file-upload text-center p-3" *ngIf="!imageUrl"
+                                    (click)="triggerFileInput()" style="cursor: pointer;">
                                     <label class="upload-label">
                                         <i class="bi bi-cloud-upload"
                                             style="font-size: 24px; color: var(--primary-col);"></i>
                                         <span class="d-block mt-2">Upload Item Image</span>
                                     </label>
-                                    
+
                                 </div>
                                 <img *ngIf="imageUrl" [src]="imageUrl" [width]="200" alt="Uploaded Image"
-                                class="img-preview mt-2" (click)="triggerFileInput()" style="cursor: pointer;">
+                                    class="img-preview mt-2" (click)="triggerFileInput()" style="cursor: pointer;">
                             </div>
                         </div>
 
@@ -165,11 +169,8 @@
                                 <label for="packaging">Packaging</label>
                                 <select id="packaging" name="packaging" class="form-select form-select-sm"
                                     formControlName="packingId">
-                                    <option [ngValue]="0">Select Packaging</option>
-                                    <option [ngValue]="1">Box</option>
-                                    <option [ngValue]="2">Bag</option>
-                                    <option [ngValue]="3">Bottle</option>
-                                    <!-- Add more options as needed -->
+                                    <option value="0" selected>Select Packaging</option><span class="text-danger h6">*</span>
+                                    <option [ngValue]="package.packagingId" *ngFor="let package of PackageList">{{package.pName}}</option>
                                 </select>
                             </div>
                         </div>
@@ -436,17 +437,19 @@
 
 <ng-template #productDetails>
     <div class="offcanvas-header ">
-        <h5 class="offcanvas-title">Sandalwood Saffron Face Wash (35 ML)</h5>
+        <h5 class="offcanvas-title">{{selectedItem?.iName}}</h5>
         <button type="button" class="btn-close text-reset mt-1" aria-label="Close"
             (click)="openProductDetail(productDetails)"></button>
     </div>
     <div class="offcanvas-body">
         <div class="text-center">
-            <img src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-049.jpg" class="viewProductImg"
-                width="60%">
+            
+            <img  [src]="selectedItem?.imagePath" [width]="250"
+                            class="pic-1">
         </div>
 
         <div class="mt-3">
+            {{selectedItem?.imagePath}}
             <span class="category font-weight-600" style="color: #A01751;">Body & Soul</span>
             <p class="text-muted">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto, illum similique est
                 culpa accusamus at delectus quasi animi modi aliquid!</p>

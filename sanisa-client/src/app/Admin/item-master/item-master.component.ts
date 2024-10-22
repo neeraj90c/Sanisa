@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef, NgbOffcanvas, NgbOffcanvasRef } from '@ng-bootstrap/ng-bootstrap';
-import { BaseURL } from 'GlobalVariables';
+import { BaseImageURL, BaseURL } from 'GlobalVariables';
 import { AuthService } from 'src/app/Common/Authentication/auth.service';
 import { CreateImageDTO, ReadByMasterIdDTO } from 'src/app/Common/image-master/image-master.interface';
 import { ImageMasterService } from 'src/app/Common/image-master/image-master.service';
@@ -18,6 +18,8 @@ import { CreateItemDTO, DeleteItemDTO, ItemMaster, ReadAllItemsPaginatedDTO, Upd
 import { ItemMasterService } from './item-master.service';
 import { CreateItemPriceDTO } from './item-price.interface';
 import { ItemPriceService } from './item-price.service';
+import { PackagingMasterService } from '../packaging-master/packaging-master.service';
+import { PackagingDTO } from '../packaging-master/packaging-master.interface';
 
 @Component({
   selector: 'app-item-master',
@@ -26,6 +28,7 @@ import { ItemPriceService } from './item-price.service';
 })
 export class ItemMasterComponent implements OnInit {
 
+  selectedItem: ItemMaster | null = null
   Company_ID = environment.COMPANY_CODE
   public modalService = inject(NgbModal)
   private route = inject(ActivatedRoute)
@@ -34,6 +37,7 @@ export class ItemMasterComponent implements OnInit {
   private itemPriceService = inject(ItemPriceService)
   private imageMasterService = inject(ImageMasterService)
   private brandMasterService = inject(BrandMasterService)
+  private packageMasterService = inject(PackagingMasterService)
   private loader = inject(LoaderService)
   public confirmModal = inject(ConfirmmodalserviceService)
   public offcanvasService = inject(NgbOffcanvas);
@@ -54,6 +58,7 @@ export class ItemMasterComponent implements OnInit {
   }
   ItemList: ItemMaster[] = [];
   BrandList: BrandMasterDTO[] = []
+  PackageList: PackagingDTO[] = []
 
   ItemForm = new FormGroup({
     itemId: new FormControl(0),
@@ -84,6 +89,7 @@ export class ItemMasterComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllBrandList()
+    this.getAllPackagingList()
     let currentParams = this.route.snapshot.queryParams
     if (Object.keys(currentParams).length === 0) {
       this.router.navigate(['.'], {
@@ -104,13 +110,13 @@ export class ItemMasterComponent implements OnInit {
     this.itemMasterService.ReadAllItemsPaginated(ReadAllDTO).subscribe(res => {
       this.ItemList = res.items
 
-      this.ItemList.forEach(item => {
-        if (item.imagePath && !item.imagePath.startsWith('..')) {
-            item.imagePath = BaseURL + item.imagePath; // Update the imagePath
+      this.ItemList.map(item => {
+        if (item.imagePath) {
+          item.imagePath = BaseImageURL + item.imagePath; // Update the imagePath
+          console.log(item.imagePath);
         }
-    });
-    
-
+        return item
+      });
       this.loading = false
     })
   }
@@ -118,7 +124,11 @@ export class ItemMasterComponent implements OnInit {
   getAllBrandList() {
     this.brandMasterService.ReadAllBrands().subscribe(res => {
       this.BrandList = res.items
-      console.log(res.items);
+    })
+  }
+  getAllPackagingList() {
+    this.packageMasterService.ReadAllPackagings().subscribe(res => {
+      this.PackageList = res.items
     })
   }
 
@@ -254,12 +264,14 @@ export class ItemMasterComponent implements OnInit {
     this.addItemModal = this.modalService.open(this.addItemModalContent, { size: 'lg' })
   }
 
-  openProductDetail(productDetailContent: TemplateRef<any>) {
+  openProductDetail(productDetailContent: TemplateRef<any>, item?: ItemMaster) {
     if (this.viewProductDetailModal) {
+      this.selectedItem = null
       // If off-canvas is already open, close it
       this.viewProductDetailModal.close();
       this.viewProductDetailModal = null;
     } else {
+      this.selectedItem = item as ItemMaster
       // If off-canvas is not open, open it
       this.viewProductDetailModal = this.offcanvasService.open(productDetailContent, {
         position: 'end',
