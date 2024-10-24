@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { CreateItem, DeleteItem, ReadAllItems, ReadAllItemsPaginated, ReadItemById, ReadItemByKitId, UpdateItem } from 'GlobalVariables';
+import { CreateItem, DeleteItem, ReadAllItems, ReadAllItemsPaginated, ReadByCategoryId, ReadByEventId, ReadItemById, ReadItemByKitId, SearchItemByName, UpdateItem } from 'GlobalVariables';
 import { Observable } from 'rxjs';
 import { CreateItemDTO, DeleteItemDTO, ItemList, ItemMaster, ReadAllItemsPaginatedDTO, UpdateItemDTO } from './item-master.interface';
 
@@ -40,6 +40,16 @@ export class ItemMasterService {
 
   DeleteItem(data: DeleteItemDTO): Observable<void> {
     return this.http.post<void>(DeleteItem, data)
+  }
+
+  SearchItemByName(data: { searchTerm: string }): Observable<ItemList> {
+    return this.http.post<ItemList>(SearchItemByName, data)
+  }
+  ReadByCategoryId(data: { categoryId: number }): Observable<ItemList> {
+    return this.http.post<ItemList>(ReadByCategoryId, data)
+  }
+  ReadByEventId(data: { eventId: number }): Observable<ItemList> {
+    return this.http.post<ItemList>(ReadByEventId, data)
   }
 
 }

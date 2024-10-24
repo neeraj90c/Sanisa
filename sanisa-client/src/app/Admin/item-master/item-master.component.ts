@@ -16,7 +16,7 @@ import { BrandMasterDTO } from '../brand-master/brand-master.interface';
 import { BrandMasterService } from '../brand-master/brand-master.service';
 import { CreateItemDTO, DeleteItemDTO, ItemMaster, ReadAllItemsPaginatedDTO, UpdateItemDTO } from './item-master.interface';
 import { ItemMasterService } from './item-master.service';
-import { CreateItemPriceDTO } from './item-price.interface';
+import { CreateItemPriceDTO, ItemPriceDTO, UpdateItemPriceDTO } from './item-price.interface';
 import { ItemPriceService } from './item-price.service';
 import { PackagingMasterService } from '../packaging-master/packaging-master.service';
 import { PackagingDTO } from '../packaging-master/packaging-master.interface';
@@ -45,7 +45,7 @@ export class ItemMasterComponent implements OnInit {
   @ViewChild('itemForm', { static: false }) addItemModalContent!: ElementRef;
   addItemModal!: NgbModalRef;
 
-  viewProductDetailModal: NgbOffcanvasRef | null = null;
+
   loading: boolean = true
 
   ReadAllDTO: ReadAllItemsPaginatedDTO = {
@@ -59,6 +59,7 @@ export class ItemMasterComponent implements OnInit {
   ItemList: ItemMaster[] = [];
   BrandList: BrandMasterDTO[] = []
   PackageList: PackagingDTO[] = []
+  ItemPrices: ItemPriceDTO[] = []
 
   ItemForm = new FormGroup({
     itemId: new FormControl(0),
@@ -90,6 +91,7 @@ export class ItemMasterComponent implements OnInit {
   ngOnInit(): void {
     this.getAllBrandList()
     this.getAllPackagingList()
+    this.getAllItemPrice()
     let currentParams = this.route.snapshot.queryParams
     if (Object.keys(currentParams).length === 0) {
       this.router.navigate(['.'], {
@@ -146,7 +148,8 @@ export class ItemMasterComponent implements OnInit {
         actionUser: this.User.userId.toString()
       }
       this.createITemPrice(itemPrice)
-      this.createItemImage(res)
+      this.createItemImage(res) 
+      this.router.navigate([res.itemId], { relativeTo: this.route });
 
     })
   }
@@ -155,6 +158,15 @@ export class ItemMasterComponent implements OnInit {
     this.loader.enable()
     this.itemMasterService.UpdateItem(data).subscribe(res => {
       this.getItemListPaginated(this.ReadAllDTO)
+      this.addItemModal.close()
+      this.loader.disable()
+    })
+  }
+
+  updateItemPrice(data:UpdateItemPriceDTO){
+    this.loader.enable()
+    this.itemPriceService.UpdateItemPrice(data).subscribe(res => {
+      this.getAllItemPrice()
       this.addItemModal.close()
       this.loader.disable()
     })
@@ -178,7 +190,8 @@ export class ItemMasterComponent implements OnInit {
 
   createITemPrice(itemPrice: CreateItemPriceDTO) {
     this.itemPriceService.CreateItemPrice(itemPrice).subscribe(res => {
-      this.getItemListPaginated(this.ReadAllDTO);
+      // this.getItemListPaginated(this.ReadAllDTO);
+      this.getAllItemPrice()
       this.ItemPriceForm.reset();
       this.addItemModal.close();
       this.loader.disable();
@@ -196,6 +209,10 @@ export class ItemMasterComponent implements OnInit {
         let data: UpdateItemDTO = this.ItemForm.value as UpdateItemDTO
         console.log(data);
         this.updateItem(data)
+        if(this.ItemPriceForm.value.priceId){
+          let data: UpdateItemPriceDTO = this.ItemPriceForm.value as UpdateItemPriceDTO
+          this.updateItemPrice(data)
+        }
       } else {
         let data: CreateItemDTO = {
           iCode: formData.iCode as string,
@@ -264,22 +281,6 @@ export class ItemMasterComponent implements OnInit {
     this.addItemModal = this.modalService.open(this.addItemModalContent, { size: 'lg' })
   }
 
-  openProductDetail(productDetailContent: TemplateRef<any>, item?: ItemMaster) {
-    if (this.viewProductDetailModal) {
-      this.selectedItem = null
-      // If off-canvas is already open, close it
-      this.viewProductDetailModal.close();
-      this.viewProductDetailModal = null;
-    } else {
-      this.selectedItem = item as ItemMaster
-      // If off-canvas is not open, open it
-      this.viewProductDetailModal = this.offcanvasService.open(productDetailContent, {
-        position: 'end',
-        backdrop: false
-      });
-    }
-  }
-
   onBrancChange() {
     console.log(this.ItemForm.value);
   }
@@ -336,17 +337,17 @@ export class ItemMasterComponent implements OnInit {
     }
   }
 
-  getImagesForItems() {
-    let data: ReadByMasterIdDTO = {
-      masterId: 0,
-      masterType: 0
-    }
-    this.imageMasterService.ReadImageByMasterId(data).subscribe(res => {
-
+  getAllItemPrice() {
+    this.itemPriceService.ReadAllItemPrices().subscribe(res => {
+      this.ItemPrices = res.items
     })
+  }
+  getItemPriceByItemId(itemId: number): ItemPriceDTO | null {
+    let itemPrice = this.ItemPrices.find(i => i.itemId == itemId)
+    return itemPrice ? itemPrice : null
   }
 
   ngOnDestroy() {
-    this.viewProductDetailModal?.close()
+
   }
 }

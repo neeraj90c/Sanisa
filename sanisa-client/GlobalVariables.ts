@@ -106,6 +106,9 @@ export const UpdateItem = ItemMaster_BaseURL + 'Update'
 export const ReadItemById = ItemMaster_BaseURL + 'ReadById'
 export const ReadItemByKitId = ItemMaster_BaseURL + 'ReadByKitId'
 export const DeleteItem = ItemMaster_BaseURL + 'Delete'
+export const SearchItemByName = ItemMaster_BaseURL + 'SearchByName'
+export const ReadByCategoryId = ItemMaster_BaseURL + 'ReadByCategoryId'
+export const ReadByEventId = ItemMaster_BaseURL + 'ReadByEventId'
 //#endregion
 
 
@@ -182,6 +185,8 @@ export const ReadCategoryDetailById = CategoryDetail_BaseURL + 'ReadById'
 export const ReadDetailByCategoryId = CategoryDetail_BaseURL + 'ReadByCategoryId'
 export const DeleteCategoryDetail = CategoryDetail_BaseURL + 'Delete'
 export const ReadAllCategoryDetail = CategoryDetail_BaseURL + 'ReadAll'
+export const ReadCategoryDetailByItemId = CategoryDetail_BaseURL + 'ReadByItemId'
+
 //#endregion
 
 
@@ -201,6 +206,7 @@ export const ReadEventDetailById = EventDetail_BaseURL + 'ReadById'
 export const DeleteEventDetail = EventDetail_BaseURL + 'Delete'
 export const ReadAllEventDetail = EventDetail_BaseURL + 'ReadAll'
 export const ReadDetailByEventId = EventDetail_BaseURL + 'ReadByEventId'
+export const ReadDetailByItemId = EventDetail_BaseURL + 'ReadByItemId'
 //#endregion
 
 //#region Image Master API ImageMaster_BaseURL

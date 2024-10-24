@@ -17,6 +17,7 @@ import { CategoryDetailComponent } from './category-master/category-detail/categ
 import { EventMasterComponent } from './event-master/event-master.component';
 import { EventDetailComponent } from './event-master/event-detail/event-detail.component';
 import { QuoteSuggestionsComponent } from './quote-master/quote-suggestions/quote-suggestions.component';
+import { ItemDetailComponent } from './item-master/item-detail/item-detail.component';
 
 const routes: Routes = [
   {
@@ -25,7 +26,8 @@ const routes: Routes = [
       { path: '', redirectTo: 'users', pathMatch: 'full' },
       { path: 'users', component: UsersComponent, title: 'Users' },
       { path: 'brands', component: BrandMasterComponent, title: 'Manage Brand' },
-      { path: 'items', component: ItemMasterComponent, title: 'Manage Items' },
+      { path: 'items', component: ItemMasterComponent, title: 'Manage Products' },
+      { path: 'items/:id', component: ItemDetailComponent, title: 'Product Detail' },
       { path: 'packaging', component: PackagingMasterComponent, title: 'Manage Packaging' },
       { path: 'kit', component: KitMasterComponent, title: 'Manage Kit' },
       { path: 'kit/:id', component: KitDetailsComponent, title: 'Kit Details' },

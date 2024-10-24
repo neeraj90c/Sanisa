@@ -1,0 +1,426 @@
+<div class="row border p-3 rounded">
+    <div class="col-lg-4 ps-0">
+        <div class="tab-content" id="preview-thumbnail">
+            <div class="tab-pane fade show active" id="pic1-tab-pane" role="tabpanel" aria-labelledby="pic1-tab"
+                tabindex="0">
+                <img class="preview-thumbnail-img"
+                    src="../../../../assets/images/products/Catelogue_240805_234540.pdf-image-023.jpg" />
+            </div>
+            <div class="tab-pane fade" id="pic2-tab-pane" role="tabpanel" aria-labelledby="pic2-tab" tabindex="0">
+                <img class="preview-thumbnail-img"
+                    src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-044.jpg" />
+            </div>
+            <div class="tab-pane fade" id="pic3-tab-pane" role="tabpanel" aria-labelledby="pic3-tab" tabindex="0">
+                <img class="preview-thumbnail-img"
+                    src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-049.jpg" />
+            </div>
+        </div>
+        <ul class="nav nav-tabs border-0 preview-pic justify-content-center" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <span class="nav-link active" id="pic1-tab" data-bs-toggle="tab" data-bs-target="#pic1-tab-pane"
+                    type="button" role="tab" aria-controls="pic1-tab-pane" aria-selected="true">
+                    <img src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-023.jpg" />
+                </span>
+            </li>
+            <li class="nav-item" role="presentation">
+                <span class="nav-link" id="pic2-tab" data-bs-toggle="tab" data-bs-target="#pic2-tab-pane" type="button"
+                    role="tab" aria-controls="pic2-tab-pane" aria-selected="false">
+                    <img src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-044.jpg" />
+                </span>
+            </li>
+            <li class="nav-item" role="presentation">
+                <span class="nav-link" id="pic3-tab" data-bs-toggle="tab" data-bs-target="#pic3-tab-pane" type="button"
+                    role="tab" aria-controls="pic3-tab-pane" aria-selected="false">
+                    <img src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-049.jpg" />
+                </span>
+            </li>
+
+        </ul>
+    </div>
+    <div class="col-lg-6">
+        <div class="productDetail">
+            <span class="category">{{item?.iType}}</span>
+            <h2 class="productName mt-2">{{item?.iName}}</h2>
+
+            <div class="d-flex gap-2 align-item-center">
+                <div class="rating">
+                    <i class="bi bi-star-fill rated"></i>
+                    <i class="bi bi-star-fill rated"></i>
+                    <i class="bi bi-star-fill rated"></i>
+                    <i class="bi bi-star nonRated"></i>
+                    <i class="bi bi-star nonRated"></i>
+                </div>
+                <small style="margin-top: 3px; color: green">(109 reviews)</small>
+            </div>
+
+            <div class="productDescription py-2">
+                <p>
+                    {{item?.iDesc}}
+                </p>
+            </div>
+            <div class="stockBadge"></div>
+            <div class="price-container d-flex gap-2 align-items-end">
+                <h4 class="productPrize mb-0">{{itemPrice?.mrp|currency:'INR':'symbol':'1.2-2'}}</h4>
+                <h5 class="discountPrice mb-0">{{item?.mrp|currency:'INR':'symbol':'1.2-2'}}</h5>
+                <span class="discountPercentage">40.0%</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2">
+        <div class="col-md-12">
+            <label>Category</label>
+            <div class="dropdown">
+                <a class="bi bi-plus-circle-fill dropdown-toggle" role="button" id="dropdownMenuLink"
+                    data-bs-toggle="dropdown" aria-expanded="false"></a>
+
+                <div class="dropdown-menu p-2" aria-labelledby="dropdownMenuLink">
+                    Add Categories
+                    <input type="text" placeholder="Search Category" class="form-control form-control-sm"
+                        (input)="categoryFilterChange($event)">
+                    <ul style="height: 150px; overflow-y: scroll; width: 100%; padding-left: 0px;">
+                        <li *ngFor="let category of filteredCategoryList">
+                            <div>
+                                <input type="checkbox" (change)="categoryChange($event,category)"
+                                    [checked]="categoryChecked(category)">
+                                <span>
+                                    {{category.cName}}
+                                </span>
+
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <span class="badge rounded-pill bg-secondary"
+                    *ngFor="let category of itemCategories">{{getCategoryNameByCategoryId(category.categoryId)?.cName}} <i
+                        class="bi bi-x-circle" style="margin-left: 5px;" (click)="removeCategory(category)"></i> </span>
+            </div>
+        </div>
+        <div class="col-md-12 mt-5">
+            <label>Events</label>
+            <div class="dropdown">
+                <a class="bi bi-plus-circle-fill dropdown-toggle" role="button" id="dropdownMenuLink"
+                    data-bs-toggle="dropdown" aria-expanded="false"></a>
+
+                <div class="dropdown-menu p-2" aria-labelledby="dropdownMenuLink">
+                    Add Events
+                    <input type="text" placeholder="Search Events" class="form-control form-control-sm"
+                        (input)="eventFilterChange($event)">
+                    <ul style="height: 150px; overflow-y: scroll; width: 100%; padding-left: 0px;">
+                        <li *ngFor="let event of filteredEventList">
+                            <div>
+                                <input type="checkbox" (change)="eventChange($event,event)"
+                                    [checked]="eventChecked(event)">
+                                <span>
+                                    {{event.eventName}}
+                                </span>
+
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <span class="badge rounded-pill bg-primary"
+                    *ngFor="let event of itemEvents">{{getEventNameByEventId(event.eventId)?.eventName}} <i
+                        class="bi bi-x-circle" style="margin-left: 5px;" (click)="removeEvent(event)"></i> </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="productDetailsTabs mt-5">
+    <ul class="nav nav-pills border-bottom" id="myTab" role="tablist">
+
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="product-tab" data-bs-toggle="tab" data-bs-target="#product-tab-pane"
+                type="button" role="tab" aria-controls="product-tab-pane" aria-selected="true">
+                Product Information
+            </button>
+        </li>
+
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews-tab-pane"
+                type="button" role="tab" aria-controls="reviews-tab-pane" aria-selected="false" tabindex="-1">
+                Reviews(3)
+            </button>
+        </li>
+
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="info-tab" data-bs-toggle="tab" data-bs-target="#info-tab-pane" type="button"
+                role="tab" aria-controls="info-tab-pane" aria-selected="false" tabindex="-1">
+                Info
+            </button>
+        </li>
+
+    </ul>
+    <div class="tab-content p-3" id="myTabContent">
+        <!-- tab pane -->
+        <div class="tab-pane fade active show" id="product-tab-pane" role="tabpanel" aria-labelledby="product-tab"
+            tabindex="0">
+            <div class="my-8">
+                <div class="mb-3">
+                    <!-- text -->
+                    <h6 class="mb-1 font-weight-600">Nutrient Value &amp; Benefits</h6>
+                    <p class="mb-0">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi, tellus iaculis urna
+                        bibendum in lacus, integer. Id imperdiet vitae varius sed magnis eu nisi nunc
+                        sit. Vel, varius habitant ornare ac rhoncus. Consequat risus facilisis ante ipsum
+                        netus risus adipiscing sagittis sed. Lorem ipsum dolor sit amet, consectetur
+                        adipiscing elit.
+                    </p>
+                </div>
+                <div class="mb-3">
+                    <h6 class="mb-1 font-weight-600">Storage Tips</h6>
+                    <p class="mb-0">
+                        Nisi, tellus iaculis urna bibendum in lacus, integer. Id imperdiet vitae varius sed
+                        magnis eu nisi nunc sit. Vel, varius habitant ornare ac rhoncus. Consequat risus
+                        facilisis ante ipsum netus risus adipiscing sagittis sed.Lorem ipsum dolor sit amet,
+                        consectetur adipiscing elit.
+                    </p>
+                </div>
+                <!-- content -->
+
+                <div>
+                    <h6 class="mb-1 font-weight-600">Disclaimer</h6>
+                    <p class="mb-0">
+                        Image shown is a representation and may slightly vary from the actual product. Every
+                        effort is made to maintain accuracy of all information displayed.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- tab pane -->
+        <div class="tab-pane fade" id="reviews-tab-pane" role="tabpanel" aria-labelledby="reviews-tab" tabindex="0">
+            <div class="row">
+                <!-- col -->
+                <div class="col-lg-8 ">
+                    <div class="mb-10">
+                        <div class="d-flex justify-content-between align-items-center mb-8">
+                            <!-- heading -->
+                            <h5 class="pb-3">Reviews</h5>
+                        </div>
+                        <div class="d-flex border-bottom p-3 mb-3">
+                            <!-- img -->
+                            <!-- img -->
+                            <img src="../../../assets/images/user.png" class="userImageReview" alt="">
+                            <div class="ms-2 w-100">
+                                <h6 class="mb-1">Shankar Subbaraman</h6>
+
+                                <!-- content -->
+                                <p class="small mb-0"> <span class="text-muted">30 December 2022</span></p>
+                                <!-- rating -->
+                                <div class="rating">
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star nonRated"></i>
+                                    <i class="bi bi-star nonRated"></i>
+                                </div>
+                                <!-- text-->
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore at
+                                    placeat assumenda porro veniam accusantium facere inventore, veritatis
+                                    quas illum quidem iusto sit tempora ipsum libero ab similique doloremque
+                                    pariatur?
+                                </p>
+
+                                <!-- icon -->
+                                <div class="d-flex justify-content-end mt-1">
+                                    <a href="#" class="text-muted">
+                                        <i class="bi bi-hand-thumbs-up"></i>
+                                        Helpful
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex border-bottom p-3 mb-3">
+                            <!-- img -->
+                            <!-- img -->
+                            <img src="../../../assets/images/user.png" class="userImageReview" alt="">
+                            <div class="ms-2 w-100">
+                                <h6 class="mb-1">Shankar Subbaraman</h6>
+
+                                <!-- content -->
+                                <p class="small mb-0"> <span class="text-muted">30 December 2022</span></p>
+                                <!-- rating -->
+                                <div class="rating">
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star nonRated"></i>
+                                    <i class="bi bi-star nonRated"></i>
+                                </div>
+                                <!-- text-->
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore at
+                                    placeat assumenda porro veniam accusantium facere inventore, veritatis
+                                    quas illum quidem iusto sit tempora ipsum libero ab similique doloremque
+                                    pariatur?
+                                </p>
+
+                                <!-- icon -->
+                                <div class="d-flex justify-content-end mt-1">
+                                    <a href="#" class="text-muted">
+                                        <i class="bi bi-hand-thumbs-up"></i>
+                                        Helpful
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex border-bottom p-3 mb-3">
+                            <!-- img -->
+                            <!-- img -->
+                            <img src="../../../assets/images/user.png" class="userImageReview" alt="">
+                            <div class="ms-2 w-100">
+                                <h6 class="mb-1">Shankar Subbaraman</h6>
+
+                                <!-- content -->
+                                <p class="small mb-0"> <span class="text-muted">30 December 2022</span></p>
+                                <!-- rating -->
+                                <div class="rating">
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star nonRated"></i>
+                                    <i class="bi bi-star nonRated"></i>
+                                </div>
+                                <!-- text-->
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore at
+                                    placeat assumenda porro veniam accusantium facere inventore, veritatis
+                                    quas illum quidem iusto sit tempora ipsum libero ab similique doloremque
+                                    pariatur?
+                                </p>
+
+                                <!-- icon -->
+                                <div class="d-flex justify-content-end mt-1">
+                                    <a href="#" class="text-muted">
+                                        <i class="bi bi-hand-thumbs-up"></i>
+                                        Helpful
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <a href="#" class="btn btn-outline-gray-400 text-muted">Read More Reviews</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- col -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="me-lg-12 mb-6 mb-md-0">
+                        <div class="mb-3">
+                            <!-- title -->
+                            <h5 class="">Customer Rating</h5>
+                            <span>
+                                <!-- rating -->
+                                <span class="rating">
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star-fill rated"></i>
+                                    <i class="bi bi-star nonRated"></i>
+                                    <i class="bi bi-star nonRated"></i>
+                                </span>
+                                <span class="ms-2 text-muted">(4.1 out of 5)</span>
+                            </span>
+                        </div>
+                        <div class="customerReview">
+                            <!-- progress -->
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="text-nowrap me-3 text-muted">
+                                    <span class="d-inline-block align-middle text-muted">5</span>
+                                    <i class="bi bi-star-fill ms-1 small text-warning"></i>
+                                </div>
+                                <div class="w-100">
+                                    <div class="progress" style="height: 6px">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 60%"
+                                            aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <span class="text-muted ms-3">53%</span>
+                            </div>
+                            <!-- progress -->
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="text-nowrap me-3 text-muted">
+                                    <span class="d-inline-block align-middle text-muted">4</span>
+                                    <i class="bi bi-star-fill ms-1 small text-warning"></i>
+                                </div>
+                                <div class="w-100">
+                                    <div class="progress" style="height: 6px">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 50%"
+                                            aria-valuenow="50" aria-valuemin="0" aria-valuemax="50"></div>
+                                    </div>
+                                </div>
+                                <span class="text-muted ms-3">22%</span>
+                            </div>
+                            <!-- progress -->
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="text-nowrap me-3 text-muted">
+                                    <span class="d-inline-block align-middle text-muted">3</span>
+                                    <i class="bi bi-star-fill ms-1 small text-warning"></i>
+                                </div>
+                                <div class="w-100">
+                                    <div class="progress" style="height: 6px">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 35%"
+                                            aria-valuenow="35" aria-valuemin="0" aria-valuemax="35"></div>
+                                    </div>
+                                </div>
+                                <span class="text-muted ms-3">14%</span>
+                            </div>
+                            <!-- progress -->
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="text-nowrap me-3 text-muted">
+                                    <span class="d-inline-block align-middle text-muted">2</span>
+                                    <i class="bi bi-star-fill ms-1 small text-warning"></i>
+                                </div>
+                                <div class="w-100">
+                                    <div class="progress" style="height: 6px">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 22%"
+                                            aria-valuenow="22" aria-valuemin="0" aria-valuemax="22"></div>
+                                    </div>
+                                </div>
+                                <span class="text-muted ms-3">5%</span>
+                            </div>
+                            <!-- progress -->
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="text-nowrap me-3 text-muted">
+                                    <span class="d-inline-block align-middle text-muted">1</span>
+                                    <i class="bi bi-star-fill ms-1 small text-warning"></i>
+                                </div>
+                                <div class="w-100">
+                                    <div class="progress" style="height: 6px">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 14%"
+                                            aria-valuenow="14" aria-valuemin="0" aria-valuemax="14"></div>
+                                    </div>
+                                </div>
+                                <span class="text-muted ms-3">7%</span>
+                            </div>
+                        </div>
+                        <div class="addReviewBanner mt-4 p-3">
+                            <h5>Review this product</h5>
+                            <p>Your insights help us to continually improve our products and services. Share
+                                your thoughts with other customers.</p>
+                            <a href="#" class="btn btn-gm btn-primary">Write Review</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="info-tab-pane" role="tabpanel" aria-labelledby="info-tab" tabindex="0">
+            info tab
+        </div>
+    </div>
+</div>

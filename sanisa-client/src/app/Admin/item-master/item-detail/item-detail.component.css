@@ -1,0 +1,9 @@
+.badge {
+    margin: 3px;
+}
+
+.bi-plus-circle-fill {
+    margin-left: 5px;
+    cursor: pointer;
+    color: var(--primary-col);
+}

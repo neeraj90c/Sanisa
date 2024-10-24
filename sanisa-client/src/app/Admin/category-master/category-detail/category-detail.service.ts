@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { CreateCategoryDetail, UpdateCategoryDetail, ReadCategoryDetailById, ReadDetailByCategoryId, DeleteCategoryDetail, ReadAllCategoryDetail } from 'GlobalVariables';
+import { CreateCategoryDetail, UpdateCategoryDetail, ReadCategoryDetailById, ReadDetailByCategoryId, DeleteCategoryDetail, ReadAllCategoryDetail, ReadCategoryDetailByItemId } from 'GlobalVariables';
 import { Observable } from 'rxjs';
 import { CategoryDetailDTO, CategoryDetailList, CreateCategoryDetailDTO, DeleteCategoryDetailDTO, UpdateCategoryDetailDTO } from './category-detail.interface';
 
@@ -29,6 +29,9 @@ export class CategoryDetailService {
   }
   ReadAllCategoryDetail(): Observable<CategoryDetailList> {
     return this.http.get<CategoryDetailList>(ReadAllCategoryDetail)
+  }
+  ReadCategoryDetailByItemId(data: { itemId: number }): Observable<CategoryDetailList> {
+    return this.http.post<CategoryDetailList>(ReadCategoryDetailByItemId, data)
   }
 
 }

@@ -20,6 +20,7 @@ import { CategoryDetailComponent } from './category-master/category-detail/categ
 import { EventMasterComponent } from './event-master/event-master.component';
 import { EventDetailComponent } from './event-master/event-detail/event-detail.component';
 import { QuoteSuggestionsComponent } from './quote-master/quote-suggestions/quote-suggestions.component';
+import { ItemDetailComponent } from './item-master/item-detail/item-detail.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { QuoteSuggestionsComponent } from './quote-master/quote-suggestions/quot
     CategoryDetailComponent,
     EventMasterComponent,
     EventDetailComponent,
-    QuoteSuggestionsComponent
+    QuoteSuggestionsComponent,
+    ItemDetailComponent
   ],
   imports: [
     CommonModule,

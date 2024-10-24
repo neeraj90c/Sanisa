@@ -64,7 +64,9 @@ export interface ItemMaster {
     whereClause: string | null;
     orderByClause: string | null;
     imagePath: string;
-    mrp: number
+    mrp: number,
+    bName:string;
+    detailId:number
 }
 
 export interface ItemList {
