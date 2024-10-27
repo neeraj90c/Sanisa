@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
         }
       )
     }
+    this.loader.disable()
   }
 
   LoginForm = new FormGroup({
