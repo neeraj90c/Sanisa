@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { ItemMaster } from '../item-master.interface';
 import { ItemMasterService } from '../item-master.service';
 import { ActivatedRoute } from '@angular/router';
@@ -15,6 +15,10 @@ import { ConfirmmodalserviceService } from 'src/app/shared/confirm-delete-modal/
 import { CategoryDetailDTO, CreateCategoryDetailDTO, DeleteCategoryDetailDTO } from '../../category-master/category-detail/category-detail.interface';
 import { CategoryMasterService } from '../../category-master/category-master.service';
 import { CategoryMasterDTO } from '../../category-master/category.interface';
+import { ImageMasterService } from 'src/app/Common/image-master/image-master.service';
+import { CreateImageDTO, DeleteImageDTO, ImageMasterDTO, ReadByMasterIdDTO } from 'src/app/Common/image-master/image-master.interface';
+import { MasterType } from 'src/app/Common/master-type.enum';
+import { BaseImageURL } from 'GlobalVariables';
 
 @Component({
   selector: 'app-item-detail',
@@ -32,6 +36,7 @@ export class ItemDetailComponent {
   filteredEventList: EventMasterDTO[] = []
   filteredCategoryList: CategoryMasterDTO[] = []
   itemMasterService = inject(ItemMasterService)
+  imageMasterService = inject(ImageMasterService)
   itemPriceService = inject(ItemPriceService)
   eventDetailService = inject(EventDetailService)
   eventMasterService = inject(EventMasterService)
@@ -40,6 +45,7 @@ export class ItemDetailComponent {
   confirmModal = inject(ConfirmmodalserviceService)
   route = inject(ActivatedRoute)
   User = inject(AuthService).User()
+  itemImages: ImageMasterDTO[] = [];
 
   ngOnInit(): void {
     this.route.params.subscribe(res => {
@@ -61,6 +67,7 @@ export class ItemDetailComponent {
     this.getCategoryByItem(itemId)
     this.getEventList()
     this.getCategoryList()
+    this.getItemImages(itemId)
   }
 
 
@@ -201,7 +208,7 @@ export class ItemDetailComponent {
     })
   }
 
-  categoryChecked(category: CategoryMasterDTO)  {
+  categoryChecked(category: CategoryMasterDTO) {
     let categoryList = this.itemCategories.find(i => i.categoryId == category.categoryId)
     return categoryList ? true : false
   }
@@ -218,6 +225,98 @@ export class ItemDetailComponent {
       if (res) {
         console.log(res);
         this.DeleteCategory(category.detailId)
+      } else {
+        console.log('no res');
+      }
+    })
+  }
+
+  getItemImages(itemId: number) {
+    let data: ReadByMasterIdDTO = {
+      masterId: itemId,
+      masterType: MasterType.imageMaster
+    }
+    this.imageMasterService.ReadImageByMasterId(data).subscribe(res => {
+      this.itemImages = res.items.map(item => {
+        if (item.iName) {
+          item.iName = BaseImageURL + item.iName; // Update the imagePath
+        }
+        return item
+      });
+      console.log(this.itemImages);
+
+    })
+  }
+
+
+  imageUrl: string | ArrayBuffer | null = null; // To hold the image URL
+  @ViewChild('fileInput', { static: false }) fileInput!: ElementRef;
+  triggerFileInput() {
+    console.log("clicked");
+    console.log(this.fileInput);
+
+    if (this.fileInput) {
+      this.fileInput.nativeElement.click(); // Programmatically click the file input
+    }
+  }
+
+
+  onFileSelected(event: Event) {
+    const target = event.target as HTMLInputElement;
+    if (target.files && target.files.length > 0) {
+      const file = target.files[0];
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        this.imageUrl = e.target?.result ?? null; // Ensure that the result is not undefined
+        this.createItemImage()
+      };
+
+      reader.readAsDataURL(file); // Convert the file to a base64 URL
+    }
+    console.log(this.imageUrl);
+
+  }
+
+  addImageLoader = false
+  createItemImage() {
+    if (this.imageUrl) {
+      this.addImageLoader = true
+      let data: CreateImageDTO = {
+        masterId: this.item?.itemId!,
+        masterType: MasterType.imageMaster,
+        iName: this.item?.iName!,
+        iType: '',
+        iurl: this.imageUrl as string,
+        actionUser: this.User.userId.toString(),
+        isDefault: 0
+      }
+      this.imageMasterService.CreateImage(data).subscribe({
+        next: (res) => {
+          this.addImageLoader = false
+          this.getItemImages(this.item?.itemId!)
+        },
+        error: (err) => {
+          this.addImageLoader = false
+        }
+      }
+      )
+
+
+    }
+  }
+
+  deleteImage(imageId: number) {
+    this.confirmModal.openDeleteModal('', imageId).subscribe(res => {
+      if (res) {
+        let data: DeleteImageDTO = {
+          imageId: imageId,
+          actionUser: this.User.userId.toString()
+        }
+        this.imageMasterService.DeleteImage(data).subscribe(res => {
+          this.getItemImages(this.item?.itemId!)
+        })
+
       } else {
         console.log('no res');
       }

@@ -28,7 +28,18 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.authService.isAuthenticated()) {
-      this.router.navigate(['/']);
+      this.authService.validateToken().subscribe(
+        {
+          next: (res) => {
+            this.authService.saveUserData(res)
+            this.loader.disable()
+            this.router.navigate(['/'])
+          },
+          error: (err) => {
+            this.loader.disable()
+          }
+        }
+      )
     }
   }
 

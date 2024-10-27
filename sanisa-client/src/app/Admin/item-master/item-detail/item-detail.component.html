@@ -1,42 +1,35 @@
 <div class="row border p-3 rounded">
     <div class="col-lg-4 ps-0">
         <div class="tab-content" id="preview-thumbnail">
-            <div class="tab-pane fade show active" id="pic1-tab-pane" role="tabpanel" aria-labelledby="pic1-tab"
-                tabindex="0">
-                <img class="preview-thumbnail-img"
-                    src="../../../../assets/images/products/Catelogue_240805_234540.pdf-image-023.jpg" />
-            </div>
-            <div class="tab-pane fade" id="pic2-tab-pane" role="tabpanel" aria-labelledby="pic2-tab" tabindex="0">
-                <img class="preview-thumbnail-img"
-                    src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-044.jpg" />
-            </div>
-            <div class="tab-pane fade" id="pic3-tab-pane" role="tabpanel" aria-labelledby="pic3-tab" tabindex="0">
-                <img class="preview-thumbnail-img"
-                    src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-049.jpg" />
+            <div *ngFor="let image of itemImages" class="tab-pane fade d-flex justify-content-center" [ngClass]="{'show active': image.isDefault == 1}" [attr.id]="image.imageId"
+                role="tabpanel" [attr.aria-labelledby]="'pic-' + image.imageId + '-tab'" tabindex="0">
+                <img class="preview-thumbnail-img" [src]="image.iName" alt="Image preview" />
             </div>
         </div>
         <ul class="nav nav-tabs border-0 preview-pic justify-content-center" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <span class="nav-link active" id="pic1-tab" data-bs-toggle="tab" data-bs-target="#pic1-tab-pane"
-                    type="button" role="tab" aria-controls="pic1-tab-pane" aria-selected="true">
-                    <img src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-023.jpg" />
+
+
+            <li class="nav-item" role="presentation" *ngFor="let image of itemImages">
+                <span class="nav-link" [ngClass]="{'active': image.isDefault == 1}" id="pic1-tab"
+                      data-bs-toggle="tab" [attr.data-bs-target]="'#' + image.imageId" type="button" role="tab"
+                      [attr.aria-controls]="image.imageId" aria-selected="true">
+                    <img [src]="image.iName" alt="Item image" />
+                    <!-- <button class="delete-btn" (click)="deleteImage(image.imageId)">&#10005;</button> -->
                 </span>
             </li>
-            <li class="nav-item" role="presentation">
-                <span class="nav-link" id="pic2-tab" data-bs-toggle="tab" data-bs-target="#pic2-tab-pane" type="button"
-                    role="tab" aria-controls="pic2-tab-pane" aria-selected="false">
-                    <img src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-044.jpg" />
-                </span>
-            </li>
-            <li class="nav-item" role="presentation">
-                <span class="nav-link" id="pic3-tab" data-bs-toggle="tab" data-bs-target="#pic3-tab-pane" type="button"
-                    role="tab" aria-controls="pic3-tab-pane" aria-selected="false">
-                    <img src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-049.jpg" />
-                </span>
+            
+            
+            <li class="nav-item border d-flex justify-content-center align-items-center" style="cursor: pointer;" (click)="triggerFileInput()"
+                style="width: 50px; padding: 10px 0;">
+                <i class="bi bi-plus-lg m-0" style="font-weight: bold;" style="cursor: pointer;" *ngIf="!addImageLoader"></i>
+                <div class="spinner-border" role="status" *ngIf="addImageLoader">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
             </li>
 
         </ul>
     </div>
+
     <div class="col-lg-6">
         <div class="productDetail">
             <span class="category">{{item?.iType}}</span>
@@ -68,68 +61,81 @@
     </div>
     <div class="col-lg-2">
         <div class="col-md-12">
-            <label>Category</label>
-            <div class="dropdown">
-                <a class="bi bi-plus-circle-fill dropdown-toggle" role="button" id="dropdownMenuLink"
-                    data-bs-toggle="dropdown" aria-expanded="false"></a>
+            <div class="d-flex">
+                <label>Category</label>
+                <div class="dropdown">
+                    <a class="bi bi-plus-circle-fill dropdown-toggle" role="button" id="dropdownMenuLink"
+                        data-bs-toggle="dropdown" aria-expanded="false"></a>
 
-                <div class="dropdown-menu p-2" aria-labelledby="dropdownMenuLink">
-                    Add Categories
-                    <input type="text" placeholder="Search Category" class="form-control form-control-sm"
-                        (input)="categoryFilterChange($event)">
-                    <ul style="height: 150px; overflow-y: scroll; width: 100%; padding-left: 0px;">
-                        <li *ngFor="let category of filteredCategoryList">
-                            <div>
-                                <input type="checkbox" (change)="categoryChange($event,category)"
-                                    [checked]="categoryChecked(category)">
-                                <span>
-                                    {{category.cName}}
-                                </span>
+                    <div class="dropdown-menu p-2" aria-labelledby="dropdownMenuLink">
+                        Add Categories
+                        <input type="text" placeholder="Search Category" class="form-control form-control-sm"
+                            (input)="categoryFilterChange($event)">
+                        <ul style="height: 150px; overflow-y: scroll; width: 100%; padding-left: 0px;">
+                            <li *ngFor="let category of filteredCategoryList">
+                                <div>
+                                    <input type="checkbox" (change)="categoryChange($event,category)"
+                                        [checked]="categoryChecked(category)">
+                                    <span>
+                                        {{category.cName}}
+                                    </span>
 
-                            </div>
-                        </li>
-                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div>
-                <span class="badge rounded-pill bg-secondary"
-                    *ngFor="let category of itemCategories">{{getCategoryNameByCategoryId(category.categoryId)?.cName}} <i
-                        class="bi bi-x-circle" style="margin-left: 5px;" (click)="removeCategory(category)"></i> </span>
+                <span class="badge rounded-pill bg-secondary" *ngFor="let category of itemCategories">
+                    <p>
+                        {{getCategoryNameByCategoryId(category.categoryId)?.cName}}
+                    </p>
+                    <i class="bi bi-x-circle" style="margin-left: 5px;" (click)="removeCategory(category)"></i>
+                </span>
             </div>
         </div>
         <div class="col-md-12 mt-5">
-            <label>Events</label>
-            <div class="dropdown">
-                <a class="bi bi-plus-circle-fill dropdown-toggle" role="button" id="dropdownMenuLink"
-                    data-bs-toggle="dropdown" aria-expanded="false"></a>
+            <div class="d-flex">
+                <label>Events</label>
+                <div class="dropdown">
+                    <a class="bi bi-plus-circle-fill dropdown-toggle" role="button" id="dropdownMenuLink"
+                        data-bs-toggle="dropdown" aria-expanded="false"></a>
 
-                <div class="dropdown-menu p-2" aria-labelledby="dropdownMenuLink">
-                    Add Events
-                    <input type="text" placeholder="Search Events" class="form-control form-control-sm"
-                        (input)="eventFilterChange($event)">
-                    <ul style="height: 150px; overflow-y: scroll; width: 100%; padding-left: 0px;">
-                        <li *ngFor="let event of filteredEventList">
-                            <div>
-                                <input type="checkbox" (change)="eventChange($event,event)"
-                                    [checked]="eventChecked(event)">
-                                <span>
-                                    {{event.eventName}}
-                                </span>
+                    <div class="dropdown-menu p-2" aria-labelledby="dropdownMenuLink">
+                        Add Events
+                        <input type="text" placeholder="Search Events" class="form-control form-control-sm"
+                            (input)="eventFilterChange($event)">
+                        <ul style="height: 150px; overflow-y: scroll; width: 100%; padding-left: 0px;">
+                            <li *ngFor="let event of filteredEventList">
+                                <div>
+                                    <input type="checkbox" (change)="eventChange($event,event)"
+                                        [checked]="eventChecked(event)">
+                                    <span>
+                                        {{event.eventName}}
+                                    </span>
 
-                            </div>
-                        </li>
-                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div>
-                <span class="badge rounded-pill bg-primary"
-                    *ngFor="let event of itemEvents">{{getEventNameByEventId(event.eventId)?.eventName}} <i
-                        class="bi bi-x-circle" style="margin-left: 5px;" (click)="removeEvent(event)"></i> </span>
+                <span class="badge rounded-pill bg-primary" *ngFor="let event of itemEvents">
+                    <p>
+                        {{getEventNameByEventId(event.eventId)?.eventName}}
+                    </p>
+                    <i class="bi bi-x-circle" style="margin-left: 5px;" (click)="removeEvent(event)"></i>
+                </span>
             </div>
         </div>
     </div>
 </div>
-
+<!-- NOT TO BE VISIBLE ON REGULAR PAGE -->
+<input type="file" id="cItemImage" class="form-control form-control-sm" style="display: none;"
+    (change)="onFileSelected($event)" #fileInput>
+<!-- NOT TO BE VISIBLE ON REGULAR PAGE -->
 
 
 <div class="productDetailsTabs mt-5">
@@ -159,36 +165,25 @@
     </ul>
     <div class="tab-content p-3" id="myTabContent">
         <!-- tab pane -->
-        <div class="tab-pane fade active show" id="product-tab-pane" role="tabpanel" aria-labelledby="product-tab"
+        <div class=" fade active show" id="product-tab-pane" role="tabpanel" aria-labelledby="product-tab"
             tabindex="0">
             <div class="my-8">
-                <div class="mb-3">
-                    <!-- text -->
-                    <h6 class="mb-1 font-weight-600">Nutrient Value &amp; Benefits</h6>
+                <div class="mb-5">
                     <p class="mb-0">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisi, tellus iaculis urna
-                        bibendum in lacus, integer. Id imperdiet vitae varius sed magnis eu nisi nunc
-                        sit. Vel, varius habitant ornare ac rhoncus. Consequat risus facilisis ante ipsum
-                        netus risus adipiscing sagittis sed. Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit.
+                        {{item?.iDesc}}
                     </p>
                 </div>
-                <div class="mb-3">
+                <div class="mb-5">
                     <h6 class="mb-1 font-weight-600">Storage Tips</h6>
                     <p class="mb-0">
-                        Nisi, tellus iaculis urna bibendum in lacus, integer. Id imperdiet vitae varius sed
-                        magnis eu nisi nunc sit. Vel, varius habitant ornare ac rhoncus. Consequat risus
-                        facilisis ante ipsum netus risus adipiscing sagittis sed.Lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit.
+                        
                     </p>
                 </div>
-                <!-- content -->
 
-                <div>
+                <div class="mb-5">
                     <h6 class="mb-1 font-weight-600">Disclaimer</h6>
                     <p class="mb-0">
-                        Image shown is a representation and may slightly vary from the actual product. Every
-                        effort is made to maintain accuracy of all information displayed.
+                        
                     </p>
                 </div>
             </div>

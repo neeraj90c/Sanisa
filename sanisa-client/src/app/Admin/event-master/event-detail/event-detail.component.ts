@@ -64,6 +64,7 @@ export class EventDetailComponent implements OnInit{
     this.getItemsByEvent(eventId)
   }
   openItemForm(templateRef: TemplateRef<any>) {
+    this.itemList = []
     this.itemFormModal = this.modalService.open(templateRef, { size: 'md' })
   }
 

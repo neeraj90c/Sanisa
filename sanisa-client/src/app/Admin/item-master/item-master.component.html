@@ -7,25 +7,18 @@
 </div>
 
 <div class="tableHeader mb-3 d-flex flex-wrap gap-1 justify-content-between align-item-center">
-    <app-pagination [EnablePageSize]="true"></app-pagination>
+
+    <app-pagination [EnablePageSize]="true" [rowData]="ItemList"
+    (pageSizeChanged)="handlePageSizeChange($event)"></app-pagination>
     <div class="d-flex align-items-center gap-2 my-2">
         <input type="search" class="form-control form-control-sm" placeholder="Search Products....">
         <select name="example_length" class="dropdown-toggle form-select form-select-sm" placeholder="Brand">
             <option [ngValue]="brand.brandId" *ngFor="let brand of BrandList">{{brand.bName}}</option>
         </select>
     </div>
+
 </div>
 
-<!-- <div class="item-grid mt-4">
-    <div class="item-card" *ngFor="let item of ItemList">
-        <img src="../../../assets/images/products/Catelogue_240805_234540.pdf-image-016.jpg" alt="Item 1" class="item-image">
-        <div class="item-details">
-            <h2 class="item-name">{{item.iName}}</h2>
-            <p class="item-category">{{item.iType}}</p>
-            <p class="item-price">{{item.mrpPrinted}} 1000$</p>
-        </div>
-    </div>
-</div> -->
 
 
 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-5 g-4" *ngIf="!loading">
@@ -34,14 +27,16 @@
             <div class="product-grid text-start">
                 <div class="product-image">
                     <span class="image">
-                        <img [width]="100" [src]="item.imagePath?item.imagePath : '../../../assets/images/products/Catelogue_240805_234540.pdf-image-049.jpg'"
+                        <img [width]="100"
+                            [src]="item.imagePath?item.imagePath : '../../../assets/images/products/Catelogue_240805_234540.pdf-image-049.jpg'"
                             class="pic-1">
                     </span>
                 </div>
-                <div class="product-content"><span class="category"><a>Roasted Crispies</a></span>
+                <div class="product-content"><span class="category"><a>{{item.iType}}</a></span>
                     <h3 class="title"><a>{{item.iName}}</a></h3>
                     <div class="d-flex justify-content-between align-item-center">
-                        <div class="price">MRP : {{getItemPriceByItemId(item.itemId)?.mrp|currency:'INR':'symbol':'1.2-2'}}</div>
+                        <div class="price">MRP :
+                            {{getItemPriceByItemId(item.itemId)?.mrp|currency:'INR':'symbol':'1.2-2'}}</div>
                     </div>
                 </div>
                 <div class="d-flex align-item-center gap-2 p-2">
@@ -55,7 +50,7 @@
                 </div>
                 <div class="p-2">
                     <button class="btn btn-sm btn-outline-secondary text-success w-100"
-                    [routerLink]="['./'+item.itemId]"><i class="bi bi-eye"></i>
+                        [routerLink]="['./'+item.itemId]"><i class="bi bi-eye"></i>
                         View
                     </button>
                 </div>
@@ -63,6 +58,8 @@
         </div>
     </div>
 </div>
+<app-pagination [EnableNavigation]="true" [rowData]="ItemList"
+(pageSizeChanged)="handlePageSizeChange($event)"></app-pagination>
 
 <!-- NOT TO BE VISIBLE ON REGULAR PAGE -->
 <input type="file" id="cItemImage" class="form-control form-control-sm" style="display: none;"
@@ -169,8 +166,10 @@
                                 <label for="packaging">Packaging</label>
                                 <select id="packaging" name="packaging" class="form-select form-select-sm"
                                     formControlName="packingId">
-                                    <option value="0" selected>Select Packaging</option><span class="text-danger h6">*</span>
-                                    <option [ngValue]="package.packagingId" *ngFor="let package of PackageList">{{package.pName}}</option>
+                                    <option value="0" selected>Select Packaging</option><span
+                                        class="text-danger h6">*</span>
+                                    <option [ngValue]="package.packagingId" *ngFor="let package of PackageList">
+                                        {{package.pName}}</option>
                                 </select>
                             </div>
                         </div>
@@ -433,5 +432,3 @@
             class="btn btn-sm btn-primary">Submit</button>
     </div>
 </ng-template>
-
-

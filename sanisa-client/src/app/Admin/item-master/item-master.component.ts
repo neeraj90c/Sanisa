@@ -20,6 +20,7 @@ import { CreateItemPriceDTO, ItemPriceDTO, UpdateItemPriceDTO } from './item-pri
 import { ItemPriceService } from './item-price.service';
 import { PackagingMasterService } from '../packaging-master/packaging-master.service';
 import { PackagingDTO } from '../packaging-master/packaging-master.interface';
+import { MasterType } from 'src/app/Common/master-type.enum';
 
 @Component({
   selector: 'app-item-master',
@@ -92,19 +93,25 @@ export class ItemMasterComponent implements OnInit {
     this.getAllBrandList()
     this.getAllPackagingList()
     this.getAllItemPrice()
-    let currentParams = this.route.snapshot.queryParams
-    if (Object.keys(currentParams).length === 0) {
-      this.router.navigate(['.'], {
-        queryParams: { pageNo: this.ReadAllDTO.pageNo, pageSize: this.ReadAllDTO.pageSize },
-        relativeTo: this.route,
-        replaceUrl: true // Replaces the current URL in the history
-      })
-    } else {
-      this.ReadAllDTO.pageSize = currentParams['pageSize']
-      this.ReadAllDTO.pageNo = currentParams['pageNo']
 
-    }
-    this.getItemListPaginated(this.ReadAllDTO)
+    this.route.queryParams.subscribe(currentParams => {
+      if (Object.keys(currentParams).length === 0) {
+        this.router.navigate(['.'], {
+          queryParams: { pageNo: this.ReadAllDTO.pageNo, pageSize: this.ReadAllDTO.pageSize },
+          relativeTo: this.route,
+          replaceUrl: true // Replaces the current URL in the history
+        })
+      } else {
+        this.ReadAllDTO.pageSize = currentParams['pageSize']
+        this.ReadAllDTO.pageNo = currentParams['pageNo']
+
+      }
+      this.getItemListPaginated(this.ReadAllDTO)
+
+    })
+
+
+
   }
 
   getItemListPaginated(ReadAllDTO: ReadAllItemsPaginatedDTO) {
@@ -115,7 +122,6 @@ export class ItemMasterComponent implements OnInit {
       this.ItemList.map(item => {
         if (item.imagePath) {
           item.imagePath = BaseImageURL + item.imagePath; // Update the imagePath
-          console.log(item.imagePath);
         }
         return item
       });
@@ -148,7 +154,7 @@ export class ItemMasterComponent implements OnInit {
         actionUser: this.User.userId.toString()
       }
       this.createITemPrice(itemPrice)
-      this.createItemImage(res) 
+      this.createItemImage(res)
       this.router.navigate([res.itemId], { relativeTo: this.route });
 
     })
@@ -163,7 +169,7 @@ export class ItemMasterComponent implements OnInit {
     })
   }
 
-  updateItemPrice(data:UpdateItemPriceDTO){
+  updateItemPrice(data: UpdateItemPriceDTO) {
     this.loader.enable()
     this.itemPriceService.UpdateItemPrice(data).subscribe(res => {
       this.getAllItemPrice()
@@ -209,7 +215,7 @@ export class ItemMasterComponent implements OnInit {
         let data: UpdateItemDTO = this.ItemForm.value as UpdateItemDTO
         console.log(data);
         this.updateItem(data)
-        if(this.ItemPriceForm.value.priceId){
+        if (this.ItemPriceForm.value.priceId) {
           let data: UpdateItemPriceDTO = this.ItemPriceForm.value as UpdateItemPriceDTO
           this.updateItemPrice(data)
         }
@@ -324,7 +330,7 @@ export class ItemMasterComponent implements OnInit {
     if (this.imageUrl) {
       let data: CreateImageDTO = {
         masterId: itemdata.itemId,
-        masterType: 1,
+        masterType: MasterType.imageMaster,
         iName: itemdata.iName,
         iType: '',
         iurl: this.imageUrl as string,
@@ -345,6 +351,18 @@ export class ItemMasterComponent implements OnInit {
   getItemPriceByItemId(itemId: number): ItemPriceDTO | null {
     let itemPrice = this.ItemPrices.find(i => i.itemId == itemId)
     return itemPrice ? itemPrice : null
+  }
+
+
+  handlePageSizeChange(e: { currentPage: number; pageSize: number; }) {
+    this.ReadAllDTO.pageNo = e.currentPage
+    this.ReadAllDTO.pageSize = e.pageSize
+    this.router.navigate(['.'], {
+      relativeTo: this.route,
+      queryParams: { pageNo: this.ReadAllDTO.pageNo, pageSize: this.ReadAllDTO.pageSize },
+      queryParamsHandling: 'merge', // Use 'merge' to merge with existing query parameters
+    });
+    this.getItemListPaginated(this.ReadAllDTO)
   }
 
   ngOnDestroy() {

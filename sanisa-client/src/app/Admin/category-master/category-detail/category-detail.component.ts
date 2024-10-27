@@ -64,6 +64,7 @@ export class CategoryDetailComponent implements OnInit {
     this.getItemsByCategory(categoryId)
   }
   openItemForm(templateRef: TemplateRef<any>) {
+    this.itemList = []
     this.itemFormModal = this.modalService.open(templateRef, { size: 'md' })
   }
 
