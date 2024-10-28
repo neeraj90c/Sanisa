@@ -39,7 +39,7 @@
                     </td> -->
                     <td>{{kit.kCode}}</td>
                     <td>{{kit.kDescription}}</td>
-                    <td>{{kit.price}}</td>
+                    <td>{{kit.price|currency:'INR':'symbol':'1.2-2'}}</td>
                     <td>
                         <div class="dataTableicon d-flex align-items-center justify-content-around">
                             <a class="bi bi-trash" (click)="deleteKit(kit)"></a>
