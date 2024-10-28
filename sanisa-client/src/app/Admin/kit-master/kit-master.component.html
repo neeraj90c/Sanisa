@@ -11,10 +11,11 @@
             <thead>
                 <tr>
                     <th style="width:2%">Sr No</th>
-                    <th style="width:21%">Kit Name</th>
-                    <th style="width:21%">Image</th>
-                    <th style="width:22%">Code</th>
-                    <th style="width:22%">Description</th>
+                    <th style="width:12%">Kit Name</th>
+                    <!-- <th style="width:21%">Image</th> -->
+                    <th style="width:18%">Code</th>
+                    <th style="width:18%">Description</th>
+                    <th style="width:18%">Price</th>
                     <th style="width:8%"></th>
                 </tr>
             </thead>
@@ -31,13 +32,14 @@
                             {{kit.kName}}
                         </div>
                     </td>
-                    <td>
+                    <!-- <td>
                         <div class="w-100 text-center">
                             <img src="../../../assets/images/kitReference.png" alt="" width="150px">
                         </div>
-                    </td>
+                    </td> -->
                     <td>{{kit.kCode}}</td>
                     <td>{{kit.kDescription}}</td>
+                    <td>{{kit.price}}</td>
                     <td>
                         <div class="dataTableicon d-flex align-items-center justify-content-around">
                             <a class="bi bi-trash" (click)="deleteKit(kit)"></a>
@@ -106,6 +108,12 @@
                     <div class="form-group">
                         <label class="label font-sb mb-1">Description<span style="color: red;">*</span></label>
                         <textarea type="text" class="form-control" rows="6" formControlName="kDescription"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="label font-sb mb-1">Price<span style="color: red;">*</span></label>
+                        <input type="number" class="form-control form-control-sm" formControlName="price">
                     </div>
                 </div>
             </div>

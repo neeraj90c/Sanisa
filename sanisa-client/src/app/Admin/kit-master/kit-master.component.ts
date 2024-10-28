@@ -23,7 +23,7 @@ export class KitMasterComponent implements OnInit {
   @ViewChild('kitForm', { static: false }) kitFormRef!: ElementRef;
   kitFormModal!: NgbModalRef;
   kitList: KitMasterDTO[] = []
-  loading:boolean = true
+  loading: boolean = true
 
   ReadAllDTO: ReadAllKitPaginatedDTO = {
     rowNum: 0,
@@ -39,6 +39,7 @@ export class KitMasterComponent implements OnInit {
     kCode: new FormControl(''),
     kName: new FormControl('', [Validators.required]),
     kDescription: new FormControl(''),
+    price: new FormControl(0),
     isActive: new FormControl(0),
     actionUser: new FormControl('')
   })
@@ -136,7 +137,8 @@ export class KitMasterComponent implements OnInit {
           kitId: formdata.kitId as number,
           kCode: formdata.kCode as string,
           kName: formdata.kName as string,
-          kDescription: formdata.kDescription as string
+          kDescription: formdata.kDescription as string,
+          price: formdata.price as number
         }
         this.updateKit(data)
       } else {
@@ -145,7 +147,8 @@ export class KitMasterComponent implements OnInit {
           actionUser: this.User.userId.toString(),
           kCode: formdata.kCode as string,
           kName: formdata.kName as string,
-          kDescription: formdata.kDescription as string
+          kDescription: formdata.kDescription as string,
+          price: formdata.price as number
         }
         this.createKit(data)
       }

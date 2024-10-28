@@ -2,6 +2,7 @@ export interface CreateKitDTO {
     kCode: string,
     kName: string,
     kDescription: string,
+    price: number,
     actionUser: string
 }
 
@@ -11,6 +12,7 @@ export interface UpdateKitDTO {
     kCode: string,
     kName: string,
     kDescription: string,
+    price: number,
     isActive: number,
     actionUser: string
 }
@@ -34,6 +36,7 @@ export interface KitMasterDTO extends ReadAllKitPaginatedDTO {
     kCode: string,
     kName: string,
     kDescription: string,
+    price: number,
     isActive: number,
     isDeleted: number,
     createdBy: string,
