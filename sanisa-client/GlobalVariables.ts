@@ -156,9 +156,9 @@ export const ReadAllProductCombosPaginated = ProductComboMaster_BaseURL + 'ReadA
 //#region ComboDetail API
 export const CreateComboDetail = ComboDetail_BaseURL + 'Create'
 export const UpdateComboDetail = ComboDetail_BaseURL + 'Update'
-export const ReadComboByDetailId = ComboDetail_BaseURL + 'ReadById'
-export const ReadDetailsByComboId = ComboDetail_BaseURL + 'ReadByComboId'
 export const DeleteComboDetail = ComboDetail_BaseURL + 'Delete'
+export const ReadComboDetailByDetailId = ComboDetail_BaseURL + 'ReadByDetailId'
+export const ReadDetailsByComboId = ComboDetail_BaseURL + 'ReadByComboId'
 export const ReadAllComboDetails = ComboDetail_BaseURL + 'ReadAll'
 //#endregion
 

@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="col-lg-9" style="height: 100%;">         
-            <div class="kitItemsBox" >
+            <div class="kitItemsBox" *ngIf="!loading">
 
                 <div class="row">
                     <div class="col-lg-6" *ngFor="let item of kitItems">
@@ -69,6 +69,13 @@
                     </div>
                 </div>
                 
+            </div>
+            <div class="d-flex justify-content-center align-items-center" style="height:500px" *ngIf="loading">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <span class="status">Loading...</span>
+    
             </div>
     </div>
 </div>

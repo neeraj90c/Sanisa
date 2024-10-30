@@ -35,6 +35,7 @@ export class KitDetailsComponent implements OnInit {
   private modalService = inject(NgbModal)
   itemList: ItemMaster[] = []
   private searchSubject = new Subject<string>();
+  loading: boolean = true
 
 
   KitItemForm = new FormGroup({
@@ -84,6 +85,7 @@ export class KitDetailsComponent implements OnInit {
   }
 
   GetItemsByKitId(kitId: number) {
+    this.loading = true
     this.itemMasterServcie.ReadItemByKitId({ kitId }).subscribe(res => {
       this.kitItems = res.items
       this.kitItems.map(item => {
@@ -92,6 +94,8 @@ export class KitDetailsComponent implements OnInit {
         }
         return item
       });
+    this.loading = false
+
     })
   }
 
