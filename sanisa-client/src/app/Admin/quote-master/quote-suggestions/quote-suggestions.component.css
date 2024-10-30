@@ -1,0 +1,12 @@
+.comboList{
+    padding: 14px 5px;
+    border: 1px solid #eaeaea;
+    border-radius: 5px;
+    margin: 5px 0px;
+}
+.comboItemList{height: 223px; overflow-y: scroll;}
+
+.suggestions .card {border: 1px solid #eaeaea !important;}
+.suggestions  .card-header{border-bottom: 1px solid #eaeaea !important; border-radius: 0%; }
+.suggestions .card:hover .editcomboName{opacity: 1; transition: 0.3s opacity ease-in;}
+.editcomboName{opacity: 0; cursor: pointer; font-size: 15px; margin-left: 5px;}
