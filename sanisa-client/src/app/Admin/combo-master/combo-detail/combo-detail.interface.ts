@@ -1,26 +1,27 @@
-import { ReadAllDTO } from "src/app/Common/common.interface"
-
-export interface CreateKitDetailDTO {
-    kitId: number,
+export interface CreateComboDetailDTO{
+    comboId:number
+    itemType: number,
     itemId: number,
     remarks: string,
     actionUser: string
 }
-export interface UpdateKitDetailDTO {
+export interface UpdateComboDetailDTO{
     detailId: number,
-    kitId: number,
+    comboId: number,
+    itemType: number,
     itemId: number,
     remarks: string,
     isActive: number,
     actionUser: string
 }
-export interface DeleteKitDetailDTO {
+export interface DeleteComboDetailDTO{
     detailId: number,
     actionUser: string
 }
-export interface KitDetailsDTO {
+export interface ComboDetailsDTO {
     detailId: number,
-    kitId: number,
+    comboId: number,
+    itemType: number,
     itemId: number,
     remarks: string,
     isActive: number,
@@ -30,6 +31,6 @@ export interface KitDetailsDTO {
     modifiedBy: string,
     modifiedOn: Date,
 }
-export interface KitItemList {
-    items: KitDetailsDTO[]
+export interface ComboItemList{
+    items: ComboDetailsDTO[]
 }

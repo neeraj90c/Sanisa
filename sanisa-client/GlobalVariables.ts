@@ -24,6 +24,7 @@ const ItemPrice_BaseURL: string = Sanisa_BaseURL + 'ITPR/'
 const KitMaster_BaseURL: string = Sanisa_BaseURL + 'KITM/'
 const KitDetail_BaseURL: string = Sanisa_BaseURL + 'KITD/'
 const ProductComboMaster_BaseURL: string = Sanisa_BaseURL + 'PRCO/'
+const ComboDetail_BaseURL: string = Sanisa_BaseURL + 'CODT/'
 const PackagingMaster_BaseURL: string = Sanisa_BaseURL + 'PCM/'
 const QuoteMaster_BaseURL: string = Sanisa_BaseURL + 'QUMT/'
 const CategoryMaster_BaseURL: string = Sanisa_BaseURL + 'CTM/'
@@ -105,6 +106,7 @@ export const CreateItem = ItemMaster_BaseURL + 'Create'
 export const UpdateItem = ItemMaster_BaseURL + 'Update'
 export const ReadItemById = ItemMaster_BaseURL + 'ReadById'
 export const ReadItemByKitId = ItemMaster_BaseURL + 'ReadByKitId'
+export const ReadItemByComboId= ItemMaster_BaseURL + 'ReadByComboId'
 export const DeleteItem = ItemMaster_BaseURL + 'Delete'
 export const SearchItemByName = ItemMaster_BaseURL + 'SearchByName'
 export const ReadByCategoryId = ItemMaster_BaseURL + 'ReadByCategoryId'
@@ -148,6 +150,16 @@ export const UpdateProductCombo = ProductComboMaster_BaseURL + 'Update'
 export const ReadComboByComboId = ProductComboMaster_BaseURL + 'ReadById'
 export const DeleteProductCombo = ProductComboMaster_BaseURL + 'Delete'
 export const ReadAllProductCombos = ProductComboMaster_BaseURL + 'ReadAll'
+export const ReadAllProductCombosPaginated = ProductComboMaster_BaseURL + 'ReadAllPaginated'
+//#endregion
+
+//#region ComboDetail API
+export const CreateComboDetail = ComboDetail_BaseURL + 'Create'
+export const UpdateComboDetail = ComboDetail_BaseURL + 'Update'
+export const ReadComboByDetailId = ComboDetail_BaseURL + 'ReadById'
+export const ReadDetailsByComboId = ComboDetail_BaseURL + 'ReadByComboId'
+export const DeleteComboDetail = ComboDetail_BaseURL + 'Delete'
+export const ReadAllComboDetails = ComboDetail_BaseURL + 'ReadAll'
 //#endregion
 
 

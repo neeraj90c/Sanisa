@@ -1,3 +1,4 @@
 export enum MasterType {
-    imageMaster = 1,
+    itemMaster = 1,
+    kitMaster = 2
 }

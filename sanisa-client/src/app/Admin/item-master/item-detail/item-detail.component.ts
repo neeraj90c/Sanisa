@@ -234,7 +234,7 @@ export class ItemDetailComponent {
   getItemImages(itemId: number) {
     let data: ReadByMasterIdDTO = {
       masterId: itemId,
-      masterType: MasterType.imageMaster
+      masterType: MasterType.itemMaster
     }
     this.imageMasterService.ReadImageByMasterId(data).subscribe(res => {
       this.itemImages = res.items.map(item => {
@@ -284,7 +284,7 @@ export class ItemDetailComponent {
       this.addImageLoader = true
       let data: CreateImageDTO = {
         masterId: this.item?.itemId!,
-        masterType: MasterType.imageMaster,
+        masterType: MasterType.itemMaster,
         iName: this.item?.iName!,
         iType: '',
         iurl: this.imageUrl as string,

@@ -4,8 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmmodalserviceService } from 'src/app/shared/confirm-delete-modal/confirmmodalservice.service';
 import { AuthService } from 'src/app/Common/Authentication/auth.service';
-import { ComboMasterDTO, CreateComboDTO, DeleteComboDTO, ReadAllComboPaginatedDTO, UpdateComboDTO } from './combo-master.interface';
+import { ComboMasterDTO, CreateComboDTO, DeleteComboDTO, UpdateComboDTO } from './combo-master.interface';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ReadAllDTO } from 'src/app/Common/common.interface';
 
 @Component({
   selector: 'app-combo-master',
@@ -26,7 +27,7 @@ export class ComboMasterComponent {
   comboList: ComboMasterDTO[] = []
   loading: boolean = true
 
-  ReadAllDTO: ReadAllComboPaginatedDTO = {
+  ReadAllDTO: ReadAllDTO = {
     rowNum: 0,
     totalCount: 0,
     whereClause: '',
@@ -91,9 +92,9 @@ export class ComboMasterComponent {
 
 
 
-  getcomboListPaginated(data: ReadAllComboPaginatedDTO) {
+  getcomboListPaginated(data: ReadAllDTO) {
     this.loading = true
-    this.comboMasterService.ReadAllProductCombos().subscribe(res => {
+    this.comboMasterService.ReadAllProductCombosPaginated(data).subscribe(res => {
       this.comboList = res.items
       this.loading = false
     })

@@ -330,7 +330,7 @@ export class ItemMasterComponent implements OnInit {
     if (this.imageUrl) {
       let data: CreateImageDTO = {
         masterId: itemdata.itemId,
-        masterType: MasterType.imageMaster,
+        masterType: MasterType.itemMaster,
         iName: itemdata.iName,
         iType: '',
         iurl: this.imageUrl as string,

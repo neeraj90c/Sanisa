@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ComboList, ComboMasterDTO, CreateComboDTO, DeleteComboDTO, UpdateComboDTO } from './combo-master.interface';
-import { CreateProductCombo, DeleteProductCombo, ReadAllProductCombos, ReadComboByComboId, UpdateProductCombo } from 'GlobalVariables';
+import { CreateProductCombo, DeleteProductCombo, ReadAllProductCombos, ReadComboByComboId, UpdateProductCombo, ReadAllProductCombosPaginated } from 'GlobalVariables';
+import { ReadAllDTO } from 'src/app/Common/common.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +27,8 @@ export class ComboMasterService {
   }
   ReadAllProductCombos(): Observable<ComboList> {
     return this.http.get<ComboList>(ReadAllProductCombos)
+  }
+  ReadAllProductCombosPaginated(data:ReadAllDTO): Observable<ComboList> {
+    return this.http.post<ComboList>(ReadAllProductCombosPaginated,data)
   }
 }

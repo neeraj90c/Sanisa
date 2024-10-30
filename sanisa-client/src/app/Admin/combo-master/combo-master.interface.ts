@@ -1,3 +1,5 @@
+import { ReadAllDTO } from "src/app/Common/common.interface"
+
 export interface CreateComboDTO {
     cCode: string,
     cName: string,
@@ -21,24 +23,19 @@ export interface DeleteComboDTO {
     actionUser: string
 }
 
-export interface ComboMasterDTO {
+export interface ComboMasterDTO extends ReadAllDTO {
     comboId: number,
     cCode: string,
     cName: string,
     cDescription: string,
     creationType: string,
+    itemCount: number,
     isActive: number,
     isDeleted: number,
     createdBy: string,
     createdOn: Date,
     modifiedBy: number,
-    modifiedOn: Date,
-    pageNo: number,
-    pageSize: number,
-    rowNum: number,
-    totalCount: number,
-    whereClause: string,
-    orderByClause: string
+    modifiedOn: Date
 
 }
 
@@ -46,11 +43,3 @@ export interface ComboList {
     items: ComboMasterDTO[]
 }
 
-export interface ReadAllComboPaginatedDTO {
-    rowNum: number,
-    totalCount: number,
-    whereClause: string,
-    orderByClause: string,
-    pageSize: number,
-    pageNo: number
-}
