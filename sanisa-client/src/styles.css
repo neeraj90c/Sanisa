@@ -1536,3 +1536,8 @@ tr{
   .comboDetailCard img{height: 190px; border-radius: 10px;}
   .comboItemCard img{height: 100px; width: 100px; border-radius: 10px;}
   .custom-file-upload{cursor: pointer;  border: 1px dashed #eb793e !important;  background: #fff9f5;}
+
+
+
+/* *****************Kit Detsils******************* */
+  .kitItemsBox{height: 80vh; overflow-x: hidden; overflow-y: scroll;}

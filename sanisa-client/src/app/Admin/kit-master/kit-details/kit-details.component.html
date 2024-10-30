@@ -1,64 +1,75 @@
-<div class="row bg-white" style="height: 100%;">
-    <div class="col-lg-3 p-3 card">
-        <img src="../../../../assets/images/kitReference.png" class="card-img-top" alt="...">
-        <div class="card-body text-center">
+
+<app-page-header Heading="Manage Kit Items">
+    <div class="btn btn-sm btn-primary" (click)="openItemForm(kitITemForm)">Add New Item</div>
+</app-page-header>
+<div class="row bg-white mt-3" style="height: 100%;">
+
+    <div class="col-lg-3  ">
+        <div class="card">
+            <img src="../../../../assets/images/kitReference.png" class="card-img-top" alt="...">
+        <div class="card-body">
             <h5 class="card-title">{{kitDetail?.kName}}</h5>
-            <p class="card-text">{{kitDetail?.kDescription}}</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <p class="card-text text-muted">{{kitDetail?.kDescription}}</p>
+            <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+        </div>
         </div>
     </div>
-    <div class="col-lg-9" style="height: 100%;">
-        <div class="container p-3 border" style="height: 100%;">
-            <app-page-header Heading="Manage Kit Items">
-                <div class="btn btn-sm btn-primary" (click)="openItemForm(kitITemForm)">Add New Item</div>
-            </app-page-header>
-            <div class="p-2">
-                <div class="card mb-3 " *ngFor="let item of kitItems">
-                    <div class="row g-0">
-                        <div class="col-md-2">
-                            <img [src]="item.imagePath" class="img-fluid rounded-start"
-                                alt="..." width="200px">
-                        </div>
-                        <div class="col-md-10">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between">
-                                    <h5 class="card-title">{{item.iName}}</h5>
-                                    <div data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="bi bi-three-dots-vertical"></i>
+    <div class="col-lg-9" style="height: 100%;">         
+            <div class="kitItemsBox" >
+
+                <div class="row">
+                    <div class="col-lg-6" *ngFor="let item of kitItems">
+                        <div class="card mb-3 " >
+                            <div class="row g-0">
+                                <div class="col-md-3">
+                                    <img [src]="item.imagePath" class="img-fluid rounded-start"
+                                        alt="..." style="width: 100%; height: 150px; margin: auto 0px;">
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between">
+                                            <h5 class="card-title">{{item.iName}}</h5>
+                                            <span (click)="deleteKitMapping(item)" class="cursorPointer"><i class="bi bi-trash3"></i></span>
+                                            <!-- <div data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="bi bi-three-dots-vertical"></i>
+                                            </div>
+                                            <ul class="dropdown-menu shadow p-0">
+                                                <li (click)="deleteKitMapping(item)"><span class="dropdown-item"><i class="bi bi-trash3"></i> Delete</span></li>
+                                            </ul> -->
+                                        </div>
+                                        <p class="card-text text-muted">{{item.iDesc}}</p>
+                                        <!-- <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> -->
+                                        <div class="row">
+                                            <div class="col-lg-6 ">
+                                                <small class="text-muted">Type</small>
+                                                <p class="mb-0">{{item.iType}}</p>
+                                            </div>
+                                            <div class="col-lg-3 col-md-6">
+                                                <small class="text-muted">Price</small>
+                                                <p class="mb-0">{{item.mrp|currency:'INR':'symbol':'1.2-2'}}</p>
+                                            </div>
+                                            <!-- <div class="col-lg-3">
+                                                <small class="text-muted">Packaing</small>
+                                                <p class="mb-0">Bottle</p>
+                                            </div> -->
+                                            <div class="col-lg-3 col-md-6">
+                                                <small class="text-muted">Size</small>
+                                                <p class="mb-0">{{item.iSize}}</p>
+                                            </div>
+                                            <!-- <div class="col-lg-3">
+                                                <small class="text-muted">Quantity</small>
+                                                <p class="mb-0">{{item.}}</p>
+                                            </div> -->
+                                          </div>
                                     </div>
-                                    <ul class="dropdown-menu shadow p-0">
-                                        <li (click)="deleteKitMapping(item)"><span class="dropdown-item"><i class="bi bi-trash3"></i> Delete</span></li>
-                                    </ul>
+                                  
                                 </div>
-                                <p class="card-text">{{item.iDesc}}</p>
-                                <!-- <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p> -->
                             </div>
-                            <div class="row">
-                                <div class="col-lg-3">
-                                    <small class="text-muted">Price</small>
-                                    <p class="mb-0">{{item.mrp|currency:'INR':'symbol':'1.2-2'}}</p>
-                                </div>
-                                <!-- <div class="col-lg-3">
-                                    <small class="text-muted">Packaing</small>
-                                    <p class="mb-0">Bottle</p>
-                                </div> -->
-                                <div class="col-lg-3">
-                                    <small class="text-muted">Size</small>
-                                    <p class="mb-0">{{item.iSize}}</p>
-                                </div>
-                                <!-- <div class="col-lg-3">
-                                    <small class="text-muted">Quantity</small>
-                                    <p class="mb-0">{{item.}}</p>
-                                </div> -->
-                              </div>
                         </div>
                     </div>
                 </div>
+                
             </div>
-
-
-
-        </div>
     </div>
 </div>
 
@@ -79,9 +90,12 @@
             <div class="row" style="height: 400px; overflow-y: scroll;" class="mt-2"> <!-- Scrollable area with fixed height -->
                 <div class="col-md-12">
                     <div class="card mb-1 p-2" *ngFor="let item of itemList"> <!-- Dynamic item list -->
-                        <div class=" d-flex justify-content-between">
-                            <img [src]="item.imagePath" alt="" width="50px">
-                            <span>{{ item.iName }}</span> <!-- Assuming item has iName property -->
+                        <div class=" d-flex justify-content-between align-item-top">
+                            <div>
+                                <img [src]="item.imagePath" alt="" style="height: 50px; width: 50px;">
+                             <span class="ms-2">{{ item.iName }}</span>
+                             <!-- Assuming item has iName property -->
+                            </div>
                             <input type="checkbox"  class="form-check-input" (change)="checkBoxChange($event,item)" [checked]="checkBoxChecked(item)"> 
                         </div>
                     </div>
