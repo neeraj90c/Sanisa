@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CreateQuoteDTO, DeleteQuoteDTO, QuoteListDTO, QuoteMasterDTO, UpdateQuoteDTO } from './quote-master.interface';
+import { CreateQuoteDTO, DeleteQuoteDTO, QuoteListDTO, QuoteMasterDTO, QuoteSuggestionList, QuoteSuggestionsReq, UpdateQuoteDTO } from './quote-master.interface';
 import { ReadAllDTO } from 'src/app/Common/common.interface';
-import { CreateQuote, UpdateQuote, ReadQuoteById, DeleteQuote, ReadAllQuotes, ReadAllQuotesPaginated } from 'GlobalVariables';
+import { CreateQuote, UpdateQuote, ReadQuoteById, DeleteQuote, ReadAllQuotes, ReadAllQuotesPaginated, QuoteSuggestions } from 'GlobalVariables';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +31,9 @@ export class QuoteMasterService {
   }
   ReadAllQuotesPaginated(data: ReadAllDTO): Observable<QuoteListDTO> {
     return this.http.post<QuoteListDTO>(ReadAllQuotesPaginated, data)
+  }
+  QuoteSuggestions(data: QuoteSuggestionsReq): Observable<QuoteSuggestionList> {
+    return this.http.post<QuoteSuggestionList>(QuoteSuggestions, data)
   }
 
 

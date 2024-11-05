@@ -2,48 +2,61 @@
     <div class="btn btn-sm btn-primary" (click)="openItemForm(AddItemModal)">Add New Item</div>
 </app-page-header>
 <div class="col-md-12">
-    <div class="comboItemCard border p-3 mb-3" *ngFor="let cItem of categoryItemList">
-        <div class="d-flex ">
-          <div >
-            <img [src]="cItem.imagePath" alt="" width="50px">
-          </div>
-          <div class="px-3 w-100">
-            <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <h6 class="mb-2">{{cItem.iName}}</h6>
-                <div class="dropdown actionDropdown ">
-                  <span  data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-three-dots"></i>
-                  </span>
-                  <ul class="dropdown-menu shadow p-0">
-                    <li (click)="deleteItemMapping(cItem)"><span class="dropdown-item" ><i class="bi bi-trash3"></i> Delete</span></li>
-                  </ul>
+  <ng-container *ngIf="!loading">
+    <div class="row">
+      <div class="col-md-6" *ngFor="let cItem of categoryItemList"> 
+        <div class="comboItemCard border p-3 mb-3" >
+            <div class="d-flex ">
+              <div >
+                <img [src]="cItem.imagePath" alt="" width="50px">
+              </div>
+              <div class="px-3 w-100">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between">
+                    <h6 class="mb-2">{{cItem.iName}}</h6>
+                    <div class="dropdown actionDropdown ">
+                      <span  data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-three-dots"></i>
+                      </span>
+                      <ul class="dropdown-menu shadow p-0">
+                        <li (click)="deleteItemMapping(cItem)"><span class="dropdown-item" ><i class="bi bi-trash3"></i> Delete</span></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <p class="text-muted">
+                    {{cItem.iDesc}}
+                  </p>
+                  
+                    <div class="row">
+                      <div class="col-lg-3">
+                          <small class="text-muted">Price</small>
+                          <p class="mb-0">{{cItem.mrp|currency:'INR':'symbol':'1.2-2'}}</p>
+                      </div>
+                      <div class="col-lg-3">
+                          <small class="text-muted">Brand</small>
+                          <p class="mb-0">{{cItem.bName}}</p>
+                      </div>
+                    
+                      <div class="col-lg-3">
+                          <small class="text-muted">Quantity</small>
+                          <p class="mb-0">32</p>
+                      </div>
+                    </div>
+                  
                 </div>
               </div>
-              <p class="text-muted">
-                {{cItem.iDesc}}
-              </p>
-              
-                <div class="row">
-                  <div class="col-lg-3">
-                      <small class="text-muted">Price</small>
-                      <p class="mb-0">{{cItem.mrp|currency:'INR':'symbol':'1.2-2'}}</p>
-                  </div>
-                  <div class="col-lg-3">
-                      <small class="text-muted">Brand</small>
-                      <p class="mb-0">{{cItem.bName}}</p>
-                  </div>
-                
-                  <div class="col-lg-3">
-                      <small class="text-muted">Quantity</small>
-                      <p class="mb-0">32</p>
-                  </div>
-                </div>
-              
             </div>
           </div>
-        </div>
       </div>
+      </div>
+  </ng-container>
+  <div class="d-flex justify-content-center align-items-center" style="height:500px" *ngIf="loading">
+    <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <span class="status">Loading...</span>
+
+</div>
 </div>
 
 

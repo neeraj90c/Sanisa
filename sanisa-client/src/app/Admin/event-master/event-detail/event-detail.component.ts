@@ -33,6 +33,8 @@ export class EventDetailComponent implements OnInit{
   private searchSubject = new Subject<string>();
   searchTerm: string = '';
   eventItemList: ItemMaster[] = [];
+  loading: boolean = true;
+
 
   ngOnInit(): void {
     let currentParams = this.route.snapshot.paramMap.get('id')
@@ -46,6 +48,7 @@ export class EventDetailComponent implements OnInit{
   }
 
   getItemsByEvent(eventId: number) {
+    this.loading = true
     this.itemMasterService.ReadByEventId({ eventId }).subscribe(res => {
       this.eventItemList = res.items
       this.eventItemList.map(item => {
@@ -54,12 +57,15 @@ export class EventDetailComponent implements OnInit{
         }
         return item
       });
+      this.loading = false
     })
   }
 
   getEventDetail(eventId: number) {
+    this.loading = true
     this.eventMasterService.ReadEventById({ eventId }).subscribe(res => {
       this.EventDetail = res
+      this.loading = false
     })
     this.getItemsByEvent(eventId)
   }

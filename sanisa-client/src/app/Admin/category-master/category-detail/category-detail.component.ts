@@ -33,6 +33,7 @@ export class CategoryDetailComponent implements OnInit {
   private searchSubject = new Subject<string>();
   searchTerm: string = '';
   categoryItemList: ItemMaster[] = [];
+  loading: boolean = false
 
   ngOnInit(): void {
     let currentParams = this.route.snapshot.paramMap.get('id')
@@ -46,6 +47,7 @@ export class CategoryDetailComponent implements OnInit {
   }
 
   getItemsByCategory(categoryId: number) {
+    this.loading = true
     this.itemMasterService.ReadByCategoryId({ categoryId }).subscribe(res => {
       this.categoryItemList = res.items
       this.categoryItemList.map(item => {
@@ -54,7 +56,9 @@ export class CategoryDetailComponent implements OnInit {
         }
         return item
       });
-    })
+      this.loading = false
+    }
+    )
   }
 
   getCategoryDetail(categoryId: number) {
@@ -91,8 +95,8 @@ export class CategoryDetailComponent implements OnInit {
     if (target.checked) {
       this.createItemCategory(item.itemId)
     } else {
-     let detail = this.categoryItemList.find(i=> i.itemId == item.itemId)
-      if(detail){
+      let detail = this.categoryItemList.find(i => i.itemId == item.itemId)
+      if (detail) {
         this.DeleteCategory(detail.detailId!)
       }
     }
@@ -120,7 +124,7 @@ export class CategoryDetailComponent implements OnInit {
     })
   }
 
-  deleteItemMapping(item:ItemMaster){
+  deleteItemMapping(item: ItemMaster) {
     this.confirmModal.openDeleteModal(item?.iName!, item).subscribe(res => {
       if (res) {
         console.log(res);
@@ -131,8 +135,8 @@ export class CategoryDetailComponent implements OnInit {
     })
   }
 
-  checkBoxChecked(item:ItemMaster):boolean{
-    let eItem = this.categoryItemList.find(i=>i.itemId == item.itemId)
+  checkBoxChecked(item: ItemMaster): boolean {
+    let eItem = this.categoryItemList.find(i => i.itemId == item.itemId)
     return eItem ? true : false
   }
 

@@ -180,6 +180,7 @@ export const ReadQuoteById = QuoteMaster_BaseURL + 'ReadById'
 export const DeleteQuote = QuoteMaster_BaseURL + 'Delete'
 export const ReadAllQuotes = QuoteMaster_BaseURL + 'ReadAll'
 export const ReadAllQuotesPaginated = QuoteMaster_BaseURL + 'ReadAllPaginated'
+export const QuoteSuggestions = QuoteMaster_BaseURL + 'Suggestions'
 //#endregion
 
 //#region Category Master API CategoryMaster_BaseURL

@@ -56,3 +56,22 @@ export interface QuoteMasterDTO {
 export interface QuoteListDTO {
     items: QuoteMasterDTO[]
 }
+export interface QuoteSuggestionsReq {
+    budgetPrice: number;
+    eventId: number;
+    numberOfItems: number;
+    numberOfSuggestions: number;
+}
+export interface QuoteMasterSuggestionsResponse {
+    sugId: number;
+    ttId: number;
+    itemId: number;
+    iName: string;
+    iDesc: string;
+    moq: number;
+    mrp: number;
+}
+
+export interface QuoteSuggestionList {
+    items: QuoteMasterSuggestionsResponse[];
+}

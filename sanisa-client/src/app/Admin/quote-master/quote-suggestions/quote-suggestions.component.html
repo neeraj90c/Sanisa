@@ -1,18 +1,121 @@
 <app-page-header Heading="Quote Suggestions" [Description]="'Item suggestion list'">
-    <select name="" id="" class="form-select form-select-sm">
-        <option value="">Events</option>
-        <option value="">Events</option>
-        <option value="">Events</option>
-        <option value="">Events</option>
-    </select>
-    <input type="number" class="form-control form-control-sm">
-    <div class="btn btn-sm btn-primary" (click)="loadList()">Submit</div>
+    <form [formGroup]="suggestionForm" class="d-flex gap-2">
+        <div>
+            <label for="budget">BudgetPrice <span class="text-danger">*</span></label>
+            <input type="number" id="budget" class="form-control form-control-sm" formControlName="budgetPrice">
+            <!-- Error message for budgetPrice -->
+            <div class="text-danger" *ngIf="(suggestionForm.get('budgetPrice')?.touched && suggestionForm.get('budgetPrice')?.invalid )">
+                <ng-container *ngIf="suggestionForm.get('budgetPrice')?.errors">
+                    <ng-container *ngIf="suggestionForm.get('budgetPrice')?.errors?.['required']">Input field is
+                        required</ng-container>
+                    <ng-container
+                        *ngIf="!suggestionForm.get('budgetPrice')?.errors?.['required'] && suggestionForm.get('budgetPrice')?.errors?.['whitespace']">No
+                        empty spaces allowed</ng-container>
+                    <ng-container
+                        *ngIf="!suggestionForm.get('budgetPrice')?.errors?.['required'] && !suggestionForm.get('budgetPrice')?.errors?.['whitespace'] && suggestionForm.get('budgetPrice')?.errors?.['min']">Invalid Price</ng-container>
+                </ng-container>
+            </div>
+        </div>
+        
+        <div>
+            <label for="events">Events <span class="text-danger">*</span></label>
+            <select name="events" id="events" class="form-select form-select-sm" formControlName="eventId">
+                <option [ngValue]="0">Select Event...</option>
+                <option *ngFor="let event of eventList" [ngValue]="event.eventId">{{event.eventName}}</option>
+            </select>
+            <!-- Error message for eventId -->
+    
+            <div class="text-danger" *ngIf="(suggestionForm.get('eventId')?.touched && suggestionForm.get('eventId')?.invalid )">
+                <ng-container *ngIf="suggestionForm.get('eventId')?.errors">
+                    <ng-container *ngIf="suggestionForm.get('eventId')?.errors?.['required']">Input field is
+                        required</ng-container>
+                    <ng-container
+                        *ngIf="!suggestionForm.get('eventId')?.errors?.['required'] && suggestionForm.get('eventId')?.errors?.['whitespace']">No
+                        empty spaces allowed</ng-container>
+                    <ng-container
+                        *ngIf="!suggestionForm.get('eventId')?.errors?.['required'] && !suggestionForm.get('eventId')?.errors?.['whitespace'] && suggestionForm.get('eventId')?.errors?.['min']">Invalid Event</ng-container>
+                </ng-container>
+            </div>
+        </div>
+
+        <div>
+            <label for="numberOfItems">No.of Items <span class="text-danger">*</span></label>
+            <input type="number" id="numberOfItems" class="form-control form-control-sm" formControlName="numberOfItems">
+            <!-- Error message for numberOfItems -->
+
+            <div class="text-danger" *ngIf="(suggestionForm.get('numberOfItems')?.touched && suggestionForm.get('numberOfItems')?.invalid )">
+                <ng-container *ngIf="suggestionForm.get('numberOfItems')?.errors">
+                    <ng-container *ngIf="suggestionForm.get('numberOfItems')?.errors?.['required']">Input field is
+                        required</ng-container>
+                    <ng-container
+                        *ngIf="!suggestionForm.get('numberOfItems')?.errors?.['required'] && suggestionForm.get('numberOfItems')?.errors?.['whitespace']">No
+                        empty spaces allowed</ng-container>
+                    <ng-container
+                        *ngIf="!suggestionForm.get('numberOfItems')?.errors?.['required'] && !suggestionForm.get('numberOfItems')?.errors?.['whitespace'] && suggestionForm.get('numberOfItems')?.errors?.['min']">Items Should be greater than 0</ng-container>
+                </ng-container>
+            </div>
+        </div>
+
+        <div>
+            <label for="numberOfSuggestions">No.of Suggestions <span class="text-danger">*</span></label>
+            <input type="number" id="numberOfSuggestions" class="form-control form-control-sm" formControlName="numberOfSuggestions">
+            <!-- Error message for numberOfSuggestions -->
+      
+            <div class="text-danger" *ngIf="(suggestionForm.get('numberOfSuggestions')?.touched && suggestionForm.get('numberOfSuggestions')?.invalid )">
+                <ng-container *ngIf="suggestionForm.get('numberOfSuggestions')?.errors">
+                    <ng-container *ngIf="suggestionForm.get('numberOfSuggestions')?.errors?.['required']">Input field is
+                        required</ng-container>
+                    <ng-container
+                        *ngIf="!suggestionForm.get('numberOfSuggestions')?.errors?.['required'] && suggestionForm.get('numberOfSuggestions')?.errors?.['whitespace']">No
+                        empty spaces allowed</ng-container>
+                    <ng-container
+                        *ngIf="!suggestionForm.get('numberOfSuggestions')?.errors?.['required'] && !suggestionForm.get('numberOfSuggestions')?.errors?.['whitespace'] && suggestionForm.get('numberOfSuggestions')?.errors?.['min']">Suggestions Should be greater than 0</ng-container>
+                </ng-container>
+            </div>
+        </div>
+    </form>
+    <button class="btn btn-sm btn-primary" (click)="GetQuotSugestions()" >Get Suggestions</button>
 </app-page-header>
+
+
 <div class="suggestions">
-    <div class="row ">
+    <div class="d-flex justify-content-center align-items-center" style="height:500px" *ngIf="loading">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <span class="status">Loading...</span>
+
+    </div>
+    <div class="row " *ngIf="!loading">
+
+        <div class="col-md-3 mt-3" *ngFor="let sugg of suggestionMaster">
+            <div class="card " style="border-radius: 0%;">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between ">
+                        <h5 class="mb-0 font-weight-600">Combo_{{sugg.sugId}}
+                            
+                             <span class="editcomboName"><i class="bi bi-pencil"></i></span>
+                        </h5>
+                        <h5 class="mb-0 font-weight-600">{{sugg.mrp|currency:'INR':'symbol':'1.2-2'}}</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul class="p-0 mb-0 comboItemList">
+                        <li class="comboList" *ngFor="let item of getItemDetails(sugg.sugId)">
+                            <div class="d-flex justify-content-between">
+                                <h6 class="mb-0">{{item.iName}}</h6>
+                                <h6 class="mb-0">{{item.mrp|currency:'INR':'symbol':'1.2-2'}}</h6>
+                            </div>
+                        </li>
+                    </ul>
+                    <button class="btn btn-primary btn-sm mt-3">Add To Combo Master</button>
+                </div>
+            </div>
+        </div>
+
 
         
-        <div class="col-md-3 mt-3">
+        <!-- <div class="col-md-3 mt-3">
             <div class="card " style="border-radius: 0%;">
                 <div class="card-header">
                     <div class="d-flex justify-content-between ">
@@ -140,7 +243,7 @@
                     <button class="btn btn-primary btn-sm mt-3">Add To Combo Master</button>
                 </div>
             </div>
-        </div>
+        </div> -->
       
        
    
